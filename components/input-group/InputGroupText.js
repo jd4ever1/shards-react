@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 const InputGroupText = props => {
   const { className, tag: Tag, ...attrs } = props;
-  const classes = classNames(className, "input-group-text");
+  const classes = classNames(className, "bs-input-group-text");
 
   return <Tag {...attrs} className={classes} />;
 };

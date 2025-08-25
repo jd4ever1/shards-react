@@ -13,8 +13,8 @@ const ModalHeader = props => {
     ...attrs
   } = props;
 
-  const classes = classNames("modal-header", className);
-  const titleClasses = classNames("modal-title", titleClass);
+  const classes = classNames("bs-modal-header", className);
+  const titleClasses = classNames("bs-modal-title", titleClass);
   let closeButton = null;
 
   if (toggle) {
@@ -22,7 +22,7 @@ const ModalHeader = props => {
       <button
         type="button"
         onClick={toggle}
-        className="close"
+        className="bs-close"
         aria-label={closeAriaLabel}
       >
         <span aria-hidden="true">{String.fromCharCode(215)}</span>

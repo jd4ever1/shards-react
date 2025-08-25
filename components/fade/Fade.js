@@ -63,8 +63,8 @@ Fade.propTypes = {
 Fade.defaultProps = {
   ...Transition.defaultProps,
   tag: "div",
-  baseClass: "fade",
-  baseClassActive: "show",
+  baseClass: "bs-fade",
+  baseClassActive: "bs-show",
   timeout: TIMEOUT.FADE,
   appear: true,
   enter: true,

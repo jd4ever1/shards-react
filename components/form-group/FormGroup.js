@@ -9,9 +9,9 @@ const FormGroup = props => {
   const { className, row, disabled, check, inline, tag: Tag, ...attrs } = props;
   const classes = classNames(
     className,
-    row && "row",
-    check ? "form-check" : "form-group",
-    check && inline && "form-check-inline",
+    row && "bs-row",
+    check ? "bs-form-check" : "bs-form-group",
+    check && inline && "bs-form-check-inline",
     check && disabled && "disabled"
   );
 

@@ -2,8 +2,8 @@
 * Shards React v1.0.3 (https://designrevision.com/downloads/shards-react/)
 * Based on: Bootstrap ^4.1.3 (https://getbootstrap.com)
 * Based on: Shards ^2.1.2 (https://designrevision.com/downloads/shards/)
-* Copyright 2017-2019 DesignRevision (https://designrevision.com)
-* Copyright 2017-2019 Catalin Vasile (http://catalin.me)
+* Copyright 2017-2025 DesignRevision (https://designrevision.com)
+* Copyright 2017-2025 Catalin Vasile (http://catalin.me)
 */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('lodash.pick'), require('lodash.isfunction'), require('react-datepicker'), require('shortid'), require('react-transition-group'), require('react-dom'), require('react-popper'), require('lodash.tonumber'), require('nouislider'), require('react'), require('classnames'), require('lodash.omit')) :
@@ -1962,8 +1962,8 @@
   });
   Fade.defaultProps = _objectSpread({}, Transition.defaultProps, {
     tag: "div",
-    baseClass: "fade",
-    baseClassActive: "show",
+    baseClass: "bs-fade",
+    baseClassActive: "bs-show",
     timeout: TIMEOUT.FADE,
     appear: true,
     enter: true,
@@ -1988,8 +1988,8 @@
         fade = props.fade,
         attrs = _objectWithoutProperties(props, ["className", "closeClassName", "closeAriaLabel", "tag", "theme", "open", "dismissible", "children", "transition", "fade"]);
 
-    var classes = classNames(className, "alert", "alert-".concat(theme), dismissible && "alert-dismissible");
-    var closeClasses = classNames("close", closeClassName);
+    var classes = classNames(className, "bs-alert", "bs-alert-".concat(theme), dismissible && "bs-alert-dismissible");
+    var closeClasses = classNames("bs-close", closeClassName);
 
     var alertTransition = _objectSpread({}, Fade.defaultProps, transition, {
       baseClass: fade ? transition.baseClass : "",
@@ -2085,7 +2085,7 @@
         outline = props.outline,
         attrs = _objectWithoutProperties(props, ["tag", "className", "theme", "pill", "outline"]);
 
-    var classes = classNames(className, "badge", theme && !outline && "badge-".concat(theme), outline && "badge-outline-".concat(theme), pill && "badge-pill");
+    var classes = classNames(className, "bs-badge", theme && !outline && "bs-badge-".concat(theme), outline && "bs-badge-outline-".concat(theme), pill && "bs-badge-pill");
     Tag = attrs.href && Tag === "span" ? "a" : Tag;
     return React__default.createElement(Tag, _extends({}, attrs, {
       className: classes
@@ -2144,7 +2144,7 @@
         attrs = _objectWithoutProperties(props, ["className", "listClassName", "children", "tag", "listTag", "aria-label"]);
 
     var classes = classNames(className);
-    var listClasses = classNames("breadcrumb", listClassName);
+    var listClasses = classNames("bs-breadcrumb", listClassName);
     return React__default.createElement(Tag, _extends({}, attrs, {
       className: classes,
       "aria-label": label
@@ -2196,7 +2196,7 @@
         Tag = props.tag,
         attrs = _objectWithoutProperties(props, ["className", "active", "tag"]);
 
-    var classes = classNames(className, active && "active", "breadcrumb-item");
+    var classes = classNames(className, active && "bs-active", "bs-breadcrumb-item");
     return React__default.createElement(Tag, _extends({}, attrs, {
       className: classes,
       "aria-current": active ? "page" : undefined
@@ -2271,7 +2271,7 @@
             block = _this$props.block,
             attrs = _objectWithoutProperties(_this$props, ["className", "theme", "size", "pill", "outline", "squared", "active", "disabled", "innerRef", "tag", "block"]);
 
-        var classes = classNames(className, "btn", theme && "btn-".concat(outline ? "outline-" : "").concat(theme), size && "btn-".concat(size), pill && "btn-pill", squared && "btn-squared", block && "btn-block", active && "active");
+        var classes = classNames(className, "bs-btn", theme && "bs-btn-".concat(outline ? "outline-" : "").concat(theme), size && "bs-btn-".concat(size), pill && "bs-btn-pill", squared && "bs-btn-squared", block && "bs-btn-block", active && "bs-active");
         Tag = attrs.href && Tag === "button" ? "a" : Tag;
         var tagType = Tag === "button" && attrs.onClick ? "button" : undefined;
         return React__default.createElement(Tag, _extends({
@@ -2365,7 +2365,7 @@
         size = props.size,
         attrs = _objectWithoutProperties(props, ["className", "vertical", "size"]);
 
-    var classes = classNames(className, size && "btn-group-".concat(size), vertical ? "btn-group-vertical" : "btn-group");
+    var classes = classNames(className, size && "bs-btn-group-".concat(size), vertical ? "bs-btn-group-vertical" : "bs-btn-group");
     return React__default.createElement("div", _extends({
       className: classes
     }, attrs));
@@ -2401,7 +2401,7 @@
     var className = props.className,
         attrs = _objectWithoutProperties(props, ["className"]);
 
-    var classes = classNames(className, "btn-toolbar");
+    var classes = classNames(className, "bs-btn-toolbar");
     return React__default.createElement("div", _extends({
       className: classes
     }, attrs));
@@ -2432,7 +2432,7 @@
         small = props.small,
         attrs = _objectWithoutProperties(props, ["className", "innerRef", "tag", "theme", "outline", "small"]);
 
-    var classes = classNames(className, "card", small && "card-small", theme && "".concat(outline ? "border" : "bg", "-").concat(theme));
+    var classes = classNames(className, "bs-card", small && "bs-card-small", theme && "".concat(outline ? "border" : "bg", "-").concat(theme));
     return React__default.createElement(Tag, _extends({}, attrs, {
       className: classes,
       ref: innerRef
@@ -2480,7 +2480,7 @@
         children = props.children,
         attrs = _objectWithoutProperties(props, ["className", "tag", "children"]);
 
-    var classes = classNames(className, "card-body");
+    var classes = classNames(className, "bs-card-body");
     return React__default.createElement(Tag, _extends({}, attrs, {
       className: classes
     }), children);
@@ -2511,7 +2511,7 @@
         Tag = props.tag,
         attrs = _objectWithoutProperties(props, ["className", "tag"]);
 
-    var classes = classNames(className, "card-columns");
+    var classes = classNames(className, "bs-card-columns");
     return React__default.createElement(Tag, _extends({}, attrs, {
       className: classes
     }));
@@ -2537,7 +2537,7 @@
         Tag = props.tag,
         attrs = _objectWithoutProperties(props, ["className", "tag"]);
 
-    var classes = classNames(className, "card-footer");
+    var classes = classNames(className, "bs-card-footer");
     return React__default.createElement(Tag, _extends({}, attrs, {
       className: classes
     }));
@@ -2563,7 +2563,7 @@
         Tag = props.tag,
         attrs = _objectWithoutProperties(props, ["className", "tag"]);
 
-    var classes = classNames(className, "card-group");
+    var classes = classNames(className, "bs-card-group");
     return React__default.createElement(Tag, _extends({}, attrs, {
       className: classes
     }));
@@ -2589,7 +2589,7 @@
         Tag = props.tag,
         attrs = _objectWithoutProperties(props, ["className", "tag"]);
 
-    var classes = classNames(className, "card-deck");
+    var classes = classNames(className, "bs-card-deck");
     return React__default.createElement(Tag, _extends({}, attrs, {
       className: classes
     }));
@@ -2615,7 +2615,7 @@
         Tag = props.tag,
         attrs = _objectWithoutProperties(props, ["className", "tag"]);
 
-    var classes = classNames(className, "card-header");
+    var classes = classNames(className, "bs-card-header");
     return React__default.createElement(Tag, _extends({}, attrs, {
       className: classes
     }));
@@ -2646,11 +2646,11 @@
     var cardImgClass = "";
 
     if (top) {
-      cardImgClass = "card-img-top";
+      cardImgClass = "bs-card-img-top";
     }
 
     if (bottom) {
-      cardImgClass = "card-img-bottom";
+      cardImgClass = "bs-card-img-bottom";
     }
 
     cardImgClass = classNames(className, cardImgClass);
@@ -2689,7 +2689,7 @@
         Tag = props.tag,
         attrs = _objectWithoutProperties(props, ["className", "tag"]);
 
-    var classes = classNames(className, "card-img-overlay");
+    var classes = classNames(className, "bs-card-img-overlay");
     return React__default.createElement(Tag, _extends({}, attrs, {
       className: classes
     }));
@@ -2716,7 +2716,7 @@
         innerRef = props.innerRef,
         attrs = _objectWithoutProperties(props, ["className", "tag", "innerRef"]);
 
-    var classes = classNames(className, "card-link");
+    var classes = classNames(className, "bs-card-link");
     return React__default.createElement(Tag, _extends({}, attrs, {
       ref: innerRef,
       className: classes
@@ -2748,7 +2748,7 @@
         Tag = props.tag,
         attrs = _objectWithoutProperties(props, ["className", "tag"]);
 
-    var classes = classNames(className, "card-subtitle", "text-muted");
+    var classes = classNames(className, "bs-card-subtitle", "bs-text-muted");
     return React__default.createElement(Tag, _extends({}, attrs, {
       className: classes
     }));
@@ -2774,7 +2774,7 @@
         Tag = props.tag,
         attrs = _objectWithoutProperties(props, ["className", "tag"]);
 
-    var classes = classNames(className, "card-text");
+    var classes = classNames(className, "bs-card-text");
     return React__default.createElement(Tag, _extends({}, attrs, {
       className: classes
     }));
@@ -2800,7 +2800,7 @@
         Tag = props.tag,
         attributes = _objectWithoutProperties(props, ["className", "tag"]);
 
-    var classes = classNames(className, "card-title");
+    var classes = classNames(className, "bs-card-title");
     return React__default.createElement(Tag, _extends({}, attributes, {
       className: classes
     }));
@@ -2919,7 +2919,7 @@
             height: height || null,
             display: status !== "exited" && "block"
           };
-          var classes = classNames(className, TRANSITION_CLASS_MAP[status] || "collapse", navbar && "navbar-collapse");
+          var classes = classNames(className, TRANSITION_CLASS_MAP[status] || "bs-collapse", navbar && "bs-navbar-collapse");
           return React__default.createElement(Tag, _extends({}, childProps, {
             style: _objectSpread({}, childProps.style, style),
             className: classes,
@@ -3023,7 +3023,7 @@
         Tag = props.tag,
         attrs = _objectWithoutProperties(props, ["className", "fluid", "tag"]);
 
-    var classes = classNames(className, fluid ? "container-fluid" : "container");
+    var classes = classNames(className, fluid ? "bs-container-fluid" : "bs-container");
     return React__default.createElement(Tag, _extends({}, attrs, {
       className: classes
     }));
@@ -3056,7 +3056,7 @@
         Tag = props.tag,
         attrs = _objectWithoutProperties(props, ["noGutters", "form", "className", "tag"]);
 
-    var classes = classNames(className, noGutters ? 'no-gutters' : null, form ? 'form-row' : 'row');
+    var classes = classNames(className, noGutters ? 'bs-no-gutters' : null, form ? 'bs-form-row' : 'bs-row');
     return React__default.createElement(Tag, _extends({}, attrs, {
       className: classes
     }));
@@ -3089,12 +3089,12 @@
 
   var makeColumnClass = function makeColumnClass(isXs, breakpoint, colSize) {
     if (colSize === true || colSize === "") {
-      return isXs ? "col" : "col-".concat(breakpoint);
+      return isXs ? "bs-col" : "bs-col-".concat(breakpoint);
     } else if (colSize === "auto") {
-      return isXs ? "col-auto" : "col-".concat(breakpoint, "-auto");
+      return isXs ? "bs-col-auto" : "bs-col-".concat(breakpoint, "-auto");
     }
 
-    return isXs ? "col-".concat(colSize) : "col-".concat(breakpoint, "-").concat(colSize);
+    return isXs ? "bs-col-".concat(colSize) : "bs-col-".concat(breakpoint, "-").concat(colSize);
   };
 
   var Col = function Col(props) {
@@ -3125,11 +3125,11 @@
 
       var colSizeInterfix = isXs ? "-" : "-".concat(breakpoint, "-");
       var colClass = makeColumnClass(isXs, breakpoint, columnProp.size);
-      columnClasses.push(classNames((_classNames = {}, _defineProperty(_classNames, colClass, columnProp.size || columnProp.size === ""), _defineProperty(_classNames, "order".concat(colSizeInterfix).concat(columnProp.order), columnProp.order || columnProp.order === 0), _defineProperty(_classNames, "offset".concat(colSizeInterfix).concat(columnProp.offset), columnProp.offset || columnProp.offset === 0), _classNames)));
+      columnClasses.push(classNames((_classNames = {}, _defineProperty(_classNames, colClass, columnProp.size || columnProp.size === ""), _defineProperty(_classNames, "bs-order".concat(colSizeInterfix).concat(columnProp.order), columnProp.order || columnProp.order === 0), _defineProperty(_classNames, "bs-offset".concat(colSizeInterfix).concat(columnProp.offset), columnProp.offset || columnProp.offset === 0), _classNames)));
     });
 
     if (!columnClasses.length) {
-      columnClasses.push("col");
+      columnClasses.push("bs-col");
     }
 
     var classes = classNames(className, columnClasses);
@@ -3230,7 +3230,7 @@
         size = props.size,
         attrs = _objectWithoutProperties(props, ["className", "size"]);
 
-    var classes = classNames(className, "form-control", size && "form-control-".concat(size));
+    var classes = classNames(className, "bs-form-control", size && "bs-form-control-".concat(size));
 
     if (!attrs.dropdownMode) {
       attrs.dropdownMode = "select";
@@ -3374,7 +3374,7 @@
           });
         }
 
-        var classes = classNames(className, direction !== "down" && "drop".concat(direction), nav && active && "active", setActiveFromChild && subItemIsActive && "active", addonType && "input-group-".concat(addonType), group && "btn-group", !!size && "btn-group-".concat(size), !group && !addonType && "dropdown", open && "show", nav && "nav-item");
+        var classes = classNames(className, direction !== "down" && "drop".concat(direction), nav && active && "bs-active", setActiveFromChild && subItemIsActive && "bs-active", addonType && "bs-input-group-".concat(addonType), group && "bs-btn-group", !!size && "bs-btn-group-".concat(size), !group && !addonType && "bs-dropdown", open && "bs-show", nav && "bs-nav-item");
         var toggle = this.toggle;
         return React__default.createElement(DropdownContext.Provider, {
           value: {
@@ -3489,7 +3489,7 @@
             attrs = _objectWithoutProperties(_this$props, ["className", "theme", "caret", "split", "nav", "tag"]);
 
         var ariaLabel = attrs["aria-label"] || "Toggle Dropdown";
-        var classes = classNames(className, (caret || split) && "dropdown-toggle", split && "dropdown-toggle-split", nav && "nav-link");
+        var classes = classNames(className, (caret || split) && "bs-dropdown-toggle", split && "bs-dropdown-toggle-split", nav && "bs-nav-link");
         var children = attrs.children || React__default.createElement("span", {
           className: "sr-only"
         }, ariaLabel);
@@ -3612,7 +3612,7 @@
             persist = _this$props.persist,
             attrs = _objectWithoutProperties(_this$props, ["className", "children", "right", "tag", "flip", "small", "modifiers", "persist"]);
 
-        var classes = classNames(className, "dropdown-menu", small && "dropdown-menu-small", right && "dropdown-menu-right", this.context.open && "show");
+        var classes = classNames(className, "bs-dropdown-menu", small && "bs-dropdown-menu-small", right && "bs-dropdown-menu-right", this.context.open && "bs-show");
 
         if (persist || this.context.open && !this.context.inNavbar) {
           var pos1 = DROPDOWN_POSITION_MAP[this.context.direction.toUpperCase()] || "bottom";
@@ -3750,7 +3750,7 @@
             attrs = _objectWithoutProperties(_omit, ["className", "divider", "tag", "header", "active"]);
 
         var tabIndex = this.getTabIndex();
-        var classes = classNames(className, attrs.disabled && "disabled", !divider && !header && "dropdown-item", header && "dropdown-header", divider && "dropdown-divider", active && "active");
+        var classes = classNames(className, attrs.disabled && "disabled", !divider && !header && "bs-dropdown-item", header && "bs-dropdown-header", divider && "bs-dropdown-divider", active && "bs-active");
 
         if (Tag === "button") {
           if (header) {
@@ -3873,7 +3873,7 @@
             innerRef = _this$props.innerRef,
             attrs = _objectWithoutProperties(_this$props, ["className", "tag", "inline", "innerRef"]);
 
-        var classes = classNames(className, inline && "form-inline");
+        var classes = classNames(className, inline && "bs-form-inline");
         return React__default.createElement(Tag, _extends({}, attrs, {
           ref: innerRef,
           className: classes
@@ -3922,7 +3922,7 @@
         attrs = _objectWithoutProperties(props, ["className", "valid", "tooltip", "tag"]);
 
     var validMode = tooltip ? "tooltip" : "feedback";
-    var classes = classNames(className, valid ? "valid-".concat(validMode) : "invalid-".concat(validMode));
+    var classes = classNames(className, valid ? "bs-valid-".concat(validMode) : "bs-invalid-".concat(validMode));
     return React__default.createElement(Tag, _extends({}, attrs, {
       className: classes
     }));
@@ -4002,8 +4002,8 @@
             _id = _this$props.id,
             attrs = _objectWithoutProperties(_this$props, ["className", "children", "inline", "valid", "invalid", "innerRef", "toggle", "small", "id"]);
 
-        var labelClasses = classNames(className, "custom-control", !toggle ? "custom-checkbox" : "custom-toggle", toggle && small && "custom-toggle-sm", inline && "custom-control-inline", valid && "is-valid", invalid && "is-invalid");
-        var inputClasses = classNames("custom-control-input", valid && "is-valid", invalid && "is-invalid");
+        var labelClasses = classNames(className, "bs-custom-control", !toggle ? "bs-custom-checkbox" : "bs-custom-toggle", toggle && small && "bs-custom-toggle-sm", inline && "bs-custom-control-inline", valid && "bs-is-valid", invalid && "bs-is-invalid");
+        var inputClasses = classNames("bs-custom-control-input", valid && "bs-is-valid", invalid && "bs-is-invalid");
 
         var id = _id || "dr-checkbox-".concat(shortid.generate());
 
@@ -4016,11 +4016,11 @@
           className: inputClasses
         })), React__default.createElement("label", {
           id: id,
-          className: "custom-control-label",
+          className: "bs-custom-control-label",
           "aria-hidden": "true",
           onClick: this.props.onChange
         }), React__default.createElement("span", {
-          className: "custom-control-description"
+          className: "bs-custom-control-description"
         }, children));
       }
     }]);
@@ -4091,7 +4091,7 @@
         Tag = props.tag,
         attrs = _objectWithoutProperties(props, ["className", "row", "disabled", "check", "inline", "tag"]);
 
-    var classes = classNames(className, row && "row", check ? "form-check" : "form-group", check && inline && "form-check-inline", check && disabled && "disabled");
+    var classes = classNames(className, row && "bs-row", check ? "bs-form-check" : "bs-form-group", check && inline && "bs-form-check-inline", check && disabled && "disabled");
     return React__default.createElement(Tag, _extends({}, attrs, {
       className: classes
     }));
@@ -4186,7 +4186,7 @@
             innerRef = _this$props.innerRef,
             attrs = _objectWithoutProperties(_this$props, ["className", "plaintext", "size", "invalid", "valid", "innerRef"]);
 
-        var classes = classNames(className, plaintext ? "form-control-plaintext" : "form-control", plaintext && "w-100", size && "form-control-".concat(size), valid && "is-valid", invalid && "is-invalid");
+        var classes = classNames(className, plaintext ? "bs-form-control-plaintext" : "bs-form-control", plaintext && "bs-w-100", size && "bs-form-control-".concat(size), valid && "bs-is-valid", invalid && "bs-is-invalid");
         return React__default.createElement("input", _extends({}, attrs, {
           ref: innerRef,
           className: classes
@@ -4282,8 +4282,8 @@
             _id = _this$props.id,
             attrs = _objectWithoutProperties(_this$props, ["className", "children", "inline", "valid", "invalid", "innerRef", "onChange", "id"]);
 
-        var labelClasses = classNames("custom-control", "custom-radio", inline && "custom-control-inline", valid && "is-valid", invalid && "is-invalid");
-        var inputClasses = classNames(className, "custom-control-input", valid && "is-valid", invalid && "is-invalid");
+        var labelClasses = classNames("bs-custom-control", "bs-custom-radio", inline && "bs-custom-control-inline", valid && "bs-is-valid", invalid && "bs-is-invalid");
+        var inputClasses = classNames(className, "bs-custom-control-input", valid && "bs-is-valid", invalid && "bs-is-invalid");
 
         var id = _id || "dr-radio-".concat(shortid.generate());
 
@@ -4297,11 +4297,11 @@
           onChange: onChange
         })), React__default.createElement("label", {
           id: id,
-          className: "custom-control-label",
+          className: "bs-custom-control-label",
           "aria-hidden": "true",
           onClick: onChange
         }), React__default.createElement("span", {
-          className: "custom-control-description"
+          className: "bs-custom-control-description"
         }, children));
       }
     }]);
@@ -4389,7 +4389,7 @@
             innerRef = _this$props.innerRef,
             attrs = _objectWithoutProperties(_this$props, ["className", "children", "size", "valid", "invalid", "innerRef"]);
 
-        var classes = classNames(className, "form-control", "custom-select", valid && "is-valid", invalid && "is-invalid", size && "form-control-".concat(size), size && "custom-select-".concat(size));
+        var classes = classNames(className, "bs-form-control", "bs-custom-select", valid && "bs-is-valid", invalid && "bs-is-invalid", size && "bs-form-control-".concat(size), size && "bs-custom-select-".concat(size));
         return React__default.createElement("select", _extends({}, attrs, {
           className: classes,
           ref: innerRef
@@ -4473,7 +4473,7 @@
             invalid = _this$props.invalid,
             attrs = _objectWithoutProperties(_this$props, ["className", "children", "innerRef", "plaintext", "size", "valid", "invalid"]);
 
-        var classes = classNames(className, children, plaintext ? "form-control-plaintext" : "form-control", plaintext && "w-100", size && "form-control-".concat(size), valid && "is-valid", invalid && "is-invalid");
+        var classes = classNames(className, children, plaintext ? "bs-form-control-plaintext" : "bs-form-control", plaintext && "bs-w-100", size && "bs-form-control-".concat(size), valid && "bs-is-valid", invalid && "bs-is-invalid");
         return React__default.createElement("textarea", _extends({}, attrs, {
           className: classes,
           ref: innerRef
@@ -4532,7 +4532,7 @@
         seamless = props.seamless,
         attrs = _objectWithoutProperties(props, ["className", "tag", "size", "seamless"]);
 
-    var classes = classNames(className, "input-group", seamless && "input-group-seamless", size && "input-group-".concat(size));
+    var classes = classNames(className, "bs-input-group", seamless && "bs-input-group-seamless", size && "bs-input-group-".concat(size));
     return React__default.createElement(Tag, _extends({}, attrs, {
       className: classes
     }));
@@ -4573,7 +4573,7 @@
         Tag = props.tag,
         attrs = _objectWithoutProperties(props, ["className", "tag"]);
 
-    var classes = classNames(className, "input-group-text");
+    var classes = classNames(className, "bs-input-group-text");
     return React__default.createElement(Tag, _extends({}, attrs, {
       className: classes
     }));
@@ -4601,7 +4601,7 @@
         type = props.type,
         attrs = _objectWithoutProperties(props, ["className", "children", "tag", "type"]);
 
-    var classes = classNames(className, "input-group-".concat(type));
+    var classes = classNames(className, "bs-input-group-".concat(type));
 
     if (typeof children === "string") {
       return React__default.createElement(Tag, _extends({}, attrs, {
@@ -4650,7 +4650,7 @@
         small = props.small,
         attrs = _objectWithoutProperties(props, ["className", "tag", "flush", "small"]);
 
-    var classes = classNames(className, "list-group", small && "list-group-sm", flush && "list-group-flush");
+    var classes = classNames(className, "bs-list-group", small && "bs-list-group-sm", flush && "bs-list-group-flush");
     return React__default.createElement(Tag, _extends({}, attrs, {
       className: classes
     }));
@@ -4690,7 +4690,7 @@
         theme = props.theme,
         attrs = _objectWithoutProperties(props, ["className", "tag", "active", "action", "disabled", "theme"]);
 
-    var classes = classNames(className, active && "active", disabled && "disabled", action && "list-group-item-action", theme && "list-group-item-".concat(theme), "list-group-item");
+    var classes = classNames(className, active && "bs-active", disabled && "disabled", action && "bs-list-group-item-action", theme && "bs-list-group-item-".concat(theme), "bs-list-group-item");
 
     if (disabled) {
       attrs.onClick = function (e) {
@@ -4743,7 +4743,7 @@
         Tag = props.tag,
         attrs = _objectWithoutProperties(props, ["className", "tag"]);
 
-    var classes = classNames(className, "list-group-item-heading");
+    var classes = classNames(className, "bs-list-group-item-heading");
     return React__default.createElement(Tag, _extends({}, attrs, {
       className: classes
     }));
@@ -4769,7 +4769,7 @@
         Tag = props.tag,
         attrs = _objectWithoutProperties(props, ["className", "tag"]);
 
-    var classes = classNames(className, "list-group-item-text");
+    var classes = classNames(className, "bs-list-group-item-text");
     return React__default.createElement(Tag, _extends({}, attrs, {
       className: classes
     }));
@@ -4896,8 +4896,8 @@
             centered = _this$props3.centered,
             className = _this$props3.className; // open, showModal, hideModal, hiddenModal, toggle
 
-        var backdropClasses = classNames("modal-backdrop", fade ? "fade" : "show", backdropClassName);
-        var modalClasses = classNames("modal", fade && "fade", modalClassName, fade && (animation || position && position.split("-").slice(-1)[0] || "top"));
+        var backdropClasses = classNames("bs-modal-backdrop", fade ? "fade" : "bs-show", backdropClassName);
+        var modalClasses = classNames("bs-modal", fade && "fade", modalClassName, fade && (animation || position && position.split("-").slice(-1)[0] || "top"));
         var modalAttrs = {
           "aria-hidden": true,
           id: id || undefined,
@@ -4907,8 +4907,8 @@
             display: "block"
           }
         };
-        var modalDialogClasses = classNames("modal-dialog", className, size && "modal-".concat(size), centered && "modal-dialog-centered", position && "modal-".concat(position));
-        var contentClasses = classNames("modal-content", modalContentClassName);
+        var modalDialogClasses = classNames("bs-modal-dialog", className, size && "bs-modal-".concat(size), centered && "bs-modal-dialog-centered", position && "bs-modal-".concat(position));
+        var contentClasses = classNames("bs-modal-content", modalContentClassName);
         return React__default.createElement(React.Fragment, null, backdrop && React__default.createElement(reactTransitionGroup.Transition, {
           timeout: fade ? TIMEOUT.FADE : 0,
           in: this.state.open,
@@ -5062,7 +5062,7 @@
         children = props.children,
         attrs = _objectWithoutProperties(props, ["className", "children"]);
 
-    var classes = classNames("modal-body", className);
+    var classes = classNames("bs-modal-body", className);
     return React__default.createElement("div", _extends({
       className: classes
     }, attrs), children);
@@ -5089,15 +5089,15 @@
         titleClass = props.titleClass,
         attrs = _objectWithoutProperties(props, ["className", "children", "toggle", "tag", "closeAriaLabel", "titleClass"]);
 
-    var classes = classNames("modal-header", className);
-    var titleClasses = classNames("modal-title", titleClass);
+    var classes = classNames("bs-modal-header", className);
+    var titleClasses = classNames("bs-modal-title", titleClass);
     var closeButton = null;
 
     if (toggle) {
       closeButton = React__default.createElement("button", {
         type: "button",
         onClick: toggle,
-        className: "close",
+        className: "bs-close",
         "aria-label": closeAriaLabel
       }, React__default.createElement("span", {
         "aria-hidden": "true"
@@ -5152,7 +5152,7 @@
         children = props.children,
         attrs = _objectWithoutProperties(props, ["className", "children"]);
 
-    var classes = classNames("modal-footer", className);
+    var classes = classNames("bs-modal-footer", className);
     return React__default.createElement("div", _extends({
       className: classes
     }, attrs), children);
@@ -5190,14 +5190,14 @@
     var verticalClass;
 
     if (vertical === true || vertical === "xs") {
-      verticalClass = "flex-column";
+      verticalClass = "bs-flex-column";
     } else if (vertical === false) {
       verticalClass = false;
     } else if (typeof vertical === "string") {
-      verticalClass = "flex-".concat(vertical, "-column");
+      verticalClass = "bs-flex-".concat(vertical, "-column");
     }
 
-    var classes = classNames(className, navbar ? "navbar-nav" : "nav", horizontal && "justify-content-".concat(horizontal), verticalClass, tabs && "nav-tabs", card && tabs && "card-header-tabs", pills && "nav-pills", card && pills && "card-header-pills", justified && "nav-justified", fill && "nav-fill");
+    var classes = classNames(className, navbar ? "bs-navbar-nav" : "bs-nav", horizontal && "bs-justify-content-".concat(horizontal), verticalClass, tabs && "bs-nav-tabs", card && tabs && "bs-card-header-tabs", pills && "bs-nav-pills", card && pills && "bs-card-header-pills", justified && "bs-nav-justified", fill && "bs-nav-fill");
     return React__default.createElement(Tag, _extends({}, attrs, {
       className: classes
     }));
@@ -5261,12 +5261,10 @@
 
   var NavItem = function NavItem(props) {
     var className = props.className,
-        active = props.active,
-        disabled = props.disabled,
         Tag = props.tag,
-        attrs = _objectWithoutProperties(props, ["className", "active", "disabled", "tag"]);
+        attrs = _objectWithoutProperties(props, ["className", "tag"]);
 
-    var classes = classNames(className, "nav-item", active && "active", disabled && "disabled");
+    var classes = classNames(className, "bs-nav-item");
     return React__default.createElement(Tag, _extends({}, attrs, {
       className: classes
     }));
@@ -5339,7 +5337,7 @@
             innerRef = _this$props.innerRef,
             attrs = _objectWithoutProperties(_this$props, ["className", "active", "disabled", "tag", "innerRef"]);
 
-        var classes = classNames(className, "nav-link", disabled && "disabled", active && "active");
+        var classes = classNames(className, "bs-nav-link", disabled && "disabled", active && "bs-active");
         return React__default.createElement(Tag, _extends({}, attrs, {
           ref: innerRef,
           onClick: this.handleOnClick,
@@ -5410,12 +5408,12 @@
     if (expand === false) {
       expandClass = false;
     } else if (expand === true || expand === "xs") {
-      expandClass = "navbar-expand";
+      expandClass = "bs-navbar-expand";
     } else if (typeof expand === "string") {
-      expandClass = "navbar-expand-".concat(expand);
+      expandClass = "bs-navbar-expand-".concat(expand);
     }
 
-    var classes = classNames(className, "navbar", expandClass, type === "light" && "navbar-light", type === "dark" && "navbar-dark", theme && "bg-".concat(theme), fixed && "fixed-".concat(fixed), sticky && "sticky-".concat(sticky));
+    var classes = classNames(className, "bs-navbar", expandClass, type === "light" && "bs-navbar-light", type === "dark" && "bs-navbar-dark", theme && "bg-".concat(theme), fixed && "fixed-".concat(fixed), sticky && "sticky-".concat(sticky));
     return React__default.createElement(Tag, _extends({}, attrs, {
       className: classes
     }));
@@ -5477,7 +5475,7 @@
         Tag = props.tag,
         attrs = _objectWithoutProperties(props, ["className", "tag"]);
 
-    var classes = classNames(className, "navbar-brand");
+    var classes = classNames(className, "bs-navbar-brand");
     return React__default.createElement(Tag, _extends({}, attrs, {
       className: classes
     }));
@@ -5504,11 +5502,11 @@
         Tag = props.tag,
         attrs = _objectWithoutProperties(props, ["className", "children", "tag"]);
 
-    var classes = classNames(className, "navbar-toggler");
+    var classes = classNames(className, "bs-navbar-toggler");
     return React__default.createElement(Tag, _extends({}, attrs, {
       className: classes
     }), children || React__default.createElement("span", {
-      className: "navbar-toggler-icon"
+      className: "bs-navbar-toggler-icon"
     }));
   };
 
@@ -5923,8 +5921,8 @@
           return null;
         }
 
-        var classes = classNames("popover-inner", innerClassName);
-        var popperClasses = classNames("popover", "show", className);
+        var classes = classNames("bs-popover-inner", innerClassName);
+        var popperClasses = classNames("bs-popover", "bs-show", className);
         return React__default.createElement(PopperManager, {
           className: popperClasses,
           target: target,
@@ -6042,7 +6040,7 @@
         Tag = props.tag,
         attrs = _objectWithoutProperties(props, ["className", "tag"]);
 
-    var classes = classNames(className, "popover-body");
+    var classes = classNames(className, "bs-popover-body");
     return React__default.createElement(Tag, _extends({}, attrs, {
       className: classes
     }));
@@ -6068,7 +6066,7 @@
         Tag = props.tag,
         attrs = _objectWithoutProperties(props, ["className", "tag"]);
 
-    var classes = classNames(className, "popover-header");
+    var classes = classNames(className, "bs-popover-header");
     return React__default.createElement(Tag, _extends({}, attrs, {
       className: classes
     }));
@@ -6108,8 +6106,8 @@
         attrs = _objectWithoutProperties(props, ["children", "className", "barClassName", "value", "max", "animated", "striped", "theme", "bar", "multi", "tag"]);
 
     var percent = toNumber(value) / toNumber(max) * 100;
-    var progressClasses = classNames(className, "progress");
-    var progressBarClasses = classNames("progress-bar", bar ? className || barClassName : barClassName, animated && "progress-bar-animated", theme && "bg-".concat(theme), (striped || animated) && "progress-bar-striped");
+    var progressClasses = classNames(className, "bs-progress");
+    var progressBarClasses = classNames("bs-progress-bar", bar ? className || barClassName : barClassName, animated && "bs-progress-bar-animated", theme && "bg-".concat(theme), (striped || animated) && "bs-progress-bar-striped");
     var ProgressBar = multi ? children : React__default.createElement("div", {
       className: progressBarClasses,
       style: {
@@ -6273,7 +6271,7 @@
         var _this$props = this.props,
             className = _this$props.className,
             theme = _this$props.theme;
-        var classes = classNames(className, theme && "slider-".concat(theme));
+        var classes = classNames(className, theme && "bs-slider-".concat(theme));
         return React__default.createElement("div", {
           className: classes,
           ref: function ref(slider) {
@@ -6558,8 +6556,8 @@
           return null;
         }
 
-        var classes = classNames("tooltip-inner", innerClassName);
-        var popperClasses = classNames("tooltip", "show", className);
+        var classes = classNames("bs-tooltip-inner", innerClassName);
+        var popperClasses = classNames("bs-tooltip", "bs-show", className);
         return React__default.createElement(PopperManager, {
           container: container,
           className: popperClasses,

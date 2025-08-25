@@ -13,8 +13,8 @@ const Row = (props) => {
 
   const classes = classNames(
     className,
-    noGutters ? 'no-gutters' : null,
-    form ? 'form-row' : 'row'
+    noGutters ? 'bs-no-gutters' : null,
+    form ? 'bs-form-row' : 'bs-row'
   )
 
   return (<Tag {...attrs} className={classes} />)

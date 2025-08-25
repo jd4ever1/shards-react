@@ -7,12 +7,12 @@ import { CustomPropTypes } from "../utils";
 
 const makeColumnClass = function(isXs, breakpoint, colSize) {
   if (colSize === true || colSize === "") {
-    return isXs ? "col" : `col-${breakpoint}`;
+    return isXs ? "bs-col" : `bs-col-${breakpoint}`;
   } else if (colSize === "auto") {
-    return isXs ? "col-auto" : `col-${breakpoint}-auto`;
+    return isXs ? "bs-col-auto" : `bs-col-${breakpoint}-auto`;
   }
 
-  return isXs ? `col-${colSize}` : `col-${breakpoint}-${colSize}`;
+  return isXs ? `bs-col-${colSize}` : `bs-col-${breakpoint}-${colSize}`;
 };
 
 const Col = props => {
@@ -43,16 +43,16 @@ const Col = props => {
     columnClasses.push(
       classNames({
         [colClass]: columnProp.size || columnProp.size === "",
-        [`order${colSizeInterfix}${columnProp.order}`]:
+        [`bs-order${colSizeInterfix}${columnProp.order}`]:
           columnProp.order || columnProp.order === 0,
-        [`offset${colSizeInterfix}${columnProp.offset}`]:
+        [`bs-offset${colSizeInterfix}${columnProp.offset}`]:
           columnProp.offset || columnProp.offset === 0
       })
     );
   });
 
   if (!columnClasses.length) {
-    columnClasses.push("col");
+    columnClasses.push("bs-col");
   }
 
   const classes = classNames(className, columnClasses);

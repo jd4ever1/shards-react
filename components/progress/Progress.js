@@ -23,13 +23,13 @@ const Progress = props => {
   } = props;
 
   const percent = (toNumber(value) / toNumber(max)) * 100;
-  const progressClasses = classNames(className, "progress");
+  const progressClasses = classNames(className, "bs-progress");
   const progressBarClasses = classNames(
-    "progress-bar",
+    "bs-progress-bar",
     bar ? className || barClassName : barClassName,
-    animated && "progress-bar-animated",
+    animated && "bs-progress-bar-animated",
     theme && `bg-${theme}`,
-    (striped || animated) && "progress-bar-striped"
+    (striped || animated) && "bs-progress-bar-striped"
   );
 
   const ProgressBar = multi ? (

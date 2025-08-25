@@ -35,11 +35,11 @@ class FormTextarea extends React.Component {
     const classes = classNames(
       className,
       children,
-      plaintext ? "form-control-plaintext" : "form-control",
-      plaintext && "w-100",
-      size && `form-control-${size}`,
-      valid && "is-valid",
-      invalid && "is-invalid"
+      plaintext ? "bs-form-control-plaintext" : "bs-form-control",
+      plaintext && "bs-w-100",
+      size && `bs-form-control-${size}`,
+      valid && "bs-is-valid",
+      invalid && "bs-is-invalid"
     );
 
     return <textarea {...attrs} className={classes} ref={innerRef} />;

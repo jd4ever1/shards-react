@@ -145,8 +145,8 @@ class Popover extends React.Component {
       return null;
     }
 
-    const classes = classNames("popover-inner", innerClassName);
-    const popperClasses = classNames("popover", "show", className);
+    const classes = classNames("bs-popover-inner", innerClassName);
+    const popperClasses = classNames("bs-popover", "bs-show", className);
 
     return (
       <PopperManager

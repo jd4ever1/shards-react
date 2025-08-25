@@ -10,10 +10,10 @@ const Badge = props => {
 
   const classes = classNames(
     className,
-    "badge",
-    theme && !outline && `badge-${theme}`,
-    outline && `badge-outline-${theme}`,
-    pill && "badge-pill"
+    "bs-badge",
+    theme && !outline && `bs-badge-${theme}`,
+    outline && `bs-badge-outline-${theme}`,
+    pill && "bs-badge-pill"
   );
 
   Tag = attrs.href && Tag === "span" ? "a" : Tag;

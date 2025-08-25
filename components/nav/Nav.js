@@ -23,24 +23,24 @@ const Nav = props => {
   let verticalClass;
 
   if (vertical === true || vertical === "xs") {
-    verticalClass = "flex-column";
+    verticalClass = "bs-flex-column";
   } else if (vertical === false) {
     verticalClass = false;
   } else if (typeof vertical === "string") {
-    verticalClass = `flex-${vertical}-column`;
+    verticalClass = `bs-flex-${vertical}-column`;
   }
 
   const classes = classNames(
     className,
-    navbar ? "navbar-nav" : "nav",
-    horizontal && `justify-content-${horizontal}`,
+    navbar ? "bs-navbar-nav" : "bs-nav",
+    horizontal && `bs-justify-content-${horizontal}`,
     verticalClass,
-    tabs && "nav-tabs",
-    card && tabs && "card-header-tabs",
-    pills && "nav-pills",
-    card && pills && "card-header-pills",
-    justified && "nav-justified",
-    fill && "nav-fill"
+    tabs && "bs-nav-tabs",
+    card && tabs && "bs-card-header-tabs",
+    pills && "bs-nav-pills",
+    card && pills && "bs-card-header-pills",
+    justified && "bs-nav-justified",
+    fill && "bs-nav-fill"
   );
 
   return <Tag {...attrs} className={classes} />;

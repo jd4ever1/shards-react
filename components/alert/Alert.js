@@ -24,12 +24,12 @@ const Alert = props => {
 
   const classes = classNames(
     className,
-    "alert",
-    `alert-${theme}`,
-    dismissible && "alert-dismissible"
+    "bs-alert",
+    `bs-alert-${theme}`,
+    dismissible && "bs-alert-dismissible"
   );
 
-  const closeClasses = classNames("close", closeClassName);
+  const closeClasses = classNames("bs-close", closeClassName);
 
   const alertTransition = {
     ...Fade.defaultProps,

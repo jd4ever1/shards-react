@@ -7,7 +7,7 @@ import { INPUT_GROUP_ADDON_TYPES } from "../constants";
 
 const InputGroupAddon = props => {
   const { className, children, tag: Tag, type, ...attrs } = props;
-  const classes = classNames(className, `input-group-${type}`);
+  const classes = classNames(className, `bs-input-group-${type}`);
 
   if (typeof children === "string") {
     return (

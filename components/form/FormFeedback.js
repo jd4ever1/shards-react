@@ -8,7 +8,7 @@ const FormFeedback = props => {
 
   const classes = classNames(
     className,
-    valid ? `valid-${validMode}` : `invalid-${validMode}`
+    valid ? `bs-valid-${validMode}` : `bs-invalid-${validMode}`
   );
 
   return <Tag {...attrs} className={classes} />;

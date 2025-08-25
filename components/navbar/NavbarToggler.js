@@ -4,11 +4,11 @@ import classNames from "classnames";
 
 const NavbarToggler = props => {
   const { className, children, tag: Tag, ...attrs } = props;
-  const classes = classNames(className, "navbar-toggler");
+  const classes = classNames(className, "bs-navbar-toggler");
 
   return (
     <Tag {...attrs} className={classes}>
-      {children || <span className="navbar-toggler-icon" />}
+      {children || <span className="bs-navbar-toggler-icon" />}
     </Tag>
   );
 };

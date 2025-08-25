@@ -9,9 +9,9 @@ const ListGroup = props => {
   const { className, tag: Tag, flush, small, ...attrs } = props;
   const classes = classNames(
     className,
-    "list-group",
-    small && "list-group-sm",
-    flush && "list-group-flush"
+    "bs-list-group",
+    small && "bs-list-group-sm",
+    flush && "bs-list-group-flush"
   );
 
   return <Tag {...attrs} className={classes} />;

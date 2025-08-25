@@ -129,14 +129,14 @@ class Dropdown extends React.Component {
     const classes = classNames(
       className,
       direction !== "down" && `drop${direction}`,
-      nav && active && "active",
-      setActiveFromChild && subItemIsActive && "active",
-      addonType && `input-group-${addonType}`,
-      group && "btn-group",
-      !!size && `btn-group-${size}`,
-      !group && !addonType && "dropdown",
-      open && "show",
-      nav && "nav-item"
+      nav && active && "bs-active",
+      setActiveFromChild && subItemIsActive && "bs-active",
+      addonType && `bs-input-group-${addonType}`,
+      group && "bs-btn-group",
+      !!size && `bs-btn-group-${size}`,
+      !group && !addonType && "bs-dropdown",
+      open && "bs-show",
+      nav && "bs-nav-item"
     );
 
     const toggle = this.toggle;

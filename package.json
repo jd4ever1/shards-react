@@ -1,6 +1,6 @@
 {
   "name": "shards-react",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "A free, beautiful and modern React UI kit powered by Bootstrap 4 and the Shards UI kit.",
   "main": "dist/shards-react.common.js",
   "jsnext:main": "dist/shards-react.es.js",
@@ -9,10 +9,6 @@
   "unpkg": "dist/shards-react.umd.min.js",
   "cdn": "dist/shards-react.umd.min.js",
   "contributors": [
-    {
-      "name": "Catalin Vasile",
-      "url": "https://github.com/hisk"
-    }
   ],
   "scripts": {
     "prebuild": "npm run clean && npm run lint",

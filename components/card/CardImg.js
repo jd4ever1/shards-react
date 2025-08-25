@@ -7,11 +7,11 @@ const CardImg = props => {
   let cardImgClass = "";
 
   if (top) {
-    cardImgClass = "card-img-top";
+    cardImgClass = "bs-card-img-top";
   }
 
   if (bottom) {
-    cardImgClass = "card-img-bottom";
+    cardImgClass = "bs-card-img-bottom";
   }
 
   cardImgClass = classNames(className, cardImgClass);

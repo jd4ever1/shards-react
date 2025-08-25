@@ -53,8 +53,8 @@ class Collapse extends React.Component {
 
           const classes = classNames(
             className,
-            TRANSITION_CLASS_MAP[status] || "collapse",
-            navbar && "navbar-collapse"
+            TRANSITION_CLASS_MAP[status] || "bs-collapse",
+            navbar && "bs-navbar-collapse"
           );
 
           return (

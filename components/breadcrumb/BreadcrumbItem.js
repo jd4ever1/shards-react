@@ -5,7 +5,7 @@ import classNames from "classnames";
 const BreadcrumbItem = props => {
   const { className, active, tag: Tag, ...attrs } = props;
 
-  const classes = classNames(className, active && "active", "breadcrumb-item");
+  const classes = classNames(className, active && "bs-active", "bs-breadcrumb-item");
 
   return (
     <Tag

@@ -9,9 +9,9 @@ const InputGroup = props => {
   const { className, tag: Tag, size, seamless, ...attrs } = props;
   const classes = classNames(
     className,
-    "input-group",
-    seamless && "input-group-seamless",
-    size && `input-group-${size}`
+    "bs-input-group",
+    seamless && "bs-input-group-seamless",
+    size && `bs-input-group-${size}`
   );
 
   return <Tag {...attrs} className={classes} />;

@@ -35,9 +35,9 @@ class DropdownToggle extends React.Component {
     const ariaLabel = attrs["aria-label"] || "Toggle Dropdown";
     const classes = classNames(
       className,
-      (caret || split) && "dropdown-toggle",
-      split && "dropdown-toggle-split",
-      nav && "nav-link"
+      (caret || split) && "bs-dropdown-toggle",
+      split && "bs-dropdown-toggle-split",
+      nav && "bs-nav-link"
     );
 
     const children = attrs.children || (

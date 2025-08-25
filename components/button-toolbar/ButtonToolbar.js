@@ -7,7 +7,7 @@ import classNames from "classnames";
  */
 const ButtonToolbar = props => {
   const { className, ...attrs } = props;
-  const classes = classNames(className, "btn-toolbar");
+  const classes = classNames(className, "bs-btn-toolbar");
 
   return <div className={classes} {...attrs} />;
 };

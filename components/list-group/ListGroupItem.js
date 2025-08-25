@@ -15,11 +15,11 @@ const ListGroupItem = props => {
 
   const classes = classNames(
     className,
-    active && "active",
+    active && "bs-active",
     disabled && "disabled",
-    action && "list-group-item-action",
-    theme && `list-group-item-${theme}`,
-    "list-group-item"
+    action && "bs-list-group-item-action",
+    theme && `bs-list-group-item-${theme}`,
+    "bs-list-group-item"
   );
 
   if (disabled) {

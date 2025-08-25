@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 const PopoverHeader = props => {
   const { className, tag: Tag, ...attrs } = props;
-  const classes = classNames(className, "popover-header");
+  const classes = classNames(className, "bs-popover-header");
 
   return <Tag {...attrs} className={classes} />;
 };

@@ -9,7 +9,7 @@ const Container = props => {
   const { className, fluid, tag: Tag, ...attrs } = props;
   const classes = classNames(
     className,
-    fluid ? "container-fluid" : "container"
+    fluid ? "bs-container-fluid" : "bs-container"
   );
 
   return <Tag {...attrs} className={classes} />;

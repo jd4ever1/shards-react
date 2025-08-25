@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 const CardDeck = props => {
   const { className, tag: Tag, ...attrs } = props;
-  const classes = classNames(className, "card-deck");
+  const classes = classNames(className, "bs-card-deck");
 
   return <Tag {...attrs} className={classes} />;
 };

@@ -15,8 +15,8 @@ const DatePicker = props => {
   const { className, size, ...attrs } = props;
   const classes = classNames(
     className,
-    "form-control",
-    size && `form-control-${size}`
+    "bs-form-control",
+    size && `bs-form-control-${size}`
   );
 
   if (!attrs.dropdownMode) {

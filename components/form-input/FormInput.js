@@ -44,11 +44,11 @@ class FormInput extends React.Component {
 
     const classes = classNames(
       className,
-      plaintext ? "form-control-plaintext" : "form-control",
-      plaintext && "w-100",
-      size && `form-control-${size}`,
-      valid && "is-valid",
-      invalid && "is-invalid"
+      plaintext ? "bs-form-control-plaintext" : "bs-form-control",
+      plaintext && "bs-w-100",
+      size && `bs-form-control-${size}`,
+      valid && "bs-is-valid",
+      invalid && "bs-is-invalid"
     );
 
     return <input {...attrs} ref={innerRef} className={classes} />;

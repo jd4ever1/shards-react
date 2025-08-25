@@ -47,10 +47,10 @@ class DropdownItem extends React.Component {
     const classes = classNames(
       className,
       attrs.disabled && "disabled",
-      !divider && !header && "dropdown-item",
-      header && "dropdown-header",
-      divider && "dropdown-divider",
-      active && "active"
+      !divider && !header && "bs-dropdown-item",
+      header && "bs-dropdown-header",
+      divider && "bs-dropdown-divider",
+      active && "bs-active"
     );
 
     if (Tag === "button") {

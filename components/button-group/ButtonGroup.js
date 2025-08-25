@@ -10,8 +10,8 @@ const ButtonGroup = props => {
 
   const classes = classNames(
     className,
-    size && `btn-group-${size}`,
-    vertical ? "btn-group-vertical" : "btn-group"
+    size && `bs-btn-group-${size}`,
+    vertical ? "bs-btn-group-vertical" : "bs-btn-group"
   );
 
   return <div className={classes} {...attrs} />;

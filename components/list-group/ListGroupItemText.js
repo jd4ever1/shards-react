@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 const ListGroupItemText = props => {
   const { className, tag: Tag, ...attrs } = props;
-  const classes = classNames(className, "list-group-item-text");
+  const classes = classNames(className, "bs-list-group-item-text");
 
   return <Tag {...attrs} className={classes} />;
 };

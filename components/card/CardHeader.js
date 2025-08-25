@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 const CardHeader = props => {
   const { className, tag: Tag, ...attrs } = props;
-  const classes = classNames(className, "card-header");
+  const classes = classNames(className, "bs-card-header");
 
   return <Tag {...attrs} className={classes} />;
 };

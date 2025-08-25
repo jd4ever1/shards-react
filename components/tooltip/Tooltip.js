@@ -241,9 +241,9 @@ class Tooltip extends React.Component {
       return null;
     }
 
-    const classes = classNames("tooltip-inner", innerClassName);
+    const classes = classNames("bs-tooltip-inner", innerClassName);
 
-    const popperClasses = classNames("tooltip", "show", className);
+    const popperClasses = classNames("bs-tooltip", "bs-show", className);
 
     return (
       <PopperManager

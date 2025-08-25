@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 const CardColumns = props => {
   const { className, tag: Tag, ...attrs } = props;
-  const classes = classNames(className, "card-columns");
+  const classes = classNames(className, "bs-card-columns");
 
   return <Tag {...attrs} className={classes} />;
 };

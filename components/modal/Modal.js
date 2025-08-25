@@ -91,13 +91,13 @@ class Modal extends React.Component {
     } = this.props; // open, showModal, hideModal, hiddenModal, toggle
 
     const backdropClasses = classNames(
-      "modal-backdrop",
-      fade ? "fade" : "show",
+      "bs-modal-backdrop",
+      fade ? "fade" : "bs-show",
       backdropClassName
     );
 
     const modalClasses = classNames(
-      "modal",
+      "bs-modal",
       fade && "fade",
       modalClassName,
       fade &&
@@ -115,14 +115,14 @@ class Modal extends React.Component {
     };
 
     const modalDialogClasses = classNames(
-      "modal-dialog",
+      "bs-modal-dialog",
       className,
-      size && `modal-${size}`,
-      centered && "modal-dialog-centered",
-      position && `modal-${position}`
+      size && `bs-modal-${size}`,
+      centered && "bs-modal-dialog-centered",
+      position && `bs-modal-${position}`
     );
 
-    const contentClasses = classNames("modal-content", modalContentClassName);
+    const contentClasses = classNames("bs-modal-content", modalContentClassName);
 
     return (
       <Fragment>

@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 const CardImgOverlay = props => {
   const { className, tag: Tag, ...attrs } = props;
-  const classes = classNames(className, "card-img-overlay");
+  const classes = classNames(className, "bs-card-img-overlay");
 
   return <Tag {...attrs} className={classes} />;
 };

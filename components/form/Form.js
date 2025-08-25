@@ -29,7 +29,7 @@ class Form extends React.Component {
 
   render() {
     const { className, tag: Tag, inline, innerRef, ...attrs } = this.props;
-    const classes = classNames(className, inline && "form-inline");
+    const classes = classNames(className, inline && "bs-form-inline");
 
     return <Tag {...attrs} ref={innerRef} className={classes} />;
   }

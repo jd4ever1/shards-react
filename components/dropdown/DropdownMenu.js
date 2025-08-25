@@ -22,10 +22,10 @@ class DropdownMenu extends React.Component {
 
     const classes = classNames(
       className,
-      "dropdown-menu",
-      small && "dropdown-menu-small",
-      right && "dropdown-menu-right",
-      this.context.open && "show"
+      "bs-dropdown-menu",
+      small && "bs-dropdown-menu-small",
+      right && "bs-dropdown-menu-right",
+      this.context.open && "bs-show"
     );
 
     if (persist || (this.context.open && !this.context.inNavbar)) {

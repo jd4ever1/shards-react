@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 const NavbarBrand = props => {
   const { className, tag: Tag, ...attrs } = props;
-  const classes = classNames(className, "navbar-brand");
+  const classes = classNames(className, "bs-navbar-brand");
 
   return <Tag {...attrs} className={classes} />;
 };

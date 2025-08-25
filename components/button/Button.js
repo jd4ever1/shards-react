@@ -41,13 +41,13 @@ class Button extends React.Component {
 
     const classes = classNames(
       className,
-      "btn",
-      theme && `btn-${outline ? "outline-" : ""}${theme}`,
-      size && `btn-${size}`,
-      pill && "btn-pill",
-      squared && "btn-squared",
-      block && "btn-block",
-      active && "active"
+      "bs-btn",
+      theme && `bs-btn-${outline ? "outline-" : ""}${theme}`,
+      size && `bs-btn-${size}`,
+      pill && "bs-btn-pill",
+      squared && "bs-btn-squared",
+      block && "bs-btn-block",
+      active && "bs-active"
     );
 
     Tag = attrs.href && Tag === "button" ? "a" : Tag;

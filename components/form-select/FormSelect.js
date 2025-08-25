@@ -33,12 +33,12 @@ class FormSelect extends React.Component {
 
     const classes = classNames(
       className,
-      "form-control",
-      "custom-select",
-      valid && "is-valid",
-      invalid && "is-invalid",
-      size && `form-control-${size}`,
-      size && `custom-select-${size}`
+      "bs-form-control",
+      "bs-custom-select",
+      valid && "bs-is-valid",
+      invalid && "bs-is-invalid",
+      size && `bs-form-control-${size}`,
+      size && `bs-custom-select-${size}`
     );
 
     return (

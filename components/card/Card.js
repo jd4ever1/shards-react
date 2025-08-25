@@ -18,8 +18,8 @@ const Card = props => {
 
   const classes = classNames(
     className,
-    "card",
-    small && "card-small",
+    "bs-card",
+    small && "bs-card-small",
     theme && `${outline ? "border" : "bg"}-${theme}`
   );
 

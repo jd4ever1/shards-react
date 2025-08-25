@@ -64,7 +64,7 @@ class Slider extends React.Component {
 
   render() {
     const { className, theme } = this.props;
-    const classes = classNames(className, theme && `slider-${theme}`);
+    const classes = classNames(className, theme && `bs-slider-${theme}`);
 
     return (
       <div

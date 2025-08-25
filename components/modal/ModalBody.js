@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 const ModalBody = props => {
   const { className, children, ...attrs } = props;
-  const classes = classNames("modal-body", className);
+  const classes = classNames("bs-modal-body", className);
 
   return (
     <div className={classes} {...attrs}>

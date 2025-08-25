@@ -18,7 +18,7 @@ const Breadcrumb = props => {
 
   const classes = classNames(className);
 
-  const listClasses = classNames("breadcrumb", listClassName);
+  const listClasses = classNames("bs-breadcrumb", listClassName);
 
   return (
     <Tag {...attrs} className={classes} aria-label={label}>

@@ -22,17 +22,17 @@ const Navbar = props => {
   if (expand === false) {
     expandClass = false;
   } else if (expand === true || expand === "xs") {
-    expandClass = "navbar-expand";
+    expandClass = "bs-navbar-expand";
   } else if (typeof expand === "string") {
-    expandClass = `navbar-expand-${expand}`;
+    expandClass = `bs-navbar-expand-${expand}`;
   }
 
   const classes = classNames(
     className,
-    "navbar",
+    "bs-navbar",
     expandClass,
-    type === "light" && "navbar-light",
-    type === "dark" && "navbar-dark",
+    type === "light" && "bs-navbar-light",
+    type === "dark" && "bs-navbar-dark",
     theme && `bg-${theme}`,
     fixed && `fixed-${fixed}`,
     sticky && `sticky-${sticky}`
