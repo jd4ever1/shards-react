@@ -6,7 +6,14 @@ import classNames from "classnames";
  * Badges are really great for labels and count values.
  */
 const Badge = props => {
-  let { tag: Tag, className, theme, pill, outline, ...attrs } = props;
+  let {
+    tag: Tag = "span",
+    className,
+    theme = "primary",
+    pill = false,
+    outline = false,
+    ...attrs
+  } = props;
 
   const classes = classNames(
     className,
@@ -46,13 +53,6 @@ Badge.propTypes = {
    * The component tag.
    */
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
-};
-
-Badge.defaultProps = {
-  theme: "primary",
-  pill: false,
-  outline: false,
-  tag: "span"
 };
 
 export default Badge;

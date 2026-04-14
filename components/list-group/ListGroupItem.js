@@ -5,7 +5,7 @@ import classNames from "classnames";
 const ListGroupItem = props => {
   const {
     className,
-    tag: Tag,
+    tag: Tag = "li",
     active,
     action,
     disabled,
@@ -56,10 +56,6 @@ ListGroupItem.propTypes = {
    * The component's tag type.
    */
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
-};
-
-ListGroupItem.defaultProps = {
-  tag: "li"
 };
 
 export default ListGroupItem;

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 
 const CardLink = props => {
-  const { className, tag: Tag, innerRef, ...attrs } = props;
+  const { className, tag: Tag = "a", innerRef, ...attrs } = props;
   const classes = classNames(className, "bs-card-link");
 
   return <Tag {...attrs} ref={innerRef} className={classes} />;
@@ -26,10 +26,6 @@ CardLink.propTypes = {
     PropTypes.func,
     PropTypes.string
   ])
-};
-
-CardLink.defaultProps = {
-  tag: "a"
 };
 
 export default CardLink;

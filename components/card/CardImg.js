@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 
 const CardImg = props => {
-  const { className, top, bottom, tag: Tag, ...attrs } = props;
+  const { className, top, bottom, tag: Tag = "img", ...attrs } = props;
   let cardImgClass = "";
 
   if (top) {
@@ -36,10 +36,6 @@ CardImg.propTypes = {
    * The component's tag type.
    */
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
-};
-
-CardImg.defaultProps = {
-  tag: "img"
 };
 
 export default CardImg;

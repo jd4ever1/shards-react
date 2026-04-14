@@ -108,11 +108,12 @@ class Dropdown extends React.Component {
       setActiveFromChild,
       active,
       addonType,
+      direction: directionProp,
       ...attrs
     } = props;
 
     const direction =
-      this.props.direction === "down" && dropup ? "up" : this.props.direction;
+      directionProp === "down" && dropup ? "up" : directionProp;
 
     attrs.tag = attrs.tag || (nav ? "li" : "div");
 

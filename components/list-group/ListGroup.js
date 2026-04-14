@@ -6,7 +6,7 @@ import classNames from "classnames";
  * List groups allow you to display series of content.
  */
 const ListGroup = props => {
-  const { className, tag: Tag, flush, small, ...attrs } = props;
+  const { className, tag: Tag = "ul", flush, small, ...attrs } = props;
   const classes = classNames(
     className,
     "bs-list-group",
@@ -34,10 +34,6 @@ ListGroup.propTypes = {
    * The component's tag type.
    */
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
-};
-
-ListGroup.defaultProps = {
-  tag: "ul"
 };
 
 export default ListGroup;

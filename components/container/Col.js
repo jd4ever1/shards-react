@@ -16,7 +16,7 @@ const makeColumnClass = function(isXs, breakpoint, colSize) {
 };
 
 const Col = props => {
-  const { className, breakpoints, tag: Tag, ...attrs } = props;
+  const { className, breakpoints = BREAKPOINTS, tag: Tag = "div", ...attrs } = props;
 
   const columnClasses = [];
 
@@ -93,11 +93,6 @@ Col.propTypes = {
    * The component tag type.
    */
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
-};
-
-Col.defaultProps = {
-  tag: "div",
-  breakpoints: BREAKPOINTS
 };
 
 export default Col;

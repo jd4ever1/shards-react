@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 
 const CardColumns = props => {
-  const { className, tag: Tag, ...attrs } = props;
+  const { className, tag: Tag = "div", ...attrs } = props;
   const classes = classNames(className, "bs-card-columns");
 
   return <Tag {...attrs} className={classes} />;
@@ -18,10 +18,6 @@ CardColumns.propTypes = {
    * The component tag type.
    */
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
-};
-
-CardColumns.defaultProps = {
-  tag: "div"
 };
 
 export default CardColumns;

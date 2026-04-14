@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 
 const FormFeedback = props => {
-  const { className, valid, tooltip, tag: Tag, ...attrs } = props;
+  const { className, valid, tooltip, tag: Tag = "div", ...attrs } = props;
   const validMode = tooltip ? "tooltip" : "feedback";
 
   const classes = classNames(
@@ -35,11 +35,6 @@ FormFeedback.propTypes = {
    * Whether the feedback should be displayed as tooltip.
    */
   tooltip: PropTypes.bool
-};
-
-FormFeedback.defaultProps = {
-  tag: "div",
-  valid: undefined
 };
 
 export default FormFeedback;

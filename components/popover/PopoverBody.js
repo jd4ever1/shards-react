@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 
 const PopoverBody = props => {
-  const { className, tag: Tag, ...attrs } = props;
+  const { className, tag: Tag = "div", ...attrs } = props;
   const classes = classNames(className, "bs-popover-body");
 
   return <Tag {...attrs} className={classes} />;
@@ -18,10 +18,6 @@ PopoverBody.propTypes = {
    * The component's tag type.
    */
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
-};
-
-PopoverBody.defaultProps = {
-  tag: "div"
 };
 
 export default PopoverBody;

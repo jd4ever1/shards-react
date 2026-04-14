@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 
 const ListGroupItemText = props => {
-  const { className, tag: Tag, ...attrs } = props;
+  const { className, tag: Tag = "p", ...attrs } = props;
   const classes = classNames(className, "bs-list-group-item-text");
 
   return <Tag {...attrs} className={classes} />;
@@ -18,10 +18,6 @@ ListGroupItemText.propTypes = {
    * The component's tag type.
    */
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
-};
-
-ListGroupItemText.defaultProps = {
-  tag: "p"
 };
 
 export default ListGroupItemText;

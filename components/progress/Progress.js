@@ -11,14 +11,14 @@ const Progress = props => {
     children,
     className,
     barClassName,
-    value,
-    max,
+    value = 0,
+    max = 100,
     animated,
     striped,
-    theme,
+    theme = "primary",
     bar,
     multi,
-    tag: Tag,
+    tag: Tag = "div",
     ...attrs
   } = props;
 
@@ -103,13 +103,6 @@ Progress.propTypes = {
    * The max value.
    */
   max: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-};
-
-Progress.defaultProps = {
-  tag: "div",
-  value: 0,
-  max: 100,
-  theme: "primary"
 };
 
 export default Progress;

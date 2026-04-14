@@ -10,13 +10,13 @@ const Nav = props => {
     className,
     navbar,
     horizontal,
-    vertical,
+    vertical = false,
     tabs,
     card,
     pills,
     justified,
     fill,
-    tag: Tag,
+    tag: Tag = "ul",
     ...attrs
   } = props;
 
@@ -44,11 +44,6 @@ const Nav = props => {
   );
 
   return <Tag {...attrs} className={classes} />;
-};
-
-Nav.defaultProps = {
-  tag: "ul",
-  vertical: false
 };
 
 Nav.propTypes = {

@@ -12,12 +12,17 @@ import { TIMEOUT, TRANSITION_KEYS } from "./../constants";
  */
 const Fade = props => {
   const {
-    tag: Tag,
-    baseClass,
-    baseClassActive,
+    tag: Tag = "div",
+    baseClass = "bs-fade",
+    baseClassActive = "bs-show",
     className,
     children,
     innerRef,
+    timeout = TIMEOUT.FADE,
+    appear = true,
+    enter = true,
+    exit = true,
+    in: inProp = true,
     ...attrs
   } = props;
 
@@ -25,7 +30,14 @@ const Fade = props => {
   const childProps = omit(attrs, TRANSITION_KEYS);
 
   return (
-    <Transition {...transitionProps}>
+    <Transition
+      {...transitionProps}
+      timeout={timeout}
+      appear={appear}
+      enter={enter}
+      exit={exit}
+      in={inProp}
+    >
       {status => {
         const isActive = status === "entered";
         const classes = classNames(
@@ -58,18 +70,6 @@ Fade.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ])
-};
-
-Fade.defaultProps = {
-  ...Transition.defaultProps,
-  tag: "div",
-  baseClass: "bs-fade",
-  baseClassActive: "bs-show",
-  timeout: TIMEOUT.FADE,
-  appear: true,
-  enter: true,
-  exit: true,
-  in: true
 };
 
 export default Fade;

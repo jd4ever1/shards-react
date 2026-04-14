@@ -37,7 +37,7 @@ class NavLink extends React.Component {
     const classes = classNames(
       className,
       "bs-nav-link",
-      disabled && "disabled",
+      disabled && "bs-disabled",
       active && "bs-active"
     );
 

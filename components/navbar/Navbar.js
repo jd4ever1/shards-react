@@ -8,12 +8,12 @@ import classNames from "classnames";
 const Navbar = props => {
   const {
     className,
-    expand,
+    expand = false,
     fixed,
     sticky,
     theme,
     type,
-    tag: Tag,
+    tag: Tag = "nav",
     ...attrs
   } = props;
 
@@ -33,9 +33,9 @@ const Navbar = props => {
     expandClass,
     type === "light" && "bs-navbar-light",
     type === "dark" && "bs-navbar-dark",
-    theme && `bg-${theme}`,
-    fixed && `fixed-${fixed}`,
-    sticky && `sticky-${sticky}`
+    theme && `bs-bg-${theme}`,
+    fixed && `bs-fixed-${fixed}`,
+    sticky && `bs-sticky-${sticky}`
   );
 
   return <Tag {...attrs} className={classes} />;
@@ -78,11 +78,6 @@ Navbar.propTypes = {
    * Whether it should expand, or not.
    */
   expand: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
-};
-
-Navbar.defaultProps = {
-  tag: "nav",
-  expand: false
 };
 
 export default Navbar;

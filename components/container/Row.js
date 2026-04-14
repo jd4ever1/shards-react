@@ -7,7 +7,7 @@ const Row = (props) => {
     noGutters,
     form,
     className,
-    tag: Tag,
+    tag: Tag = 'div',
     ...attrs
   } = props
 
@@ -40,10 +40,6 @@ Row.propTypes = {
     PropTypes.func,
     PropTypes.string
   ])
-}
-
-Row.defaultProps = {
-  tag: 'div'
 }
 
 export default Row

@@ -1,9 +1,9 @@
 /*
-* Shards React v1.0.3 (https://designrevision.com/downloads/shards-react/)
+* Shards React v2.1.0 (https://designrevision.com/downloads/shards-react/)
 * Based on: Bootstrap ^4.1.3 (https://getbootstrap.com)
 * Based on: Shards ^2.1.2 (https://designrevision.com/downloads/shards/)
-* Copyright 2017-2025 DesignRevision (https://designrevision.com)
-* Copyright 2017-2025 Catalin Vasile (http://catalin.me)
+* Copyright 2017-2026 DesignRevision (https://designrevision.com)
+* Copyright 2017-2026 Catalin Vasile (http://catalin.me)
 */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('lodash.pick'), require('lodash.isfunction'), require('react-datepicker'), require('shortid'), require('react-transition-group'), require('react-dom'), require('react-popper'), require('lodash.tonumber'), require('nouislider'), require('react'), require('classnames'), require('lodash.omit')) :
@@ -1042,6 +1042,50 @@
     }
   });
 
+  var _TRANSITION_CLASS_MAP;
+
+  var TIMEOUT = {
+    FADE: 150,
+    COLLAPSE: 350,
+    SHOW: 0,
+    HIDE: 0
+  };
+  var EVENTS = {
+    CLICK: ["click", "touchstart", "keyup"],
+    MOUSE: ["mouseenter", "mouseleave"],
+    FOCUS: ["focusin", "focusout"]
+  };
+  var KEYCODES = {
+    ESC: 27,
+    SPACE: 32,
+    ENTER: 13,
+    TAB: 9,
+    UP: 38,
+    DOWN: 40
+  };
+  var TRANSITION_KEYS = ["in", "mountOnEnter", "unmountOnExit", "appear", "enter", "exit", "timeout", "onEnter", "onEntering", "onEntered", "onExit", "onExiting", "onExited"];
+  var TRANSITION_STATUS = {
+    ENTERING: "entering",
+    ENTERED: "entered",
+    EXITING: "exiting",
+    EXITED: "exited"
+  };
+  var TRANSITION_CLASS_MAP = (_TRANSITION_CLASS_MAP = {}, _defineProperty(_TRANSITION_CLASS_MAP, TRANSITION_STATUS.ENTERING, "collapsing"), _defineProperty(_TRANSITION_CLASS_MAP, TRANSITION_STATUS.ENTERED, "collapse show"), _defineProperty(_TRANSITION_CLASS_MAP, TRANSITION_STATUS.EXITING, "collapsing"), _defineProperty(_TRANSITION_CLASS_MAP, TRANSITION_STATUS.EXITED, "collapse"), _TRANSITION_CLASS_MAP);
+  var POPPER_PLACEMENTS = ["top-start", "top", "top-end", "right-start", "right", "right-end", "bottom-end", "bottom", "bottom-start", "left-end", "left", "left-start", "auto-start", "auto", "auto-end"];
+  var DROPDOWN_POSITION_MAP = {
+    UP: "top",
+    LEFT: "left",
+    RIGHT: "right",
+    DOWN: "bottom"
+  };
+  var BREAKPOINTS = ["xs", "sm", "md", "lg", "xl"];
+  /**
+   * FORMS
+   */
+
+  var INPUT_TYPES = ["text", "password", "email", "number", "tel", "url", "search", "range", "color", "date", "time", "datetime", "datetime-local", "month", "week", "file"];
+  var INPUT_GROUP_ADDON_TYPES = ["prepend", "append"];
+
   /**
    * Copyright (c) 2013-present, Facebook, Inc.
    *
@@ -1882,66 +1926,41 @@
   var Transition_5 = Transition_1.EXITED;
   var Transition_6 = Transition_1.UNMOUNTED;
 
-  var _TRANSITION_CLASS_MAP;
-
-  var TIMEOUT = {
-    FADE: 150,
-    COLLAPSE: 350,
-    SHOW: 0,
-    HIDE: 0
-  };
-  var EVENTS = {
-    CLICK: ["click", "touchstart", "keyup"],
-    MOUSE: ["mouseenter", "mouseleave"],
-    FOCUS: ["focusin", "focusout"]
-  };
-  var KEYCODES = {
-    ESC: 27,
-    SPACE: 32,
-    ENTER: 13,
-    TAB: 9,
-    UP: 38,
-    DOWN: 40
-  };
-  var TRANSITION_KEYS = ["in", "mountOnEnter", "unmountOnExit", "appear", "enter", "exit", "timeout", "onEnter", "onEntering", "onEntered", "onExit", "onExiting", "onExited"];
-  var TRANSITION_STATUS = {
-    ENTERING: "entering",
-    ENTERED: "entered",
-    EXITING: "exiting",
-    EXITED: "exited"
-  };
-  var TRANSITION_CLASS_MAP = (_TRANSITION_CLASS_MAP = {}, _defineProperty(_TRANSITION_CLASS_MAP, TRANSITION_STATUS.ENTERING, "collapsing"), _defineProperty(_TRANSITION_CLASS_MAP, TRANSITION_STATUS.ENTERED, "collapse show"), _defineProperty(_TRANSITION_CLASS_MAP, TRANSITION_STATUS.EXITING, "collapsing"), _defineProperty(_TRANSITION_CLASS_MAP, TRANSITION_STATUS.EXITED, "collapse"), _TRANSITION_CLASS_MAP);
-  var POPPER_PLACEMENTS = ["top-start", "top", "top-end", "right-start", "right", "right-end", "bottom-end", "bottom", "bottom-start", "left-end", "left", "left-start", "auto-start", "auto", "auto-end"];
-  var DROPDOWN_POSITION_MAP = {
-    UP: "top",
-    LEFT: "left",
-    RIGHT: "right",
-    DOWN: "bottom"
-  };
-  var BREAKPOINTS = ["xs", "sm", "md", "lg", "xl"];
-  /**
-   * FORMS
-   */
-
-  var INPUT_TYPES = ["text", "password", "email", "number", "tel", "url", "search", "range", "color", "date", "time", "datetime", "datetime-local", "month", "week", "file"];
-  var INPUT_GROUP_ADDON_TYPES = ["prepend", "append"];
-
   /**
    * The `Fade` component allows you to easily fade in and out content and is powered by [react-transition-group](https://github.com/reactjs/react-transition-group).
    */
 
   var Fade = function Fade(props) {
-    var Tag = props.tag,
-        baseClass = props.baseClass,
-        baseClassActive = props.baseClassActive,
+    var _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "div" : _props$tag,
+        _props$baseClass = props.baseClass,
+        baseClass = _props$baseClass === void 0 ? "bs-fade" : _props$baseClass,
+        _props$baseClassActiv = props.baseClassActive,
+        baseClassActive = _props$baseClassActiv === void 0 ? "bs-show" : _props$baseClassActiv,
         className = props.className,
         children = props.children,
         innerRef = props.innerRef,
-        attrs = _objectWithoutProperties(props, ["tag", "baseClass", "baseClassActive", "className", "children", "innerRef"]);
+        _props$timeout = props.timeout,
+        timeout = _props$timeout === void 0 ? TIMEOUT.FADE : _props$timeout,
+        _props$appear = props.appear,
+        appear = _props$appear === void 0 ? true : _props$appear,
+        _props$enter = props.enter,
+        enter = _props$enter === void 0 ? true : _props$enter,
+        _props$exit = props.exit,
+        exit = _props$exit === void 0 ? true : _props$exit,
+        _props$in = props.in,
+        inProp = _props$in === void 0 ? true : _props$in,
+        attrs = _objectWithoutProperties(props, ["tag", "baseClass", "baseClassActive", "className", "children", "innerRef", "timeout", "appear", "enter", "exit", "in"]);
 
     var transitionProps = pick(attrs, TRANSITION_KEYS);
     var childProps = omit(attrs, TRANSITION_KEYS);
-    return React__default.createElement(Transition, transitionProps, function (status) {
+    return React__default.createElement(Transition, _extends({}, transitionProps, {
+      timeout: timeout,
+      appear: appear,
+      enter: enter,
+      exit: exit,
+      in: inProp
+    }), function (status) {
       var isActive = status === "entered";
       var classes = classNames(className, baseClass, isActive && baseClassActive);
       return React__default.createElement(Tag, _extends({
@@ -1960,38 +1979,46 @@
     innerRef: propTypes.oneOfType([propTypes.object, propTypes.string, propTypes.func]),
     children: propTypes.oneOfType([propTypes.arrayOf(propTypes.node), propTypes.node])
   });
-  Fade.defaultProps = _objectSpread({}, Transition.defaultProps, {
+
+  var FADE_DEFAULTS = {
     tag: "div",
-    baseClass: "bs-fade",
-    baseClassActive: "bs-show",
+    baseClass: "fade",
+    baseClassActive: "show",
     timeout: TIMEOUT.FADE,
     appear: true,
     enter: true,
     exit: true,
     in: true
-  });
-
+  };
   /**
    * The alert component can be used to display contextual user messages.
    */
 
-  var Alert = function Alert(props) {
-    var className = props.className,
-        closeClassName = props.closeClassName,
-        closeAriaLabel = props.closeAriaLabel,
-        Tag = props.tag,
-        theme = props.theme,
-        open = props.open,
-        dismissible = props.dismissible,
-        children = props.children,
-        transition = props.transition,
-        fade = props.fade,
-        attrs = _objectWithoutProperties(props, ["className", "closeClassName", "closeAriaLabel", "tag", "theme", "open", "dismissible", "children", "transition", "fade"]);
+  var Alert = function Alert(_ref) {
+    var className = _ref.className,
+        closeClassName = _ref.closeClassName,
+        _ref$closeAriaLabel = _ref.closeAriaLabel,
+        closeAriaLabel = _ref$closeAriaLabel === void 0 ? "Close" : _ref$closeAriaLabel,
+        _ref$tag = _ref.tag,
+        Tag = _ref$tag === void 0 ? "div" : _ref$tag,
+        _ref$theme = _ref.theme,
+        theme = _ref$theme === void 0 ? "primary" : _ref$theme,
+        _ref$open = _ref.open,
+        open = _ref$open === void 0 ? true : _ref$open,
+        dismissible = _ref.dismissible,
+        children = _ref.children,
+        _ref$transition = _ref.transition,
+        transition = _ref$transition === void 0 ? _objectSpread({}, FADE_DEFAULTS, {
+      unmountOnExit: true
+    }) : _ref$transition,
+        _ref$fade = _ref.fade,
+        fade = _ref$fade === void 0 ? true : _ref$fade,
+        attrs = _objectWithoutProperties(_ref, ["className", "closeClassName", "closeAriaLabel", "tag", "theme", "open", "dismissible", "children", "transition", "fade"]);
 
     var classes = classNames(className, "bs-alert", "bs-alert-".concat(theme), dismissible && "bs-alert-dismissible");
     var closeClasses = classNames("bs-close", closeClassName);
 
-    var alertTransition = _objectSpread({}, Fade.defaultProps, transition, {
+    var alertTransition = _objectSpread({}, FADE_DEFAULTS, transition, {
       baseClass: fade ? transition.baseClass : "",
       timeout: fade ? transition.timeout : 0
     });
@@ -2062,27 +2089,21 @@
      */
     tag: propTypes.oneOfType([propTypes.func, propTypes.string])
   };
-  Alert.defaultProps = {
-    theme: "primary",
-    open: true,
-    tag: "div",
-    closeAriaLabel: "Close",
-    fade: true,
-    transition: _objectSpread({}, Fade.defaultProps, {
-      unmountOnExit: true
-    })
-  };
 
   /**
    * Badges are really great for labels and count values.
    */
 
   var Badge = function Badge(props) {
-    var Tag = props.tag,
+    var _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "span" : _props$tag,
         className = props.className,
-        theme = props.theme,
-        pill = props.pill,
-        outline = props.outline,
+        _props$theme = props.theme,
+        theme = _props$theme === void 0 ? "primary" : _props$theme,
+        _props$pill = props.pill,
+        pill = _props$pill === void 0 ? false : _props$pill,
+        _props$outline = props.outline,
+        outline = _props$outline === void 0 ? false : _props$outline,
         attrs = _objectWithoutProperties(props, ["tag", "className", "theme", "pill", "outline"]);
 
     var classes = classNames(className, "bs-badge", theme && !outline && "bs-badge-".concat(theme), outline && "bs-badge-outline-".concat(theme), pill && "bs-badge-pill");
@@ -2123,12 +2144,6 @@
      */
     tag: propTypes.oneOfType([propTypes.func, propTypes.string])
   };
-  Badge.defaultProps = {
-    theme: "primary",
-    pill: false,
-    outline: false,
-    tag: "span"
-  };
 
   /**
    * The breadcrumb component is great for indicating the current page's location within a navigational hierarchy.
@@ -2138,9 +2153,12 @@
     var className = props.className,
         listClassName = props.listClassName,
         children = props.children,
-        Tag = props.tag,
-        ListTag = props.listTag,
-        label = props["aria-label"],
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "nav" : _props$tag,
+        _props$listTag = props.listTag,
+        ListTag = _props$listTag === void 0 ? "ol" : _props$listTag,
+        _props$ariaLabel = props["aria-label"],
+        label = _props$ariaLabel === void 0 ? "breadcrumb" : _props$ariaLabel,
         attrs = _objectWithoutProperties(props, ["className", "listClassName", "children", "tag", "listTag", "aria-label"]);
 
     var classes = classNames(className);
@@ -2184,16 +2202,12 @@
      */
     listTag: propTypes.oneOfType([propTypes.func, propTypes.string])
   };
-  Breadcrumb.defaultProps = {
-    "aria-label": "breadcrumb",
-    tag: "nav",
-    listTag: "ol"
-  };
 
   var BreadcrumbItem = function BreadcrumbItem(props) {
     var className = props.className,
         active = props.active,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "li" : _props$tag,
         attrs = _objectWithoutProperties(props, ["className", "active", "tag"]);
 
     var classes = classNames(className, active && "bs-active", "bs-breadcrumb-item");
@@ -2218,9 +2232,6 @@
      * The component tag.
      */
     tag: propTypes.oneOfType([propTypes.func, propTypes.string])
-  };
-  BreadcrumbItem.defaultProps = {
-    tag: "li"
   };
 
   /**
@@ -2426,7 +2437,8 @@
   var Card = function Card(props) {
     var className = props.className,
         innerRef = props.innerRef,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "div" : _props$tag,
         theme = props.theme,
         outline = props.outline,
         small = props.small,
@@ -2470,13 +2482,11 @@
      */
     innerRef: propTypes.oneOfType([propTypes.string, propTypes.object, propTypes.func])
   };
-  Card.defaultProps = {
-    tag: "div"
-  };
 
   var CardBody = function CardBody(props) {
     var className = props.className,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "div" : _props$tag,
         children = props.children,
         attrs = _objectWithoutProperties(props, ["className", "tag", "children"]);
 
@@ -2502,13 +2512,11 @@
      */
     tag: propTypes.oneOfType([propTypes.func, propTypes.string])
   };
-  CardBody.defaultProps = {
-    tag: "div"
-  };
 
   var CardColumns = function CardColumns(props) {
     var className = props.className,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "div" : _props$tag,
         attrs = _objectWithoutProperties(props, ["className", "tag"]);
 
     var classes = classNames(className, "bs-card-columns");
@@ -2528,13 +2536,11 @@
      */
     tag: propTypes.oneOfType([propTypes.func, propTypes.string])
   };
-  CardColumns.defaultProps = {
-    tag: "div"
-  };
 
   var CardFooter = function CardFooter(props) {
     var className = props.className,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "div" : _props$tag,
         attrs = _objectWithoutProperties(props, ["className", "tag"]);
 
     var classes = classNames(className, "bs-card-footer");
@@ -2554,13 +2560,11 @@
      */
     className: propTypes.string
   };
-  CardFooter.defaultProps = {
-    tag: "div"
-  };
 
   var CardGroup = function CardGroup(props) {
     var className = props.className,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "div" : _props$tag,
         attrs = _objectWithoutProperties(props, ["className", "tag"]);
 
     var classes = classNames(className, "bs-card-group");
@@ -2580,13 +2584,11 @@
      */
     tag: propTypes.oneOfType([propTypes.func, propTypes.string])
   };
-  CardGroup.defaultProps = {
-    tag: "div"
-  };
 
   var CardDeck = function CardDeck(props) {
     var className = props.className,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "div" : _props$tag,
         attrs = _objectWithoutProperties(props, ["className", "tag"]);
 
     var classes = classNames(className, "bs-card-deck");
@@ -2606,13 +2608,11 @@
      */
     className: propTypes.string
   };
-  CardDeck.defaultProps = {
-    tag: "div"
-  };
 
   var CardHeader = function CardHeader(props) {
     var className = props.className,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "div" : _props$tag,
         attrs = _objectWithoutProperties(props, ["className", "tag"]);
 
     var classes = classNames(className, "bs-card-header");
@@ -2632,15 +2632,13 @@
      */
     tag: propTypes.oneOfType([propTypes.func, propTypes.string])
   };
-  CardHeader.defaultProps = {
-    tag: "div"
-  };
 
   var CardImg = function CardImg(props) {
     var className = props.className,
         top = props.top,
         bottom = props.bottom,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "img" : _props$tag,
         attrs = _objectWithoutProperties(props, ["className", "top", "bottom", "tag"]);
 
     var cardImgClass = "";
@@ -2680,13 +2678,11 @@
      */
     tag: propTypes.oneOfType([propTypes.func, propTypes.string])
   };
-  CardImg.defaultProps = {
-    tag: "img"
-  };
 
   var CardImgOverlay = function CardImgOverlay(props) {
     var className = props.className,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "div" : _props$tag,
         attrs = _objectWithoutProperties(props, ["className", "tag"]);
 
     var classes = classNames(className, "bs-card-img-overlay");
@@ -2706,13 +2702,11 @@
      */
     tag: propTypes.oneOfType([propTypes.func, propTypes.string])
   };
-  CardImgOverlay.defaultProps = {
-    tag: "div"
-  };
 
   var CardLink = function CardLink(props) {
     var className = props.className,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "a" : _props$tag,
         innerRef = props.innerRef,
         attrs = _objectWithoutProperties(props, ["className", "tag", "innerRef"]);
 
@@ -2739,13 +2733,11 @@
      */
     innerRef: propTypes.oneOfType([propTypes.object, propTypes.func, propTypes.string])
   };
-  CardLink.defaultProps = {
-    tag: "a"
-  };
 
   var CardSubtitle = function CardSubtitle(props) {
     var className = props.className,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "h6" : _props$tag,
         attrs = _objectWithoutProperties(props, ["className", "tag"]);
 
     var classes = classNames(className, "bs-card-subtitle", "bs-text-muted");
@@ -2765,13 +2757,11 @@
      */
     tag: propTypes.oneOfType([propTypes.func, propTypes.string])
   };
-  CardSubtitle.defaultProps = {
-    tag: "h6"
-  };
 
   var CardText = function CardText(props) {
     var className = props.className,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "p" : _props$tag,
         attrs = _objectWithoutProperties(props, ["className", "tag"]);
 
     var classes = classNames(className, "bs-card-text");
@@ -2791,13 +2781,11 @@
      */
     tag: propTypes.oneOfType([propTypes.func, propTypes.string])
   };
-  CardText.defaultProps = {
-    tag: "p"
-  };
 
   var CardTitle = function CardTitle(props) {
     var className = props.className,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "h5" : _props$tag,
         attributes = _objectWithoutProperties(props, ["className", "tag"]);
 
     var classes = classNames(className, "bs-card-title");
@@ -2816,9 +2804,6 @@
      * The component's tag type.
      */
     tag: propTypes.oneOfType([propTypes.func, propTypes.string])
-  };
-  CardTitle.defaultProps = {
-    tag: "h5"
   };
 
   var reflow = function reflow(node) {
@@ -3020,7 +3005,8 @@
   var Container = function Container(props) {
     var className = props.className,
         fluid = props.fluid,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "div" : _props$tag,
         attrs = _objectWithoutProperties(props, ["className", "fluid", "tag"]);
 
     var classes = classNames(className, fluid ? "bs-container-fluid" : "bs-container");
@@ -3045,15 +3031,13 @@
      */
     tag: propTypes.oneOfType([propTypes.func, propTypes.string])
   };
-  Container.defaultProps = {
-    tag: "div"
-  };
 
   var Row = function Row(props) {
     var noGutters = props.noGutters,
         form = props.form,
         className = props.className,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? 'div' : _props$tag,
         attrs = _objectWithoutProperties(props, ["noGutters", "form", "className", "tag"]);
 
     var classes = classNames(className, noGutters ? 'bs-no-gutters' : null, form ? 'bs-form-row' : 'bs-row');
@@ -3083,9 +3067,6 @@
      */
     tag: propTypes.oneOfType([propTypes.func, propTypes.string])
   };
-  Row.defaultProps = {
-    tag: 'div'
-  };
 
   var makeColumnClass = function makeColumnClass(isXs, breakpoint, colSize) {
     if (colSize === true || colSize === "") {
@@ -3099,8 +3080,10 @@
 
   var Col = function Col(props) {
     var className = props.className,
-        breakpoints = props.breakpoints,
-        Tag = props.tag,
+        _props$breakpoints = props.breakpoints,
+        breakpoints = _props$breakpoints === void 0 ? BREAKPOINTS : _props$breakpoints,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "div" : _props$tag,
         attrs = _objectWithoutProperties(props, ["className", "breakpoints", "tag"]);
 
     var columnClasses = [];
@@ -3178,10 +3161,6 @@
      * The component tag type.
      */
     tag: propTypes.oneOfType([propTypes.func, propTypes.string])
-  };
-  Col.defaultProps = {
-    tag: "div",
-    breakpoints: BREAKPOINTS
   };
 
   function styleInject(css, ref) {
@@ -3362,9 +3341,10 @@
             setActiveFromChild = props.setActiveFromChild,
             active = props.active,
             addonType = props.addonType,
-            attrs = _objectWithoutProperties(props, ["className", "children", "dropup", "open", "group", "size", "nav", "setActiveFromChild", "active", "addonType"]);
+            directionProp = props.direction,
+            attrs = _objectWithoutProperties(props, ["className", "children", "dropup", "open", "group", "size", "nav", "setActiveFromChild", "active", "addonType", "direction"]);
 
-        var direction = this.props.direction === "down" && dropup ? "up" : this.props.direction;
+        var direction = directionProp === "down" && dropup ? "up" : directionProp;
         attrs.tag = attrs.tag || (nav ? "li" : "div");
         var subItemIsActive = false;
 
@@ -3918,7 +3898,8 @@
     var className = props.className,
         valid = props.valid,
         tooltip = props.tooltip,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "div" : _props$tag,
         attrs = _objectWithoutProperties(props, ["className", "valid", "tooltip", "tag"]);
 
     var validMode = tooltip ? "tooltip" : "feedback";
@@ -3953,10 +3934,6 @@
      * Whether the feedback should be displayed as tooltip.
      */
     tooltip: propTypes.bool
-  };
-  FormFeedback.defaultProps = {
-    tag: "div",
-    valid: undefined
   };
 
   /**
@@ -4088,7 +4065,8 @@
         disabled = props.disabled,
         check = props.check,
         inline = props.inline,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "div" : _props$tag,
         attrs = _objectWithoutProperties(props, ["className", "row", "disabled", "check", "inline", "tag"]);
 
     var classes = classNames(className, row && "bs-row", check ? "bs-form-check" : "bs-form-group", check && inline && "bs-form-check-inline", check && disabled && "disabled");
@@ -4132,9 +4110,6 @@
      * The class name.
      */
     className: propTypes.string
-  };
-  FormGroup.defaultProps = {
-    tag: "div"
   };
 
   /**
@@ -4527,7 +4502,8 @@
 
   var InputGroup = function InputGroup(props) {
     var className = props.className,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "div" : _props$tag,
         size = props.size,
         seamless = props.seamless,
         attrs = _objectWithoutProperties(props, ["className", "tag", "size", "seamless"]);
@@ -4564,13 +4540,11 @@
      */
     tag: propTypes.oneOfType([propTypes.func, propTypes.string])
   };
-  InputGroup.defaultProps = {
-    tag: "div"
-  };
 
   var InputGroupText = function InputGroupText(props) {
     var className = props.className,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "span" : _props$tag,
         attrs = _objectWithoutProperties(props, ["className", "tag"]);
 
     var classes = classNames(className, "bs-input-group-text");
@@ -4590,14 +4564,12 @@
      */
     tag: propTypes.oneOfType([propTypes.func, propTypes.string])
   };
-  InputGroupText.defaultProps = {
-    tag: "span"
-  };
 
   var InputGroupAddon = function InputGroupAddon(props) {
     var className = props.className,
         children = props.children,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "div" : _props$tag,
         type = props.type,
         attrs = _objectWithoutProperties(props, ["className", "children", "tag", "type"]);
 
@@ -4635,9 +4607,6 @@
      */
     tag: propTypes.string
   };
-  InputGroupAddon.defaultProps = {
-    tag: "div"
-  };
 
   /**
    * List groups allow you to display series of content.
@@ -4645,7 +4614,8 @@
 
   var ListGroup = function ListGroup(props) {
     var className = props.className,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "ul" : _props$tag,
         flush = props.flush,
         small = props.small,
         attrs = _objectWithoutProperties(props, ["className", "tag", "flush", "small"]);
@@ -4677,13 +4647,11 @@
      */
     tag: propTypes.oneOfType([propTypes.func, propTypes.string])
   };
-  ListGroup.defaultProps = {
-    tag: "ul"
-  };
 
   var ListGroupItem = function ListGroupItem(props) {
     var className = props.className,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "li" : _props$tag,
         active = props.active,
         action = props.action,
         disabled = props.disabled,
@@ -4734,13 +4702,11 @@
      */
     tag: propTypes.oneOfType([propTypes.func, propTypes.string])
   };
-  ListGroupItem.defaultProps = {
-    tag: "li"
-  };
 
   var ListGroupItemHeading = function ListGroupItemHeading(props) {
     var className = props.className,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "h5" : _props$tag,
         attrs = _objectWithoutProperties(props, ["className", "tag"]);
 
     var classes = classNames(className, "bs-list-group-item-heading");
@@ -4760,13 +4726,11 @@
      */
     tag: propTypes.oneOfType([propTypes.func, propTypes.string])
   };
-  ListGroupItemHeading.defaultProps = {
-    tag: "h5"
-  };
 
   var ListGroupItemText = function ListGroupItemText(props) {
     var className = props.className,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "p" : _props$tag,
         attrs = _objectWithoutProperties(props, ["className", "tag"]);
 
     var classes = classNames(className, "bs-list-group-item-text");
@@ -4785,9 +4749,6 @@
      * The component's tag type.
      */
     tag: propTypes.oneOfType([propTypes.func, propTypes.string])
-  };
-  ListGroupItemText.defaultProps = {
-    tag: "p"
   };
 
   /**
@@ -5084,8 +5045,10 @@
     var className = props.className,
         children = props.children,
         toggle = props.toggle,
-        Tag = props.tag,
-        closeAriaLabel = props.closeAriaLabel,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "h5" : _props$tag,
+        _props$closeAriaLabel = props.closeAriaLabel,
+        closeAriaLabel = _props$closeAriaLabel === void 0 ? "Close" : _props$closeAriaLabel,
         titleClass = props.titleClass,
         attrs = _objectWithoutProperties(props, ["className", "children", "toggle", "tag", "closeAriaLabel", "titleClass"]);
 
@@ -5142,10 +5105,6 @@
      */
     children: propTypes.oneOfType([propTypes.arrayOf(propTypes.node), propTypes.node])
   };
-  ModalHeader.defaultProps = {
-    tag: "h5",
-    closeAriaLabel: "Close"
-  };
 
   var ModalFooter = function ModalFooter(props) {
     var className = props.className,
@@ -5178,13 +5137,15 @@
     var className = props.className,
         navbar = props.navbar,
         horizontal = props.horizontal,
-        vertical = props.vertical,
+        _props$vertical = props.vertical,
+        vertical = _props$vertical === void 0 ? false : _props$vertical,
         tabs = props.tabs,
         card = props.card,
         pills = props.pills,
         justified = props.justified,
         fill = props.fill,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "ul" : _props$tag,
         attrs = _objectWithoutProperties(props, ["className", "navbar", "horizontal", "vertical", "tabs", "card", "pills", "justified", "fill", "tag"]);
 
     var verticalClass;
@@ -5203,10 +5164,6 @@
     }));
   };
 
-  Nav.defaultProps = {
-    tag: "ul",
-    vertical: false
-  };
   Nav.propTypes = {
     /**
      * The class name.
@@ -5261,7 +5218,8 @@
 
   var NavItem = function NavItem(props) {
     var className = props.className,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "li" : _props$tag,
         attrs = _objectWithoutProperties(props, ["className", "tag"]);
 
     var classes = classNames(className, "bs-nav-item");
@@ -5290,9 +5248,6 @@
      * The component's tag type.
      */
     tag: propTypes.oneOfType([propTypes.func, propTypes.string])
-  };
-  NavItem.defaultProps = {
-    tag: "li"
   };
 
   var NavLink =
@@ -5337,7 +5292,7 @@
             innerRef = _this$props.innerRef,
             attrs = _objectWithoutProperties(_this$props, ["className", "active", "disabled", "tag", "innerRef"]);
 
-        var classes = classNames(className, "bs-nav-link", disabled && "disabled", active && "bs-active");
+        var classes = classNames(className, "bs-nav-link", disabled && "bs-disabled", active && "bs-active");
         return React__default.createElement(Tag, _extends({}, attrs, {
           ref: innerRef,
           onClick: this.handleOnClick,
@@ -5395,12 +5350,14 @@
 
   var Navbar = function Navbar(props) {
     var className = props.className,
-        expand = props.expand,
+        _props$expand = props.expand,
+        expand = _props$expand === void 0 ? false : _props$expand,
         fixed = props.fixed,
         sticky = props.sticky,
         theme = props.theme,
         type = props.type,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "nav" : _props$tag,
         attrs = _objectWithoutProperties(props, ["className", "expand", "fixed", "sticky", "theme", "type", "tag"]);
 
     var expandClass;
@@ -5413,7 +5370,7 @@
       expandClass = "bs-navbar-expand-".concat(expand);
     }
 
-    var classes = classNames(className, "bs-navbar", expandClass, type === "light" && "bs-navbar-light", type === "dark" && "bs-navbar-dark", theme && "bg-".concat(theme), fixed && "fixed-".concat(fixed), sticky && "sticky-".concat(sticky));
+    var classes = classNames(className, "bs-navbar", expandClass, type === "light" && "bs-navbar-light", type === "dark" && "bs-navbar-dark", theme && "bs-bg-".concat(theme), fixed && "bs-fixed-".concat(fixed), sticky && "bs-sticky-".concat(sticky));
     return React__default.createElement(Tag, _extends({}, attrs, {
       className: classes
     }));
@@ -5465,14 +5422,11 @@
      */
     expand: propTypes.oneOfType([propTypes.bool, propTypes.string])
   };
-  Navbar.defaultProps = {
-    tag: "nav",
-    expand: false
-  };
 
   var NavbarBrand = function NavbarBrand(props) {
     var className = props.className,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "a" : _props$tag,
         attrs = _objectWithoutProperties(props, ["className", "tag"]);
 
     var classes = classNames(className, "bs-navbar-brand");
@@ -5492,14 +5446,12 @@
      */
     tag: propTypes.oneOfType([propTypes.func, propTypes.string])
   };
-  NavbarBrand.defaultProps = {
-    tag: "a"
-  };
 
   var NavbarToggler = function NavbarToggler(props) {
     var className = props.className,
         children = props.children,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "button" : _props$tag,
         attrs = _objectWithoutProperties(props, ["className", "children", "tag"]);
 
     var classes = classNames(className, "bs-navbar-toggler");
@@ -5530,10 +5482,6 @@
      * The tag type.
      */
     tag: propTypes.oneOfType([propTypes.func, propTypes.string])
-  };
-  NavbarToggler.defaultProps = {
-    tag: "button",
-    type: "button"
   };
 
   var PopperManager =
@@ -6037,7 +5985,8 @@
 
   var PopoverBody = function PopoverBody(props) {
     var className = props.className,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "div" : _props$tag,
         attrs = _objectWithoutProperties(props, ["className", "tag"]);
 
     var classes = classNames(className, "bs-popover-body");
@@ -6057,13 +6006,11 @@
      */
     tag: propTypes.oneOfType([propTypes.func, propTypes.string])
   };
-  PopoverBody.defaultProps = {
-    tag: "div"
-  };
 
   var PopoverHeader = function PopoverHeader(props) {
     var className = props.className,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "h3" : _props$tag,
         attrs = _objectWithoutProperties(props, ["className", "tag"]);
 
     var classes = classNames(className, "bs-popover-header");
@@ -6083,9 +6030,6 @@
      */
     tag: propTypes.oneOfType([propTypes.func, propTypes.string])
   };
-  PopoverHeader.defaultProps = {
-    tag: "h3"
-  };
 
   /**
    * You can use the `Progress` component to display simple or complex progress bars.
@@ -6095,14 +6039,18 @@
     var children = props.children,
         className = props.className,
         barClassName = props.barClassName,
-        value = props.value,
-        max = props.max,
+        _props$value = props.value,
+        value = _props$value === void 0 ? 0 : _props$value,
+        _props$max = props.max,
+        max = _props$max === void 0 ? 100 : _props$max,
         animated = props.animated,
         striped = props.striped,
-        theme = props.theme,
+        _props$theme = props.theme,
+        theme = _props$theme === void 0 ? "primary" : _props$theme,
         bar = props.bar,
         multi = props.multi,
-        Tag = props.tag,
+        _props$tag = props.tag,
+        Tag = _props$tag === void 0 ? "div" : _props$tag,
         attrs = _objectWithoutProperties(props, ["children", "className", "barClassName", "value", "max", "animated", "striped", "theme", "bar", "multi", "tag"]);
 
     var percent = toNumber(value) / toNumber(max) * 100;
@@ -6183,12 +6131,6 @@
      * The max value.
      */
     max: propTypes.oneOfType([propTypes.string, propTypes.number])
-  };
-  Progress.defaultProps = {
-    tag: "div",
-    value: 0,
-    max: 100,
-    theme: "primary"
   };
 
   /**

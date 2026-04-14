@@ -6,7 +6,7 @@ import InputGroupText from "./InputGroupText";
 import { INPUT_GROUP_ADDON_TYPES } from "../constants";
 
 const InputGroupAddon = props => {
-  const { className, children, tag: Tag, type, ...attrs } = props;
+  const { className, children, tag: Tag = "div", type, ...attrs } = props;
   const classes = classNames(className, `bs-input-group-${type}`);
 
   if (typeof children === "string") {
@@ -41,10 +41,6 @@ InputGroupAddon.propTypes = {
    * The component's tag type.
    */
   tag: PropTypes.string
-};
-
-InputGroupAddon.defaultProps = {
-  tag: "div"
 };
 
 export default InputGroupAddon;

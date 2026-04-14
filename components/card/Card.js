@@ -9,7 +9,7 @@ const Card = props => {
   const {
     className,
     innerRef,
-    tag: Tag,
+    tag: Tag = "div",
     theme,
     outline,
     small,
@@ -55,10 +55,6 @@ Card.propTypes = {
     PropTypes.object,
     PropTypes.func
   ])
-};
-
-Card.defaultProps = {
-  tag: "div"
 };
 
 export default Card;

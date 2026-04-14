@@ -6,7 +6,7 @@ import classNames from "classnames";
  * Form groups allow you to easily add structure to your forms.
  */
 const FormGroup = props => {
-  const { className, row, disabled, check, inline, tag: Tag, ...attrs } = props;
+  const { className, row, disabled, check, inline, tag: Tag = "div", ...attrs } = props;
   const classes = classNames(
     className,
     row && "bs-row",
@@ -47,10 +47,6 @@ FormGroup.propTypes = {
    * The class name.
    */
   className: PropTypes.string
-};
-
-FormGroup.defaultProps = {
-  tag: "div"
 };
 
 export default FormGroup;

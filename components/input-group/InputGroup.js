@@ -6,7 +6,7 @@ import classNames from "classnames";
  * Using the `InputGroup` component you can easily extend form controls by adding various elements such as text, buttons and button groups.
  */
 const InputGroup = props => {
-  const { className, tag: Tag, size, seamless, ...attrs } = props;
+  const { className, tag: Tag = "div", size, seamless, ...attrs } = props;
   const classes = classNames(
     className,
     "bs-input-group",
@@ -38,10 +38,6 @@ InputGroup.propTypes = {
    * The tag type.
    */
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
-};
-
-InputGroup.defaultProps = {
-  tag: "div"
 };
 
 export default InputGroup;

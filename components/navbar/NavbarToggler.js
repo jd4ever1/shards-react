@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 
 const NavbarToggler = props => {
-  const { className, children, tag: Tag, ...attrs } = props;
+  const { className, children, tag: Tag = "button", ...attrs } = props;
   const classes = classNames(className, "bs-navbar-toggler");
 
   return (
@@ -30,11 +30,6 @@ NavbarToggler.propTypes = {
    * The tag type.
    */
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
-};
-
-NavbarToggler.defaultProps = {
-  tag: "button",
-  type: "button"
 };
 
 export default NavbarToggler;

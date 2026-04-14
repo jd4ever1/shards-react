@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 
 const CardDeck = props => {
-  const { className, tag: Tag, ...attrs } = props;
+  const { className, tag: Tag = "div", ...attrs } = props;
   const classes = classNames(className, "bs-card-deck");
 
   return <Tag {...attrs} className={classes} />;
@@ -18,10 +18,6 @@ CardDeck.propTypes = {
    * The class name.
    */
   className: PropTypes.string
-};
-
-CardDeck.defaultProps = {
-  tag: "div"
 };
 
 export default CardDeck;

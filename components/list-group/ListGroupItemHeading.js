@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 
 const ListGroupItemHeading = props => {
-  const { className, tag: Tag, ...attrs } = props;
+  const { className, tag: Tag = "h5", ...attrs } = props;
   const classes = classNames(className, "bs-list-group-item-heading");
 
   return <Tag {...attrs} className={classes} />;
@@ -18,10 +18,6 @@ ListGroupItemHeading.propTypes = {
    * The component's tag type.
    */
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
-};
-
-ListGroupItemHeading.defaultProps = {
-  tag: "h5"
 };
 
 export default ListGroupItemHeading;

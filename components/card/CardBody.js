@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 
 const CardBody = props => {
-  const { className, tag: Tag, children, ...attrs } = props;
+  const { className, tag: Tag = "div", children, ...attrs } = props;
   const classes = classNames(className, "bs-card-body");
 
   return (
@@ -29,10 +29,6 @@ CardBody.propTypes = {
    * The component tag.
    */
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
-};
-
-CardBody.defaultProps = {
-  tag: "div"
 };
 
 export default CardBody;

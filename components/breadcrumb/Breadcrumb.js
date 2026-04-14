@@ -10,9 +10,9 @@ const Breadcrumb = props => {
     className,
     listClassName,
     children,
-    tag: Tag,
-    listTag: ListTag,
-    "aria-label": label,
+    tag: Tag = "nav",
+    listTag: ListTag = "ol",
+    "aria-label": label = "breadcrumb",
     ...attrs
   } = props;
 
@@ -52,12 +52,6 @@ Breadcrumb.propTypes = {
    * The breadcrumb list tag.
    */
   listTag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
-};
-
-Breadcrumb.defaultProps = {
-  "aria-label": "breadcrumb",
-  tag: "nav",
-  listTag: "ol"
 };
 
 export default Breadcrumb;

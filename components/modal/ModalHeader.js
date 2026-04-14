@@ -7,8 +7,8 @@ const ModalHeader = props => {
     className,
     children,
     toggle,
-    tag: Tag,
-    closeAriaLabel,
+    tag: Tag = "h5",
+    closeAriaLabel = "Close",
     titleClass,
     ...attrs
   } = props;
@@ -66,11 +66,6 @@ ModalHeader.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ])
-};
-
-ModalHeader.defaultProps = {
-  tag: "h5",
-  closeAriaLabel: "Close"
 };
 
 export default ModalHeader;

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 
 const NavbarBrand = props => {
-  const { className, tag: Tag, ...attrs } = props;
+  const { className, tag: Tag = "a", ...attrs } = props;
   const classes = classNames(className, "bs-navbar-brand");
 
   return <Tag {...attrs} className={classes} />;
@@ -18,10 +18,6 @@ NavbarBrand.propTypes = {
    * The component's tag type.
    */
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
-};
-
-NavbarBrand.defaultProps = {
-  tag: "a"
 };
 
 export default NavbarBrand;

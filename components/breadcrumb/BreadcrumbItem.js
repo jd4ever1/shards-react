@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 
 const BreadcrumbItem = props => {
-  const { className, active, tag: Tag, ...attrs } = props;
+  const { className, active, tag: Tag = "li", ...attrs } = props;
 
   const classes = classNames(className, active && "bs-active", "bs-breadcrumb-item");
 
@@ -29,10 +29,6 @@ BreadcrumbItem.propTypes = {
    * The component tag.
    */
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
-};
-
-BreadcrumbItem.defaultProps = {
-  tag: "li"
 };
 
 export default BreadcrumbItem;

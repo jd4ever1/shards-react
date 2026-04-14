@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 
 const NavItem = props => {
-  const { className, tag: Tag, ...attrs } = props;
+  const { className, tag: Tag = "li", ...attrs } = props;
   const classes = classNames(className, "bs-nav-item");
 
   return <Tag {...attrs} className={classes} />;
@@ -26,10 +26,6 @@ NavItem.propTypes = {
    * The component's tag type.
    */
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
-};
-
-NavItem.defaultProps = {
-  tag: "li"
 };
 
 export default NavItem;

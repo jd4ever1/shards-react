@@ -2,26 +2,40 @@ import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 
+import { TIMEOUT } from "../constants";
+
 import Fade from "../fade";
+
+const FADE_DEFAULTS = {
+  tag: "div",
+  baseClass: "fade",
+  baseClassActive: "show",
+  timeout: TIMEOUT.FADE,
+  appear: true,
+  enter: true,
+  exit: true,
+  in: true
+};
 
 /**
  * The alert component can be used to display contextual user messages.
  */
-const Alert = props => {
-  const {
-    className,
-    closeClassName,
-    closeAriaLabel,
-    tag: Tag,
-    theme,
-    open,
-    dismissible,
-    children,
-    transition,
-    fade,
-    ...attrs
-  } = props;
-
+const Alert = ({
+  className,
+  closeClassName,
+  closeAriaLabel = "Close",
+  tag: Tag = "div",
+  theme = "primary",
+  open = true,
+  dismissible,
+  children,
+  transition = {
+    ...FADE_DEFAULTS,
+    unmountOnExit: true
+  },
+  fade = true,
+  ...attrs
+}) => {
   const classes = classNames(
     className,
     "bs-alert",
@@ -32,7 +46,7 @@ const Alert = props => {
   const closeClasses = classNames("bs-close", closeClassName);
 
   const alertTransition = {
-    ...Fade.defaultProps,
+    ...FADE_DEFAULTS,
     ...transition,
     baseClass: fade ? transition.baseClass : "",
     timeout: fade ? transition.timeout : 0
@@ -103,18 +117,6 @@ Alert.propTypes = {
    * The component tag type.
    */
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
-};
-
-Alert.defaultProps = {
-  theme: "primary",
-  open: true,
-  tag: "div",
-  closeAriaLabel: "Close",
-  fade: true,
-  transition: {
-    ...Fade.defaultProps,
-    unmountOnExit: true
-  }
 };
 
 export default Alert;
