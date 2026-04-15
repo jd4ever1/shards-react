@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { Manager } from "react-popper";
@@ -15,11 +14,12 @@ class Dropdown extends React.Component {
   constructor(props) {
     super(props);
 
+    this.containerRef = React.createRef();
+
     this.handleListeners = this.handleListeners.bind(this);
     this.addListeners = this.addListeners.bind(this);
     this.removeListeners = this.removeListeners.bind(this);
     this.handleDocumentClick = this.handleDocumentClick.bind(this);
-    this.getContainer = this.getContainer.bind(this);
     this.toggle = this.toggle.bind(this);
   }
 
@@ -58,9 +58,6 @@ class Dropdown extends React.Component {
     );
   }
 
-  getContainer() {
-    return ReactDOM.findDOMNode(this); // eslint-disable-line react/no-find-dom-node
-  }
 
   handleDocumentClick(e) {
     if (
@@ -68,7 +65,7 @@ class Dropdown extends React.Component {
       (e.which === 3 || (e.type === "keyup" && e.which !== KEYCODES.TAB))
     )
       return;
-    const container = this.getContainer();
+    const container = this.containerRef.current;
 
     if (
       container.contains(e.target) &&

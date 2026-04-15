@@ -3090,11 +3090,11 @@ var Dropdown = /*#__PURE__*/function (_React$Component) {
     var _this;
     _classCallCheck(this, Dropdown);
     _this = _callSuper(this, Dropdown, [props]);
+    _this.containerRef = /*#__PURE__*/React__default.createRef();
     _this.handleListeners = _this.handleListeners.bind(_this);
     _this.addListeners = _this.addListeners.bind(_this);
     _this.removeListeners = _this.removeListeners.bind(_this);
     _this.handleDocumentClick = _this.handleDocumentClick.bind(_this);
-    _this.getContainer = _this.getContainer.bind(_this);
     _this.toggle = _this.toggle.bind(_this);
     return _this;
   }
@@ -3142,15 +3142,10 @@ var Dropdown = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
-    key: "getContainer",
-    value: function getContainer() {
-      return ReactDOM.findDOMNode(this); // eslint-disable-line react/no-find-dom-node
-    }
-  }, {
     key: "handleDocumentClick",
     value: function handleDocumentClick(e) {
       if (e && (e.which === 3 || e.type === "keyup" && e.which !== KEYCODES.TAB)) return;
-      var container = this.getContainer();
+      var container = this.containerRef.current;
       if (container.contains(e.target) && container !== e.target && (e.type !== "keyup" || e.which === KEYCODES.TAB)) {
         return;
       }
