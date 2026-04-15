@@ -47,11 +47,11 @@ class DropdownMenu extends React.Component {
 
       return (
         <Popper {...attrs}>
-          {({ ref, placement }) => (
+          {({ ref, /*placement*/ }) => (
             <div
               ref={ref}
               className={classes}
-              x-placement={placement}
+              // x-placement={placement}
               aria-hidden={!this.context.open}
               tabIndex="-1"
               role="menu"
