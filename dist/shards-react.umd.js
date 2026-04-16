@@ -1,15 +1,15 @@
 /*
-* Shards React v2.4.0 (https://designrevision.com/downloads/shards-react/)
+* Shards React v2.5.0 (https://designrevision.com/downloads/shards-react/)
 * Based on: Bootstrap ^4.1.3 (https://getbootstrap.com)
 * Based on: Shards ^2.1.2 (https://designrevision.com/downloads/shards/)
 * Copyright 2017-2026 DesignRevision (https://designrevision.com)
 * Copyright 2017-2026 Catalin Vasile (http://catalin.me)
 */
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('lodash.isfunction'), require('react-datepicker'), require('lodash.pick'), require('shortid'), require('react-transition-group'), require('react-dom'), require('react-popper'), require('lodash.tonumber'), require('nouislider'), require('react'), require('classnames'), require('lodash.omit')) :
-  typeof define === 'function' && define.amd ? define(['exports', 'lodash.isfunction', 'react-datepicker', 'lodash.pick', 'shortid', 'react-transition-group', 'react-dom', 'react-popper', 'lodash.tonumber', 'nouislider', 'react', 'classnames', 'lodash.omit'], factory) :
-  (factory((global['shards-React'] = {}),global.isFunction,global.ReactDatePicker,global.pick,global.shortid,global.ReactTransitionGroup,global.ReactDOM,global.ReactPopper,global.toNumber,global.nouislider,global.React,global.classNames,global.omit));
-}(this, (function (exports,isFunction,ReactDatePicker,pick,shortid,reactTransitionGroup,ReactDOM,reactPopper,toNumber,nouislider,React,classNames,omit) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('lodash.isfunction'), require('react-datepicker'), require('lodash.pick'), require('shortid'), require('react-dom'), require('react-popper'), require('lodash.tonumber'), require('nouislider'), require('react'), require('classnames'), require('lodash.omit')) :
+  typeof define === 'function' && define.amd ? define(['exports', 'lodash.isfunction', 'react-datepicker', 'lodash.pick', 'shortid', 'react-dom', 'react-popper', 'lodash.tonumber', 'nouislider', 'react', 'classnames', 'lodash.omit'], factory) :
+  (factory((global['shards-React'] = {}),global.isFunction,global.ReactDatePicker,global.pick,global.shortid,global.ReactDOM,global.ReactPopper,global.toNumber,global.nouislider,global.React,global.classNames,global.omit));
+}(this, (function (exports,isFunction,ReactDatePicker,pick,shortid,ReactDOM,reactPopper,toNumber,nouislider,React,classNames,omit) { 'use strict';
 
   isFunction = isFunction && isFunction.hasOwnProperty('default') ? isFunction['default'] : isFunction;
   ReactDatePicker = ReactDatePicker && ReactDatePicker.hasOwnProperty('default') ? ReactDatePicker['default'] : ReactDatePicker;
@@ -4305,57 +4305,60 @@
       _classCallCheck(this, Modal);
       _this = _callSuper(this, Modal, [props]);
       _this.state = {
-        open: _this.props.open || false
+        open: _this.props.open || false,
+        mounted: false
       };
-      _this.handleOnEntered = _this.handleOnEntered.bind(_this);
-      _this.handleOnExit = _this.handleOnExit.bind(_this);
-      _this.handleOnExited = _this.handleOnExited.bind(_this);
       _this.handleBackdropClick = _this.handleBackdropClick.bind(_this);
       _this.modalContent = null;
       return _this;
     }
     _inherits(Modal, _React$Component);
     return _createClass(Modal, [{
-      key: "componentDidUpdate",
-      value: function componentDidUpdate(prevProps, prevState) {
-        if (prevState.open !== this.props.open) {
+      key: "componentDidMount",
+      value: function componentDidMount() {
+        if (this.state.open) {
           this.setState({
-            open: this.props.open
+            mounted: true
           });
+          this.props.showModal && this.props.showModal();
         }
       }
     }, {
-      key: "handleOnEntered",
-      value: function handleOnEntered(type, node) {
-        var _this$props = this.props,
-          fade = _this$props.fade,
-          showModal = _this$props.showModal;
-        if (type === "backdrop" && fade === false) {
-          return;
+      key: "componentDidUpdate",
+      value: function componentDidUpdate(prevProps) {
+        var _this2 = this;
+        if (prevProps.open !== this.props.open) {
+          if (this.props.open && !this.state.open) {
+            // Opening
+            this.setState({
+              open: true,
+              mounted: true
+            }, function () {
+              // Force reflow to ensure transition works
+              requestAnimationFrame(function () {
+                requestAnimationFrame(function () {
+                  _this2.setState({
+                    show: true
+                  });
+                });
+              });
+            });
+          } else if (!this.props.open && this.state.open) {
+            // Closing
+            this.props.hideModal && this.props.hideModal();
+            this.setState({
+              show: false
+            }, function () {
+              setTimeout(function () {
+                _this2.setState({
+                  open: false,
+                  mounted: false
+                });
+                _this2.props.hiddenModal && _this2.props.hiddenModal();
+              }, _this2.props.fade ? TIMEOUT.FADE : 0);
+            });
+          }
         }
-        node.classList.add("show");
-        if (type === "modal") {
-          showModal && showModal();
-        }
-      }
-    }, {
-      key: "handleOnExit",
-      value: function handleOnExit(type, node) {
-        var _this$props2 = this.props,
-          fade = _this$props2.fade,
-          hideModal = _this$props2.hideModal;
-        if (type === "backdrop" && fade === false) {
-          return;
-        }
-        node.classList.remove("show");
-        if (type === "modal") {
-          hideModal && hideModal();
-        }
-      }
-    }, {
-      key: "handleOnExited",
-      value: function handleOnExited() {
-        this.props.hiddenModal && this.props.hiddenModal();
       }
     }, {
       key: "handleBackdropClick",
@@ -4367,30 +4370,33 @@
     }, {
       key: "render",
       value: function render() {
-        var _this2 = this;
-        if (!this.state.open) {
+        var _this3 = this;
+        var _this$props = this.props,
+          id = _this$props.id,
+          backdrop = _this$props.backdrop,
+          fade = _this$props.fade,
+          tabIndex = _this$props.tabIndex,
+          backdropClassName = _this$props.backdropClassName,
+          modalClassName = _this$props.modalClassName,
+          animation = _this$props.animation,
+          modalContentClassName = _this$props.modalContentClassName,
+          position = _this$props.position,
+          role = _this$props.role,
+          size = _this$props.size,
+          children = _this$props.children,
+          centered = _this$props.centered,
+          className = _this$props.className;
+        var _this$state = this.state,
+          open = _this$state.open,
+          mounted = _this$state.mounted,
+          show = _this$state.show;
+        if (!mounted && !open) {
           return null;
         }
-        var _this$props3 = this.props,
-          id = _this$props3.id,
-          backdrop = _this$props3.backdrop,
-          fade = _this$props3.fade,
-          tabIndex = _this$props3.tabIndex,
-          backdropClassName = _this$props3.backdropClassName,
-          modalClassName = _this$props3.modalClassName,
-          animation = _this$props3.animation,
-          modalContentClassName = _this$props3.modalContentClassName,
-          position = _this$props3.position,
-          role = _this$props3.role,
-          size = _this$props3.size,
-          children = _this$props3.children,
-          centered = _this$props3.centered,
-          className = _this$props3.className; // open, showModal, hideModal, hiddenModal, toggle
-
-        var backdropClasses = classNames("bs-modal-backdrop", fade ? "fade" : "bs-show", backdropClassName);
-        var modalClasses = classNames("bs-modal", fade && "fade", modalClassName, fade && (animation || position && position.split("-").slice(-1)[0] || "top"));
+        var backdropClasses = classNames("bs-modal-backdrop", fade ? "fade" : "bs-show", show && "show", backdropClassName);
+        var modalClasses = classNames("bs-modal", fade && "fade", show && "show", modalClassName, fade && (animation || position && position.split("-").slice(-1)[0] || "top"));
         var modalAttrs = {
-          "aria-hidden": true,
+          "aria-hidden": !show,
           id: id || undefined,
           tabIndex: tabIndex,
           role: role,
@@ -4400,45 +4406,29 @@
         };
         var modalDialogClasses = classNames("bs-modal-dialog", className, size && "bs-modal-".concat(size), centered && "bs-modal-dialog-centered", position && "bs-modal-".concat(position));
         var contentClasses = classNames("bs-modal-content", modalContentClassName);
-        return /*#__PURE__*/React__default.createElement(React.Fragment, null, backdrop && /*#__PURE__*/React__default.createElement(reactTransitionGroup.Transition, {
-          timeout: fade ? TIMEOUT.FADE : 0,
-          "in": this.state.open,
-          appear: this.state.open,
-          mountOnEnter: true,
-          unmountOnExit: true,
-          onEntered: function onEntered(node) {
-            return _this2.handleOnEntered("backdrop", node);
-          },
-          onExit: function onExit(node) {
-            return _this2.handleOnExit("backdrop", node);
-          },
-          onExited: this.handleOnExited
-        }, /*#__PURE__*/React__default.createElement("div", {
-          className: backdropClasses
-        })), /*#__PURE__*/React__default.createElement(reactTransitionGroup.Transition, {
-          timeout: fade ? TIMEOUT.FADE : 0,
-          "in": this.state.open,
-          appear: this.state.open,
-          mountOnEnter: true,
-          unmountOnExit: true,
-          onClick: this.handleBackdropClick,
-          onEntered: function onEntered(node) {
-            return _this2.handleOnEntered("modal", node);
-          },
-          onExit: function onExit(node) {
-            return _this2.handleOnExit("modal", node);
+        return /*#__PURE__*/React__default.createElement(React.Fragment, null, backdrop && /*#__PURE__*/React__default.createElement("div", {
+          className: backdropClasses,
+          style: {
+            transition: fade ? "opacity 500ms ease-in-out" : 'none',
+            opacity: 0.4
           }
-        }, /*#__PURE__*/React__default.createElement("div", _extends({
+        }), /*#__PURE__*/React__default.createElement("div", _extends({
           className: modalClasses
-        }, modalAttrs), /*#__PURE__*/React__default.createElement("div", {
+        }, modalAttrs, {
+          onClick: this.handleBackdropClick,
+          style: _objectSpread2(_objectSpread2({}, modalAttrs.style), {}, {
+            transition: fade ? "opacity 500ms ease-in-out" : 'none',
+            opacity: 1
+          })
+        }), /*#__PURE__*/React__default.createElement("div", {
           className: modalDialogClasses,
           role: "document"
         }, /*#__PURE__*/React__default.createElement("div", {
           ref: function ref(el) {
-            return _this2.modalContent = el;
+            return _this3.modalContent = el;
           },
           className: contentClasses
-        }, children)))));
+        }, children))));
       }
     }]);
   }(React__default.Component);

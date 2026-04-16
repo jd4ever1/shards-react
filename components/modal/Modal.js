@@ -1,8 +1,6 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { Transition } from "react-transition-group";
-
 import { TIMEOUT } from "../constants";
 
 /**
@@ -11,55 +9,44 @@ import { TIMEOUT } from "../constants";
 class Modal extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      open: this.props.open || false
+      open: this.props.open || false,
+      mounted: false
     };
-
-    this.handleOnEntered = this.handleOnEntered.bind(this);
-    this.handleOnExit = this.handleOnExit.bind(this);
-    this.handleOnExited = this.handleOnExited.bind(this);
     this.handleBackdropClick = this.handleBackdropClick.bind(this);
-
     this.modalContent = null;
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.open !== this.props.open) {
-      this.setState({ open: this.props.open });
+  componentDidMount() {
+    if (this.state.open) {
+      this.setState({ mounted: true });
+      this.props.showModal && this.props.showModal();
     }
   }
 
-  handleOnEntered(type, node) {
-    const { fade, showModal } = this.props;
-
-    if (type === "backdrop" && fade === false) {
-      return;
+  componentDidUpdate(prevProps) {
+    if (prevProps.open !== this.props.open) {
+      if (this.props.open && !this.state.open) {
+        // Opening
+        this.setState({ open: true, mounted: true }, () => {
+          // Force reflow to ensure transition works
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              this.setState({ show: true });
+            });
+          });
+        });
+      } else if (!this.props.open && this.state.open) {
+        // Closing
+        this.props.hideModal && this.props.hideModal();
+        this.setState({ show: false }, () => {
+          setTimeout(() => {
+            this.setState({ open: false, mounted: false });
+            this.props.hiddenModal && this.props.hiddenModal();
+          }, this.props.fade ? TIMEOUT.FADE : 0);
+        });
+      }
     }
-
-    node.classList.add("show");
-
-    if (type === "modal") {
-      showModal && showModal();
-    }
-  }
-
-  handleOnExit(type, node) {
-    const { fade, hideModal } = this.props;
-
-    if (type === "backdrop" && fade === false) {
-      return;
-    }
-
-    node.classList.remove("show");
-
-    if (type === "modal") {
-      hideModal && hideModal();
-    }
-  }
-
-  handleOnExited() {
-    this.props.hiddenModal && this.props.hiddenModal();
   }
 
   handleBackdropClick(e) {
@@ -69,10 +56,6 @@ class Modal extends React.Component {
   }
 
   render() {
-    if (!this.state.open) {
-      return null;
-    }
-
     const {
       id,
       backdrop,
@@ -88,24 +71,32 @@ class Modal extends React.Component {
       children,
       centered,
       className
-    } = this.props; // open, showModal, hideModal, hiddenModal, toggle
+    } = this.props;
+
+    const { open, mounted, show } = this.state;
+
+    if (!mounted && !open) {
+      return null;
+    }
 
     const backdropClasses = classNames(
       "bs-modal-backdrop",
       fade ? "fade" : "bs-show",
+      show && "show",
       backdropClassName
     );
 
     const modalClasses = classNames(
       "bs-modal",
       fade && "fade",
+      show && "show",
       modalClassName,
       fade &&
         (animation || (position && position.split("-").slice(-1)[0]) || "top")
     );
 
     const modalAttrs = {
-      "aria-hidden": true,
+      "aria-hidden": !show,
       id: id || undefined,
       tabIndex,
       role,
@@ -127,40 +118,33 @@ class Modal extends React.Component {
     return (
       <Fragment>
         {backdrop && (
-          <Transition
-            timeout={fade ? TIMEOUT.FADE : 0}
-            in={this.state.open}
-            appear={this.state.open}
-            mountOnEnter
-            unmountOnExit
-            onEntered={node => this.handleOnEntered("backdrop", node)}
-            onExit={node => this.handleOnExit("backdrop", node)}
-            onExited={this.handleOnExited}
-          >
-            <div className={backdropClasses} />
-          </Transition>
+          <div
+            className={backdropClasses}
+            style={{
+              transition: fade ? `opacity 500ms ease-in-out` : 'none',
+              opacity: 0.4,
+            }}
+          />
         )}
-        <Transition
-          timeout={fade ? TIMEOUT.FADE : 0}
-          in={this.state.open}
-          appear={this.state.open}
-          mountOnEnter
-          unmountOnExit
+        <div
+          className={modalClasses}
+          {...modalAttrs}
           onClick={this.handleBackdropClick}
-          onEntered={node => this.handleOnEntered("modal", node)}
-          onExit={node => this.handleOnExit("modal", node)}
+          style={{
+            ...modalAttrs.style,
+            transition: fade ? `opacity 500ms ease-in-out` : 'none',
+            opacity: 1,
+          }}
         >
-          <div className={modalClasses} {...modalAttrs}>
-            <div className={modalDialogClasses} role="document">
-              <div
-                ref={el => (this.modalContent = el)}
-                className={contentClasses}
-              >
-                {children}
-              </div>
+          <div className={modalDialogClasses} role="document">
+            <div
+              ref={el => (this.modalContent = el)}
+              className={contentClasses}
+            >
+              {children}
             </div>
           </div>
-        </Transition>
+        </div>
       </Fragment>
     );
   }

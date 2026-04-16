@@ -1,5 +1,5 @@
 /*
-* Shards React v2.4.0 (https://designrevision.com/downloads/shards-react/)
+* Shards React v2.5.0 (https://designrevision.com/downloads/shards-react/)
 * Based on: Bootstrap ^4.1.3 (https://getbootstrap.com)
 * Based on: Shards ^2.1.2 (https://designrevision.com/downloads/shards/)
 * Copyright 2017-2026 DesignRevision (https://designrevision.com)
@@ -9,7 +9,6 @@ import isFunction from 'lodash.isfunction';
 import ReactDatePicker from 'react-datepicker';
 import pick from 'lodash.pick';
 import shortid from 'shortid';
-import { Transition } from 'react-transition-group';
 import ReactDOM from 'react-dom';
 import { Manager, Reference, Popper } from 'react-popper';
 import toNumber from 'lodash.tonumber';
@@ -2090,9 +2089,9 @@ var EXITING = 'exiting';
  * `'exiting'` to `'exited'`.
  */
 
-var Transition$1 = /*#__PURE__*/function (_React$Component) {
-  _inheritsLoose$1(Transition$$1, _React$Component);
-  function Transition$$1(props, context) {
+var Transition = /*#__PURE__*/function (_React$Component) {
+  _inheritsLoose$1(Transition, _React$Component);
+  function Transition(props, context) {
     var _this;
     _this = _React$Component.call(this, props, context) || this;
     var parentGroup = context; // In the context of a TransitionGroup all enters are really appears
@@ -2120,7 +2119,7 @@ var Transition$1 = /*#__PURE__*/function (_React$Component) {
     _this.nextCallback = null;
     return _this;
   }
-  Transition$$1.getDerivedStateFromProps = function getDerivedStateFromProps(_ref, prevState) {
+  Transition.getDerivedStateFromProps = function getDerivedStateFromProps(_ref, prevState) {
     var nextIn = _ref["in"];
     if (nextIn && prevState.status === UNMOUNTED) {
       return {
@@ -2145,7 +2144,7 @@ var Transition$1 = /*#__PURE__*/function (_React$Component) {
   //   return { nextStatus }
   // }
 ;
-  var _proto = Transition$$1.prototype;
+  var _proto = Transition.prototype;
   _proto.componentDidMount = function componentDidMount() {
     this.updateStatus(true, this.appearStatus);
   };
@@ -2346,10 +2345,10 @@ var Transition$1 = /*#__PURE__*/function (_React$Component) {
       }, typeof children === 'function' ? children(status, childProps) : /*#__PURE__*/React.cloneElement(React.Children.only(children), childProps))
     );
   };
-  return Transition$$1;
+  return Transition;
 }(React.Component);
-Transition$1.contextType = TransitionGroupContext;
-Transition$1.propTypes = process.env.NODE_ENV !== "production" ? {
+Transition.contextType = TransitionGroupContext;
+Transition.propTypes = process.env.NODE_ENV !== "production" ? {
   /**
    * A React reference to DOM element that need to transition:
    * https://stackoverflow.com/a/51127130/4671932
@@ -2521,7 +2520,7 @@ Transition$1.propTypes = process.env.NODE_ENV !== "production" ? {
 } : {}; // Name the function so it is clearer in the documentation
 
 function noop() {}
-Transition$1.defaultProps = {
+Transition.defaultProps = {
   "in": false,
   mountOnEnter: false,
   unmountOnExit: false,
@@ -2535,11 +2534,11 @@ Transition$1.defaultProps = {
   onExiting: noop,
   onExited: noop
 };
-Transition$1.UNMOUNTED = UNMOUNTED;
-Transition$1.EXITED = EXITED;
-Transition$1.ENTERING = ENTERING;
-Transition$1.ENTERED = ENTERED;
-Transition$1.EXITING = EXITING;
+Transition.UNMOUNTED = UNMOUNTED;
+Transition.EXITED = EXITED;
+Transition.ENTERING = ENTERING;
+Transition.ENTERED = ENTERED;
+Transition.EXITING = EXITING;
 
 var TIMEOUT = {
   FADE: 150,
@@ -2658,7 +2657,7 @@ var Collapse = /*#__PURE__*/function (_React$Component) {
       var height = this.state.height;
       var transitionProps = pick(attrs, TRANSITION_KEYS);
       var childProps = omit(attrs, TRANSITION_KEYS);
-      return /*#__PURE__*/React.createElement(Transition$1, _extends({}, transitionProps, {
+      return /*#__PURE__*/React.createElement(Transition, _extends({}, transitionProps, {
         "in": open,
         onEntering: this.onEntering.bind(this),
         onEntered: this.onEntered.bind(this),
@@ -2721,7 +2720,7 @@ var Collapse = /*#__PURE__*/function (_React$Component) {
     }
   }]);
 }(React.Component);
-Collapse.propTypes = _objectSpread2(_objectSpread2({}, Transition$1.propTypes), {}, {
+Collapse.propTypes = _objectSpread2(_objectSpread2({}, Transition.propTypes), {}, {
   /**
    * Whether it is open, or not.
    */
@@ -2747,7 +2746,7 @@ Collapse.propTypes = _objectSpread2(_objectSpread2({}, Transition$1.propTypes), 
    */
   innerRef: propTypes.oneOfType([propTypes.func, propTypes.string, propTypes.object])
 });
-Collapse.defaultProps = _objectSpread2(_objectSpread2({}, Transition$1.defaultProps), {}, {
+Collapse.defaultProps = _objectSpread2(_objectSpread2({}, Transition.defaultProps), {}, {
   open: false,
   appear: false,
   enter: true,
@@ -3465,7 +3464,7 @@ var Fade = function Fade(props) {
     attrs = _objectWithoutProperties(props, _excluded$t);
   var transitionProps = pick(attrs, TRANSITION_KEYS);
   var childProps = omit(attrs, TRANSITION_KEYS);
-  return /*#__PURE__*/React.createElement(Transition$1, _extends({}, transitionProps, {
+  return /*#__PURE__*/React.createElement(Transition, _extends({}, transitionProps, {
     timeout: timeout,
     appear: appear,
     enter: enter,
@@ -3481,7 +3480,7 @@ var Fade = function Fade(props) {
     }), children);
   });
 };
-Fade.propTypes = _objectSpread2(_objectSpread2({}, Transition$1.propTypes), {}, {
+Fade.propTypes = _objectSpread2(_objectSpread2({}, Transition.propTypes), {}, {
   tag: propTypes.oneOfType([propTypes.string, propTypes.func]),
   baseClass: propTypes.string,
   baseClassActive: propTypes.string,
@@ -4301,57 +4300,60 @@ var Modal = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, Modal);
     _this = _callSuper(this, Modal, [props]);
     _this.state = {
-      open: _this.props.open || false
+      open: _this.props.open || false,
+      mounted: false
     };
-    _this.handleOnEntered = _this.handleOnEntered.bind(_this);
-    _this.handleOnExit = _this.handleOnExit.bind(_this);
-    _this.handleOnExited = _this.handleOnExited.bind(_this);
     _this.handleBackdropClick = _this.handleBackdropClick.bind(_this);
     _this.modalContent = null;
     return _this;
   }
   _inherits(Modal, _React$Component);
   return _createClass(Modal, [{
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps, prevState) {
-      if (prevState.open !== this.props.open) {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      if (this.state.open) {
         this.setState({
-          open: this.props.open
+          mounted: true
         });
+        this.props.showModal && this.props.showModal();
       }
     }
   }, {
-    key: "handleOnEntered",
-    value: function handleOnEntered(type, node) {
-      var _this$props = this.props,
-        fade = _this$props.fade,
-        showModal = _this$props.showModal;
-      if (type === "backdrop" && fade === false) {
-        return;
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      var _this2 = this;
+      if (prevProps.open !== this.props.open) {
+        if (this.props.open && !this.state.open) {
+          // Opening
+          this.setState({
+            open: true,
+            mounted: true
+          }, function () {
+            // Force reflow to ensure transition works
+            requestAnimationFrame(function () {
+              requestAnimationFrame(function () {
+                _this2.setState({
+                  show: true
+                });
+              });
+            });
+          });
+        } else if (!this.props.open && this.state.open) {
+          // Closing
+          this.props.hideModal && this.props.hideModal();
+          this.setState({
+            show: false
+          }, function () {
+            setTimeout(function () {
+              _this2.setState({
+                open: false,
+                mounted: false
+              });
+              _this2.props.hiddenModal && _this2.props.hiddenModal();
+            }, _this2.props.fade ? TIMEOUT.FADE : 0);
+          });
+        }
       }
-      node.classList.add("show");
-      if (type === "modal") {
-        showModal && showModal();
-      }
-    }
-  }, {
-    key: "handleOnExit",
-    value: function handleOnExit(type, node) {
-      var _this$props2 = this.props,
-        fade = _this$props2.fade,
-        hideModal = _this$props2.hideModal;
-      if (type === "backdrop" && fade === false) {
-        return;
-      }
-      node.classList.remove("show");
-      if (type === "modal") {
-        hideModal && hideModal();
-      }
-    }
-  }, {
-    key: "handleOnExited",
-    value: function handleOnExited() {
-      this.props.hiddenModal && this.props.hiddenModal();
     }
   }, {
     key: "handleBackdropClick",
@@ -4363,30 +4365,33 @@ var Modal = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
-      if (!this.state.open) {
+      var _this3 = this;
+      var _this$props = this.props,
+        id = _this$props.id,
+        backdrop = _this$props.backdrop,
+        fade = _this$props.fade,
+        tabIndex = _this$props.tabIndex,
+        backdropClassName = _this$props.backdropClassName,
+        modalClassName = _this$props.modalClassName,
+        animation = _this$props.animation,
+        modalContentClassName = _this$props.modalContentClassName,
+        position = _this$props.position,
+        role = _this$props.role,
+        size = _this$props.size,
+        children = _this$props.children,
+        centered = _this$props.centered,
+        className = _this$props.className;
+      var _this$state = this.state,
+        open = _this$state.open,
+        mounted = _this$state.mounted,
+        show = _this$state.show;
+      if (!mounted && !open) {
         return null;
       }
-      var _this$props3 = this.props,
-        id = _this$props3.id,
-        backdrop = _this$props3.backdrop,
-        fade = _this$props3.fade,
-        tabIndex = _this$props3.tabIndex,
-        backdropClassName = _this$props3.backdropClassName,
-        modalClassName = _this$props3.modalClassName,
-        animation = _this$props3.animation,
-        modalContentClassName = _this$props3.modalContentClassName,
-        position = _this$props3.position,
-        role = _this$props3.role,
-        size = _this$props3.size,
-        children = _this$props3.children,
-        centered = _this$props3.centered,
-        className = _this$props3.className; // open, showModal, hideModal, hiddenModal, toggle
-
-      var backdropClasses = classNames("bs-modal-backdrop", fade ? "fade" : "bs-show", backdropClassName);
-      var modalClasses = classNames("bs-modal", fade && "fade", modalClassName, fade && (animation || position && position.split("-").slice(-1)[0] || "top"));
+      var backdropClasses = classNames("bs-modal-backdrop", fade ? "fade" : "bs-show", show && "show", backdropClassName);
+      var modalClasses = classNames("bs-modal", fade && "fade", show && "show", modalClassName, fade && (animation || position && position.split("-").slice(-1)[0] || "top"));
       var modalAttrs = {
-        "aria-hidden": true,
+        "aria-hidden": !show,
         id: id || undefined,
         tabIndex: tabIndex,
         role: role,
@@ -4396,45 +4401,29 @@ var Modal = /*#__PURE__*/function (_React$Component) {
       };
       var modalDialogClasses = classNames("bs-modal-dialog", className, size && "bs-modal-".concat(size), centered && "bs-modal-dialog-centered", position && "bs-modal-".concat(position));
       var contentClasses = classNames("bs-modal-content", modalContentClassName);
-      return /*#__PURE__*/React.createElement(Fragment, null, backdrop && /*#__PURE__*/React.createElement(Transition, {
-        timeout: fade ? TIMEOUT.FADE : 0,
-        "in": this.state.open,
-        appear: this.state.open,
-        mountOnEnter: true,
-        unmountOnExit: true,
-        onEntered: function onEntered(node) {
-          return _this2.handleOnEntered("backdrop", node);
-        },
-        onExit: function onExit(node) {
-          return _this2.handleOnExit("backdrop", node);
-        },
-        onExited: this.handleOnExited
-      }, /*#__PURE__*/React.createElement("div", {
-        className: backdropClasses
-      })), /*#__PURE__*/React.createElement(Transition, {
-        timeout: fade ? TIMEOUT.FADE : 0,
-        "in": this.state.open,
-        appear: this.state.open,
-        mountOnEnter: true,
-        unmountOnExit: true,
-        onClick: this.handleBackdropClick,
-        onEntered: function onEntered(node) {
-          return _this2.handleOnEntered("modal", node);
-        },
-        onExit: function onExit(node) {
-          return _this2.handleOnExit("modal", node);
+      return /*#__PURE__*/React.createElement(Fragment, null, backdrop && /*#__PURE__*/React.createElement("div", {
+        className: backdropClasses,
+        style: {
+          transition: fade ? "opacity 500ms ease-in-out" : 'none',
+          opacity: 0.4
         }
-      }, /*#__PURE__*/React.createElement("div", _extends({
+      }), /*#__PURE__*/React.createElement("div", _extends({
         className: modalClasses
-      }, modalAttrs), /*#__PURE__*/React.createElement("div", {
+      }, modalAttrs, {
+        onClick: this.handleBackdropClick,
+        style: _objectSpread2(_objectSpread2({}, modalAttrs.style), {}, {
+          transition: fade ? "opacity 500ms ease-in-out" : 'none',
+          opacity: 1
+        })
+      }), /*#__PURE__*/React.createElement("div", {
         className: modalDialogClasses,
         role: "document"
       }, /*#__PURE__*/React.createElement("div", {
         ref: function ref(el) {
-          return _this2.modalContent = el;
+          return _this3.modalContent = el;
         },
         className: contentClasses
-      }, children)))));
+      }, children))));
     }
   }]);
 }(React.Component);
