@@ -1,13 +1,13 @@
 /*
-* Shards React v2.2.0 (https://designrevision.com/downloads/shards-react/)
+* Shards React v2.4.0 (https://designrevision.com/downloads/shards-react/)
 * Based on: Bootstrap ^4.1.3 (https://getbootstrap.com)
 * Based on: Shards ^2.1.2 (https://designrevision.com/downloads/shards/)
 * Copyright 2017-2026 DesignRevision (https://designrevision.com)
 * Copyright 2017-2026 Catalin Vasile (http://catalin.me)
 */
-import pick from 'lodash.pick';
 import isFunction from 'lodash.isfunction';
 import ReactDatePicker from 'react-datepicker';
+import pick from 'lodash.pick';
 import shortid from 'shortid';
 import { Transition } from 'react-transition-group';
 import ReactDOM from 'react-dom';
@@ -155,6 +155,40 @@ function _typeof(o) {
     return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
   }, _typeof(o);
 }
+
+var _excluded = ["className", "closeClassName", "closeAriaLabel", "tag", "theme", "open", "dismissible", "children"];
+
+/**
+ * The alert component can be used to display contextual user messages.
+ */
+var Alert = function Alert(_ref) {
+  var className = _ref.className,
+    closeClassName = _ref.closeClassName,
+    _ref$closeAriaLabel = _ref.closeAriaLabel,
+    closeAriaLabel = _ref$closeAriaLabel === void 0 ? "Close" : _ref$closeAriaLabel,
+    _ref$tag = _ref.tag,
+    Tag = _ref$tag === void 0 ? "div" : _ref$tag,
+    _ref$theme = _ref.theme,
+    theme = _ref$theme === void 0 ? "primary" : _ref$theme,
+    _ref$open = _ref.open,
+    open = _ref$open === void 0 ? true : _ref$open,
+    dismissible = _ref.dismissible,
+    children = _ref.children,
+    attrs = _objectWithoutProperties(_ref, _excluded);
+  var classes = classNames(className, "bs-alert", "bs-alert-".concat(theme), dismissible && "bs-alert-dismissible", open ? 'bs-block' : 'bs-d-none');
+  var closeClasses = classNames("bs-close", closeClassName);
+  return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
+    className: classes,
+    role: "alert"
+  }), dismissible ? /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    className: closeClasses,
+    "aria-label": closeAriaLabel,
+    onClick: dismissible
+  }, /*#__PURE__*/React.createElement("span", {
+    "aria-hidden": "true"
+  }, "\xD7")) : null, children);
+};
 
 function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
@@ -1274,48 +1308,642 @@ var propTypes = createCommonjsModule(function (module) {
   }
 });
 
-var TIMEOUT = {
-  FADE: 150,
-  COLLAPSE: 350,
-  SHOW: 0,
-  HIDE: 0
-};
-var EVENTS = {
-  CLICK: ["click", "touchstart", "keyup"],
-  MOUSE: ["mouseenter", "mouseleave"],
-  FOCUS: ["focusin", "focusout"]
-};
-var KEYCODES = {
-  ESC: 27,
-  SPACE: 32,
-  ENTER: 13,
-  TAB: 9,
-  UP: 38,
-  DOWN: 40
-};
-var TRANSITION_KEYS = ["in", "mountOnEnter", "unmountOnExit", "appear", "enter", "exit", "timeout", "onEnter", "onEntering", "onEntered", "onExit", "onExiting", "onExited"];
-var TRANSITION_STATUS = {
-  ENTERING: "entering",
-  ENTERED: "entered",
-  EXITING: "exiting",
-  EXITED: "exited"
-};
-var TRANSITION_CLASS_MAP = _defineProperty(_defineProperty(_defineProperty(_defineProperty({}, TRANSITION_STATUS.ENTERING, "collapsing"), TRANSITION_STATUS.ENTERED, "collapse show"), TRANSITION_STATUS.EXITING, "collapsing"), TRANSITION_STATUS.EXITED, "collapse");
-var POPPER_PLACEMENTS = ["top-start", "top", "top-end", "right-start", "right", "right-end", "bottom-end", "bottom", "bottom-start", "left-end", "left", "left-start", "auto-start", "auto", "auto-end"];
-var DROPDOWN_POSITION_MAP = {
-  UP: "top",
-  LEFT: "left",
-  RIGHT: "right",
-  DOWN: "bottom"
-};
-var BREAKPOINTS = ["xs", "sm", "md", "lg", "xl"];
+var _excluded$1 = ["tag", "className", "theme", "pill", "outline"];
 
 /**
- * FORMS
+ * Badges are really great for labels and count values.
  */
+var Badge = function Badge(props) {
+  var _props$tag = props.tag,
+    Tag = _props$tag === void 0 ? "span" : _props$tag,
+    className = props.className,
+    _props$theme = props.theme,
+    theme = _props$theme === void 0 ? "primary" : _props$theme,
+    _props$pill = props.pill,
+    pill = _props$pill === void 0 ? false : _props$pill,
+    _props$outline = props.outline,
+    outline = _props$outline === void 0 ? false : _props$outline,
+    attrs = _objectWithoutProperties(props, _excluded$1);
+  var classes = classNames(className, "bs-badge", theme && !outline && "bs-badge-".concat(theme), outline && "bs-badge-outline-".concat(theme), pill && "bs-badge-pill");
+  Tag = attrs.href && Tag === "span" ? "a" : Tag;
+  return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
+    className: classes
+  }));
+};
+Badge.propTypes = {
+  /**
+   * The children nodes.
+   */
+  children: propTypes.node,
+  /**
+   * The class name.
+   */
+  className: propTypes.string,
+  /**
+   * The theme color.
+   */
+  theme: propTypes.string,
+  /**
+   * Whether it should be outlined, or not.
+   */
+  outline: propTypes.bool,
+  /**
+   * Whether it should be a pill, or not.
+   */
+  pill: propTypes.bool,
+  /**
+   * The component tag.
+   */
+  tag: propTypes.oneOfType([propTypes.func, propTypes.string])
+};
 
-var INPUT_TYPES = ["text", "password", "email", "number", "tel", "url", "search", "range", "color", "date", "time", "datetime", "datetime-local", "month", "week", "file"];
-var INPUT_GROUP_ADDON_TYPES = ["prepend", "append"];
+var _excluded$2 = ["className", "listClassName", "children", "tag", "listTag", "aria-label"];
+
+/**
+ * The breadcrumb component is great for indicating the current page's location within a navigational hierarchy.
+ */
+var Breadcrumb = function Breadcrumb(props) {
+  var className = props.className,
+    listClassName = props.listClassName,
+    children = props.children,
+    _props$tag = props.tag,
+    Tag = _props$tag === void 0 ? "nav" : _props$tag,
+    _props$listTag = props.listTag,
+    ListTag = _props$listTag === void 0 ? "ol" : _props$listTag,
+    _props$ariaLabel = props["aria-label"],
+    label = _props$ariaLabel === void 0 ? "breadcrumb" : _props$ariaLabel,
+    attrs = _objectWithoutProperties(props, _excluded$2);
+  var classes = classNames(className);
+  var listClasses = classNames("bs-breadcrumb", listClassName);
+  return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
+    className: classes,
+    "aria-label": label
+  }), /*#__PURE__*/React.createElement(ListTag, {
+    className: listClasses
+  }, children));
+};
+Breadcrumb.propTypes = {
+  /**
+   * The breadcrumb list class name.
+   */
+  listClassName: propTypes.string,
+  /**
+   * The class name.
+   */
+  className: propTypes.string,
+  /**
+   * The aria label value.
+   */
+  "aria-label": propTypes.string,
+  /**
+   * The children nodes.
+   */
+  children: propTypes.node,
+  /**
+   * The component tag name.
+   */
+  tag: propTypes.oneOfType([propTypes.func, propTypes.string]),
+  /**
+   * The breadcrumb list tag.
+   */
+  listTag: propTypes.oneOfType([propTypes.func, propTypes.string])
+};
+
+var _excluded$3 = ["className", "active", "tag"];
+var BreadcrumbItem = function BreadcrumbItem(props) {
+  var className = props.className,
+    active = props.active,
+    _props$tag = props.tag,
+    Tag = _props$tag === void 0 ? "li" : _props$tag,
+    attrs = _objectWithoutProperties(props, _excluded$3);
+  var classes = classNames(className, active && "bs-active", "bs-breadcrumb-item");
+  return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
+    className: classes,
+    "aria-current": active ? "page" : undefined
+  }));
+};
+BreadcrumbItem.propTypes = {
+  /**
+   * Whether it is active, or not.
+   */
+  active: propTypes.bool,
+  /**
+   * The class name.
+   */
+  className: propTypes.string,
+  /**
+   * The component tag.
+   */
+  tag: propTypes.oneOfType([propTypes.func, propTypes.string])
+};
+
+var _excluded$4 = ["className", "theme", "size", "pill", "outline", "squared", "active", "disabled", "innerRef", "tag", "block"];
+
+/**
+ * Buttons are Bootstrap's core component for triggering various actions. In Shards, they're very flxible, support multiple sizes, styles, states and many more.
+ */
+var Button = /*#__PURE__*/function (_React$Component) {
+  function Button(props) {
+    var _this;
+    _classCallCheck(this, Button);
+    _this = _callSuper(this, Button, [props]);
+    _this.onClick = _this.onClick.bind(_this);
+    return _this;
+  }
+  _inherits(Button, _React$Component);
+  return _createClass(Button, [{
+    key: "onClick",
+    value: function onClick(e) {
+      if (this.props.disabled) {
+        e.preventDefault();
+        return;
+      }
+      if (this.props.onClick) {
+        this.props.onClick(e);
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+        className = _this$props.className,
+        theme = _this$props.theme,
+        size = _this$props.size,
+        pill = _this$props.pill,
+        outline = _this$props.outline,
+        squared = _this$props.squared,
+        active = _this$props.active,
+        disabled = _this$props.disabled,
+        innerRef = _this$props.innerRef,
+        Tag = _this$props.tag,
+        block = _this$props.block,
+        attrs = _objectWithoutProperties(_this$props, _excluded$4);
+      var classes = classNames(className, "bs-btn", theme && "bs-btn-".concat(outline ? "outline-" : "").concat(theme), size && "bs-btn-".concat(size), pill && "bs-btn-pill", squared && "bs-btn-squared", block && "bs-btn-block", active && "bs-active");
+      Tag = attrs.href && Tag === "button" ? "a" : Tag;
+      var tagType = Tag === "button" && attrs.onClick ? "button" : undefined;
+      return /*#__PURE__*/React.createElement(Tag, _extends({
+        ref: innerRef,
+        type: tagType
+      }, attrs, {
+        className: classes,
+        disabled: disabled,
+        onClick: this.onClick
+      }));
+    }
+  }]);
+}(React.Component);
+Button.propTypes = {
+  /**
+   * The class name.
+   */
+  className: propTypes.string,
+  /**
+   * The children nodes.
+   */
+  children: propTypes.node,
+  /**
+   * The theme color.
+   */
+  theme: propTypes.string,
+  /**
+   * The size.
+   */
+  size: propTypes.string,
+  /**
+   * Whether it is outline, or not.
+   */
+  outline: propTypes.bool,
+  /**
+   * Whether it is pill, or not.
+   */
+  pill: propTypes.bool,
+  /**
+   * Whether it is squared, or not.
+   */
+  squared: propTypes.bool,
+  /**
+   * Whether it is active, or not.
+   */
+  active: propTypes.bool,
+  /**
+   * Whether it should be displayed as a block (full-width), or not.
+   */
+  block: propTypes.bool,
+  /**
+   * Whether it is disabled, or not.
+   */
+  disabled: propTypes.bool,
+  /**
+   * The component tag.
+   */
+  tag: propTypes.oneOfType([propTypes.func, propTypes.string]),
+  /**
+   * The inner ref.
+   * @type {[type]}
+   */
+  innerRef: propTypes.oneOfType([propTypes.object, propTypes.func, propTypes.string])
+};
+Button.defaultProps = {
+  theme: "primary",
+  tag: "button"
+};
+
+var _excluded$5 = ["className", "vertical", "size"];
+
+/**
+ * Button groups allow you to group buttons together on a single line.
+ */
+var ButtonGroup = function ButtonGroup(props) {
+  var className = props.className,
+    vertical = props.vertical,
+    size = props.size,
+    attrs = _objectWithoutProperties(props, _excluded$5);
+  var classes = classNames(className, size && "bs-btn-group-".concat(size), vertical ? "bs-btn-group-vertical" : "bs-btn-group");
+  return /*#__PURE__*/React.createElement("div", _extends({
+    className: classes
+  }, attrs));
+};
+ButtonGroup.propTypes = {
+  /**
+   * The children nodes.
+   */
+  children: propTypes.node,
+  /**
+   * The class name.
+   */
+  className: propTypes.string,
+  /**
+   * The size.
+   */
+  size: propTypes.string,
+  /**
+   * Whether it is vertical, or not.
+   */
+  vertical: propTypes.bool
+};
+
+var _excluded$6 = ["className"];
+
+/**
+ * Button toolbars allow you to group a series of button or input groups on a single line.
+ */
+var ButtonToolbar = function ButtonToolbar(props) {
+  var className = props.className,
+    attrs = _objectWithoutProperties(props, _excluded$6);
+  var classes = classNames(className, "bs-btn-toolbar");
+  return /*#__PURE__*/React.createElement("div", _extends({
+    className: classes
+  }, attrs));
+};
+ButtonToolbar.propTypes = {
+  /**
+   * The class name.
+   */
+  className: propTypes.string,
+  /**
+   * The children nodes.
+   */
+  children: propTypes.oneOfType([propTypes.arrayOf(propTypes.node), propTypes.node])
+};
+
+var _excluded$7 = ["className", "innerRef", "tag", "theme", "outline", "small"];
+
+/**
+ * Cards provide a flexible content container that you can use to display a variety of content using contextual background colors, headers and footers.
+ */
+var Card = function Card(props) {
+  var className = props.className,
+    innerRef = props.innerRef,
+    _props$tag = props.tag,
+    Tag = _props$tag === void 0 ? "div" : _props$tag,
+    theme = props.theme,
+    outline = props.outline,
+    small = props.small,
+    attrs = _objectWithoutProperties(props, _excluded$7);
+  var classes = classNames(className, "bs-card", small && "bs-card-small", theme && "".concat(outline ? "border" : "bg", "-").concat(theme));
+  return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
+    className: classes,
+    ref: innerRef
+  }));
+};
+Card.propTypes = {
+  /**
+   * The class name.
+   */
+  className: propTypes.string,
+  /**
+   * The theme color.
+   */
+  theme: propTypes.string,
+  /**
+   * Whether it is outline, or not.
+   */
+  outline: propTypes.bool,
+  /**
+   * The component tag.
+   */
+  tag: propTypes.oneOfType([propTypes.func, propTypes.string]),
+  /**
+   * Whether the card is small, or not.
+   */
+  small: propTypes.bool,
+  /**
+   * The inner ref.
+   */
+  innerRef: propTypes.oneOfType([propTypes.string, propTypes.object, propTypes.func])
+};
+
+var _excluded$8 = ["className", "tag", "children"];
+var CardBody = function CardBody(props) {
+  var className = props.className,
+    _props$tag = props.tag,
+    Tag = _props$tag === void 0 ? "div" : _props$tag,
+    children = props.children,
+    attrs = _objectWithoutProperties(props, _excluded$8);
+  var classes = classNames(className, "bs-card-body");
+  return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
+    className: classes
+  }), children);
+};
+CardBody.propTypes = {
+  /**
+   * The class name.
+   */
+  className: propTypes.string,
+  /**
+   * The children nodes.
+   */
+  children: propTypes.oneOfType([propTypes.arrayOf(propTypes.node), propTypes.node]),
+  /**
+   * The component tag.
+   */
+  tag: propTypes.oneOfType([propTypes.func, propTypes.string])
+};
+
+var _excluded$9 = ["className", "tag"];
+var CardColumns = function CardColumns(props) {
+  var className = props.className,
+    _props$tag = props.tag,
+    Tag = _props$tag === void 0 ? "div" : _props$tag,
+    attrs = _objectWithoutProperties(props, _excluded$9);
+  var classes = classNames(className, "bs-card-columns");
+  return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
+    className: classes
+  }));
+};
+CardColumns.propTypes = {
+  /**
+   * The class name.
+   */
+  className: propTypes.string,
+  /**
+   * The component tag type.
+   */
+  tag: propTypes.oneOfType([propTypes.func, propTypes.string])
+};
+
+var _excluded$a = ["className", "tag"];
+var CardFooter = function CardFooter(props) {
+  var className = props.className,
+    _props$tag = props.tag,
+    Tag = _props$tag === void 0 ? "div" : _props$tag,
+    attrs = _objectWithoutProperties(props, _excluded$a);
+  var classes = classNames(className, "bs-card-footer");
+  return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
+    className: classes
+  }));
+};
+CardFooter.propTypes = {
+  /**
+   * The component tag type.
+   */
+  tag: propTypes.oneOfType([propTypes.func, propTypes.string]),
+  /**
+   * The class name.
+   */
+  className: propTypes.string
+};
+
+var _excluded$b = ["className", "tag"];
+var CardGroup = function CardGroup(props) {
+  var className = props.className,
+    _props$tag = props.tag,
+    Tag = _props$tag === void 0 ? "div" : _props$tag,
+    attrs = _objectWithoutProperties(props, _excluded$b);
+  var classes = classNames(className, "bs-card-group");
+  return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
+    className: classes
+  }));
+};
+CardGroup.propTypes = {
+  /**
+   * The class name.
+   */
+  className: propTypes.string,
+  /**
+   * The component tag type.
+   */
+  tag: propTypes.oneOfType([propTypes.func, propTypes.string])
+};
+
+var _excluded$c = ["className", "tag"];
+var CardDeck = function CardDeck(props) {
+  var className = props.className,
+    _props$tag = props.tag,
+    Tag = _props$tag === void 0 ? "div" : _props$tag,
+    attrs = _objectWithoutProperties(props, _excluded$c);
+  var classes = classNames(className, "bs-card-deck");
+  return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
+    className: classes
+  }));
+};
+CardDeck.propTypes = {
+  /**
+   * The component tag type.
+   */
+  tag: propTypes.oneOfType([propTypes.func, propTypes.string]),
+  /**
+   * The class name.
+   */
+  className: propTypes.string
+};
+
+var _excluded$d = ["className", "tag"];
+var CardHeader = function CardHeader(props) {
+  var className = props.className,
+    _props$tag = props.tag,
+    Tag = _props$tag === void 0 ? "div" : _props$tag,
+    attrs = _objectWithoutProperties(props, _excluded$d);
+  var classes = classNames(className, "bs-card-header");
+  return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
+    className: classes
+  }));
+};
+CardHeader.propTypes = {
+  /**
+   * The class name.
+   */
+  className: propTypes.string,
+  /**
+   * The component tag type.
+   */
+  tag: propTypes.oneOfType([propTypes.func, propTypes.string])
+};
+
+var _excluded$e = ["className", "top", "bottom", "tag"];
+var CardImg = function CardImg(props) {
+  var className = props.className,
+    top = props.top,
+    bottom = props.bottom,
+    _props$tag = props.tag,
+    Tag = _props$tag === void 0 ? "img" : _props$tag,
+    attrs = _objectWithoutProperties(props, _excluded$e);
+  var cardImgClass = "";
+  if (top) {
+    cardImgClass = "bs-card-img-top";
+  }
+  if (bottom) {
+    cardImgClass = "bs-card-img-bottom";
+  }
+  cardImgClass = classNames(className, cardImgClass);
+  return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
+    className: cardImgClass
+  }));
+};
+CardImg.propTypes = {
+  /**
+   * Whether the image is positioned at the top of the card, or not.
+   */
+  top: propTypes.bool,
+  /**
+   * Whether the image is positioned at the bottom of the card, or not.
+   */
+  bottom: propTypes.bool,
+  /**
+   * The class name.
+   */
+  className: propTypes.string,
+  /**
+   * The component's tag type.
+   */
+  tag: propTypes.oneOfType([propTypes.func, propTypes.string])
+};
+
+var _excluded$f = ["className", "tag"];
+var CardImgOverlay = function CardImgOverlay(props) {
+  var className = props.className,
+    _props$tag = props.tag,
+    Tag = _props$tag === void 0 ? "div" : _props$tag,
+    attrs = _objectWithoutProperties(props, _excluded$f);
+  var classes = classNames(className, "bs-card-img-overlay");
+  return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
+    className: classes
+  }));
+};
+CardImgOverlay.propTypes = {
+  /**
+   * The class name.
+   */
+  className: propTypes.string,
+  /**
+   * The component's tag type.
+   */
+  tag: propTypes.oneOfType([propTypes.func, propTypes.string])
+};
+
+var _excluded$g = ["className", "tag", "innerRef"];
+var CardLink = function CardLink(props) {
+  var className = props.className,
+    _props$tag = props.tag,
+    Tag = _props$tag === void 0 ? "a" : _props$tag,
+    innerRef = props.innerRef,
+    attrs = _objectWithoutProperties(props, _excluded$g);
+  var classes = classNames(className, "bs-card-link");
+  return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
+    ref: innerRef,
+    className: classes
+  }));
+};
+CardLink.propTypes = {
+  /**
+   * The class name.
+   */
+  className: propTypes.string,
+  /**
+   * The component's tag type.
+   */
+  tag: propTypes.oneOfType([propTypes.func, propTypes.string]),
+  /**
+   * The inner ref.
+   */
+  innerRef: propTypes.oneOfType([propTypes.object, propTypes.func, propTypes.string])
+};
+
+var _excluded$h = ["className", "tag"];
+var CardSubtitle = function CardSubtitle(props) {
+  var className = props.className,
+    _props$tag = props.tag,
+    Tag = _props$tag === void 0 ? "h6" : _props$tag,
+    attrs = _objectWithoutProperties(props, _excluded$h);
+  var classes = classNames(className, "bs-card-subtitle", "bs-text-muted");
+  return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
+    className: classes
+  }));
+};
+CardSubtitle.propTypes = {
+  /**
+   * The class name.
+   */
+  className: propTypes.string,
+  /**
+   * The component's tag type.
+   */
+  tag: propTypes.oneOfType([propTypes.func, propTypes.string])
+};
+
+var _excluded$i = ["className", "tag"];
+var CardText = function CardText(props) {
+  var className = props.className,
+    _props$tag = props.tag,
+    Tag = _props$tag === void 0 ? "p" : _props$tag,
+    attrs = _objectWithoutProperties(props, _excluded$i);
+  var classes = classNames(className, "bs-card-text");
+  return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
+    className: classes
+  }));
+};
+CardText.propTypes = {
+  /**
+   * The class name.
+   */
+  className: propTypes.string,
+  /**
+   * The tag type.
+   */
+  tag: propTypes.oneOfType([propTypes.func, propTypes.string])
+};
+
+var _excluded$j = ["className", "tag"];
+var CardTitle = function CardTitle(props) {
+  var className = props.className,
+    _props$tag = props.tag,
+    Tag = _props$tag === void 0 ? "h5" : _props$tag,
+    attributes = _objectWithoutProperties(props, _excluded$j);
+  var classes = classNames(className, "bs-card-title");
+  return /*#__PURE__*/React.createElement(Tag, _extends({}, attributes, {
+    className: classes
+  }));
+};
+CardTitle.propTypes = {
+  /**
+   * The class name.
+   */
+  className: propTypes.string,
+  /**
+   * The component's tag type.
+   */
+  tag: propTypes.oneOfType([propTypes.func, propTypes.string])
+};
 
 function _objectWithoutPropertiesLoose$1(r, e) {
   if (null == r) return {};
@@ -1913,793 +2541,48 @@ Transition$1.ENTERING = ENTERING;
 Transition$1.ENTERED = ENTERED;
 Transition$1.EXITING = EXITING;
 
-var _excluded = ["tag", "baseClass", "baseClassActive", "className", "children", "innerRef", "timeout", "appear", "enter", "exit", "in"];
+var TIMEOUT = {
+  FADE: 150,
+  COLLAPSE: 350,
+  SHOW: 0,
+  HIDE: 0
+};
+var EVENTS = {
+  CLICK: ["click", "touchstart", "keyup"],
+  MOUSE: ["mouseenter", "mouseleave"],
+  FOCUS: ["focusin", "focusout"]
+};
+var KEYCODES = {
+  ESC: 27,
+  SPACE: 32,
+  ENTER: 13,
+  TAB: 9,
+  UP: 38,
+  DOWN: 40
+};
+var TRANSITION_KEYS = ["in", "mountOnEnter", "unmountOnExit", "appear", "enter", "exit", "timeout", "onEnter", "onEntering", "onEntered", "onExit", "onExiting", "onExited"];
+var TRANSITION_STATUS = {
+  ENTERING: "entering",
+  ENTERED: "entered",
+  EXITING: "exiting",
+  EXITED: "exited"
+};
+var TRANSITION_CLASS_MAP = _defineProperty(_defineProperty(_defineProperty(_defineProperty({}, TRANSITION_STATUS.ENTERING, "collapsing"), TRANSITION_STATUS.ENTERED, "collapse show"), TRANSITION_STATUS.EXITING, "collapsing"), TRANSITION_STATUS.EXITED, "collapse");
+var POPPER_PLACEMENTS = ["top-start", "top", "top-end", "right-start", "right", "right-end", "bottom-end", "bottom", "bottom-start", "left-end", "left", "left-start", "auto-start", "auto", "auto-end"];
+var DROPDOWN_POSITION_MAP = {
+  UP: "top",
+  LEFT: "left",
+  RIGHT: "right",
+  DOWN: "bottom"
+};
+var BREAKPOINTS = ["xs", "sm", "md", "lg", "xl"];
 
 /**
- * The `Fade` component allows you to easily fade in and out content and is powered by [react-transition-group](https://github.com/reactjs/react-transition-group).
+ * FORMS
  */
-var Fade = function Fade(props) {
-  var _props$tag = props.tag,
-    Tag = _props$tag === void 0 ? "div" : _props$tag,
-    _props$baseClass = props.baseClass,
-    baseClass = _props$baseClass === void 0 ? "bs-fade" : _props$baseClass,
-    _props$baseClassActiv = props.baseClassActive,
-    baseClassActive = _props$baseClassActiv === void 0 ? "bs-show" : _props$baseClassActiv,
-    className = props.className,
-    children = props.children,
-    innerRef = props.innerRef,
-    _props$timeout = props.timeout,
-    timeout = _props$timeout === void 0 ? TIMEOUT.FADE : _props$timeout,
-    _props$appear = props.appear,
-    appear = _props$appear === void 0 ? true : _props$appear,
-    _props$enter = props.enter,
-    enter = _props$enter === void 0 ? true : _props$enter,
-    _props$exit = props.exit,
-    exit = _props$exit === void 0 ? true : _props$exit,
-    _props$in = props["in"],
-    inProp = _props$in === void 0 ? true : _props$in,
-    attrs = _objectWithoutProperties(props, _excluded);
-  var transitionProps = pick(attrs, TRANSITION_KEYS);
-  var childProps = omit(attrs, TRANSITION_KEYS);
-  return /*#__PURE__*/React.createElement(Transition$1, _extends({}, transitionProps, {
-    timeout: timeout,
-    appear: appear,
-    enter: enter,
-    exit: exit,
-    "in": inProp
-  }), function (status) {
-    var isActive = status === "entered";
-    var classes = classNames(className, baseClass, isActive && baseClassActive);
-    return /*#__PURE__*/React.createElement(Tag, _extends({
-      className: classes
-    }, childProps, {
-      ref: innerRef
-    }), children);
-  });
-};
-Fade.propTypes = _objectSpread2(_objectSpread2({}, Transition$1.propTypes), {}, {
-  tag: propTypes.oneOfType([propTypes.string, propTypes.func]),
-  baseClass: propTypes.string,
-  baseClassActive: propTypes.string,
-  className: propTypes.string,
-  innerRef: propTypes.oneOfType([propTypes.object, propTypes.string, propTypes.func]),
-  children: propTypes.oneOfType([propTypes.arrayOf(propTypes.node), propTypes.node])
-});
 
-var _excluded$1 = ["className", "closeClassName", "closeAriaLabel", "tag", "theme", "open", "dismissible", "children", "transition", "fade"];
-var FADE_DEFAULTS = {
-  tag: "div",
-  baseClass: "fade",
-  baseClassActive: "show",
-  timeout: TIMEOUT.FADE,
-  appear: true,
-  enter: true,
-  exit: true,
-  "in": true
-};
-
-/**
- * The alert component can be used to display contextual user messages.
- */
-var Alert = function Alert(_ref) {
-  var className = _ref.className,
-    closeClassName = _ref.closeClassName,
-    _ref$closeAriaLabel = _ref.closeAriaLabel,
-    closeAriaLabel = _ref$closeAriaLabel === void 0 ? "Close" : _ref$closeAriaLabel,
-    _ref$tag = _ref.tag,
-    Tag = _ref$tag === void 0 ? "div" : _ref$tag,
-    _ref$theme = _ref.theme,
-    theme = _ref$theme === void 0 ? "primary" : _ref$theme,
-    _ref$open = _ref.open,
-    open = _ref$open === void 0 ? true : _ref$open,
-    dismissible = _ref.dismissible,
-    children = _ref.children,
-    _ref$transition = _ref.transition,
-    transition = _ref$transition === void 0 ? _objectSpread2(_objectSpread2({}, FADE_DEFAULTS), {}, {
-      unmountOnExit: true
-    }) : _ref$transition,
-    _ref$fade = _ref.fade,
-    fade = _ref$fade === void 0 ? true : _ref$fade,
-    attrs = _objectWithoutProperties(_ref, _excluded$1);
-  var classes = classNames(className, "bs-alert", "bs-alert-".concat(theme), dismissible && "bs-alert-dismissible");
-  var closeClasses = classNames("bs-close", closeClassName);
-  var alertTransition = _objectSpread2(_objectSpread2(_objectSpread2({}, FADE_DEFAULTS), transition), {}, {
-    baseClass: fade ? transition.baseClass : "",
-    timeout: fade ? transition.timeout : 0
-  });
-  return /*#__PURE__*/React.createElement(Fade, _extends({}, attrs, alertTransition, {
-    tag: Tag,
-    className: classes,
-    "in": open,
-    role: "alert"
-  }), dismissible ? /*#__PURE__*/React.createElement("button", {
-    type: "button",
-    className: closeClasses,
-    "aria-label": closeAriaLabel,
-    onClick: dismissible
-  }, /*#__PURE__*/React.createElement("span", {
-    "aria-hidden": "true"
-  }, "\xD7")) : null, children);
-};
-Alert.propTypes = {
-  /**
-   * The children nodes.
-   */
-  children: propTypes.node,
-  /**
-   * The class name.
-   */
-  className: propTypes.string,
-  /**
-   * The close button's class name.
-   */
-  closeClassName: propTypes.string,
-  /**
-   * The close button's aria label.
-   */
-  closeAriaLabel: propTypes.string,
-  /**
-   * The theme color.
-   */
-  theme: propTypes.string,
-  /**
-   * Whether it should fade, or not.
-   */
-  fade: propTypes.bool,
-  /**
-   * Whether is open, or not.
-   */
-  open: propTypes.bool,
-  /**
-   * Whether is dismissible, or not.
-   */
-  dismissible: propTypes.func,
-  /**
-   * The transition config. See `Fade` component for more details.
-   */
-  transition: propTypes.shape(Fade.propTypes),
-  /**
-   * The component tag type.
-   */
-  tag: propTypes.oneOfType([propTypes.func, propTypes.string])
-};
-
-var _excluded$2 = ["tag", "className", "theme", "pill", "outline"];
-
-/**
- * Badges are really great for labels and count values.
- */
-var Badge = function Badge(props) {
-  var _props$tag = props.tag,
-    Tag = _props$tag === void 0 ? "span" : _props$tag,
-    className = props.className,
-    _props$theme = props.theme,
-    theme = _props$theme === void 0 ? "primary" : _props$theme,
-    _props$pill = props.pill,
-    pill = _props$pill === void 0 ? false : _props$pill,
-    _props$outline = props.outline,
-    outline = _props$outline === void 0 ? false : _props$outline,
-    attrs = _objectWithoutProperties(props, _excluded$2);
-  var classes = classNames(className, "bs-badge", theme && !outline && "bs-badge-".concat(theme), outline && "bs-badge-outline-".concat(theme), pill && "bs-badge-pill");
-  Tag = attrs.href && Tag === "span" ? "a" : Tag;
-  return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
-    className: classes
-  }));
-};
-Badge.propTypes = {
-  /**
-   * The children nodes.
-   */
-  children: propTypes.node,
-  /**
-   * The class name.
-   */
-  className: propTypes.string,
-  /**
-   * The theme color.
-   */
-  theme: propTypes.string,
-  /**
-   * Whether it should be outlined, or not.
-   */
-  outline: propTypes.bool,
-  /**
-   * Whether it should be a pill, or not.
-   */
-  pill: propTypes.bool,
-  /**
-   * The component tag.
-   */
-  tag: propTypes.oneOfType([propTypes.func, propTypes.string])
-};
-
-var _excluded$3 = ["className", "listClassName", "children", "tag", "listTag", "aria-label"];
-
-/**
- * The breadcrumb component is great for indicating the current page's location within a navigational hierarchy.
- */
-var Breadcrumb = function Breadcrumb(props) {
-  var className = props.className,
-    listClassName = props.listClassName,
-    children = props.children,
-    _props$tag = props.tag,
-    Tag = _props$tag === void 0 ? "nav" : _props$tag,
-    _props$listTag = props.listTag,
-    ListTag = _props$listTag === void 0 ? "ol" : _props$listTag,
-    _props$ariaLabel = props["aria-label"],
-    label = _props$ariaLabel === void 0 ? "breadcrumb" : _props$ariaLabel,
-    attrs = _objectWithoutProperties(props, _excluded$3);
-  var classes = classNames(className);
-  var listClasses = classNames("bs-breadcrumb", listClassName);
-  return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
-    className: classes,
-    "aria-label": label
-  }), /*#__PURE__*/React.createElement(ListTag, {
-    className: listClasses
-  }, children));
-};
-Breadcrumb.propTypes = {
-  /**
-   * The breadcrumb list class name.
-   */
-  listClassName: propTypes.string,
-  /**
-   * The class name.
-   */
-  className: propTypes.string,
-  /**
-   * The aria label value.
-   */
-  "aria-label": propTypes.string,
-  /**
-   * The children nodes.
-   */
-  children: propTypes.node,
-  /**
-   * The component tag name.
-   */
-  tag: propTypes.oneOfType([propTypes.func, propTypes.string]),
-  /**
-   * The breadcrumb list tag.
-   */
-  listTag: propTypes.oneOfType([propTypes.func, propTypes.string])
-};
-
-var _excluded$4 = ["className", "active", "tag"];
-var BreadcrumbItem = function BreadcrumbItem(props) {
-  var className = props.className,
-    active = props.active,
-    _props$tag = props.tag,
-    Tag = _props$tag === void 0 ? "li" : _props$tag,
-    attrs = _objectWithoutProperties(props, _excluded$4);
-  var classes = classNames(className, active && "bs-active", "bs-breadcrumb-item");
-  return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
-    className: classes,
-    "aria-current": active ? "page" : undefined
-  }));
-};
-BreadcrumbItem.propTypes = {
-  /**
-   * Whether it is active, or not.
-   */
-  active: propTypes.bool,
-  /**
-   * The class name.
-   */
-  className: propTypes.string,
-  /**
-   * The component tag.
-   */
-  tag: propTypes.oneOfType([propTypes.func, propTypes.string])
-};
-
-var _excluded$5 = ["className", "theme", "size", "pill", "outline", "squared", "active", "disabled", "innerRef", "tag", "block"];
-
-/**
- * Buttons are Bootstrap's core component for triggering various actions. In Shards, they're very flxible, support multiple sizes, styles, states and many more.
- */
-var Button = /*#__PURE__*/function (_React$Component) {
-  function Button(props) {
-    var _this;
-    _classCallCheck(this, Button);
-    _this = _callSuper(this, Button, [props]);
-    _this.onClick = _this.onClick.bind(_this);
-    return _this;
-  }
-  _inherits(Button, _React$Component);
-  return _createClass(Button, [{
-    key: "onClick",
-    value: function onClick(e) {
-      if (this.props.disabled) {
-        e.preventDefault();
-        return;
-      }
-      if (this.props.onClick) {
-        this.props.onClick(e);
-      }
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
-        className = _this$props.className,
-        theme = _this$props.theme,
-        size = _this$props.size,
-        pill = _this$props.pill,
-        outline = _this$props.outline,
-        squared = _this$props.squared,
-        active = _this$props.active,
-        disabled = _this$props.disabled,
-        innerRef = _this$props.innerRef,
-        Tag = _this$props.tag,
-        block = _this$props.block,
-        attrs = _objectWithoutProperties(_this$props, _excluded$5);
-      var classes = classNames(className, "bs-btn", theme && "bs-btn-".concat(outline ? "outline-" : "").concat(theme), size && "bs-btn-".concat(size), pill && "bs-btn-pill", squared && "bs-btn-squared", block && "bs-btn-block", active && "bs-active");
-      Tag = attrs.href && Tag === "button" ? "a" : Tag;
-      var tagType = Tag === "button" && attrs.onClick ? "button" : undefined;
-      return /*#__PURE__*/React.createElement(Tag, _extends({
-        ref: innerRef,
-        type: tagType
-      }, attrs, {
-        className: classes,
-        disabled: disabled,
-        onClick: this.onClick
-      }));
-    }
-  }]);
-}(React.Component);
-Button.propTypes = {
-  /**
-   * The class name.
-   */
-  className: propTypes.string,
-  /**
-   * The children nodes.
-   */
-  children: propTypes.node,
-  /**
-   * The theme color.
-   */
-  theme: propTypes.string,
-  /**
-   * The size.
-   */
-  size: propTypes.string,
-  /**
-   * Whether it is outline, or not.
-   */
-  outline: propTypes.bool,
-  /**
-   * Whether it is pill, or not.
-   */
-  pill: propTypes.bool,
-  /**
-   * Whether it is squared, or not.
-   */
-  squared: propTypes.bool,
-  /**
-   * Whether it is active, or not.
-   */
-  active: propTypes.bool,
-  /**
-   * Whether it should be displayed as a block (full-width), or not.
-   */
-  block: propTypes.bool,
-  /**
-   * Whether it is disabled, or not.
-   */
-  disabled: propTypes.bool,
-  /**
-   * The component tag.
-   */
-  tag: propTypes.oneOfType([propTypes.func, propTypes.string]),
-  /**
-   * The inner ref.
-   * @type {[type]}
-   */
-  innerRef: propTypes.oneOfType([propTypes.object, propTypes.func, propTypes.string])
-};
-Button.defaultProps = {
-  theme: "primary",
-  tag: "button"
-};
-
-var _excluded$6 = ["className", "vertical", "size"];
-
-/**
- * Button groups allow you to group buttons together on a single line.
- */
-var ButtonGroup = function ButtonGroup(props) {
-  var className = props.className,
-    vertical = props.vertical,
-    size = props.size,
-    attrs = _objectWithoutProperties(props, _excluded$6);
-  var classes = classNames(className, size && "bs-btn-group-".concat(size), vertical ? "bs-btn-group-vertical" : "bs-btn-group");
-  return /*#__PURE__*/React.createElement("div", _extends({
-    className: classes
-  }, attrs));
-};
-ButtonGroup.propTypes = {
-  /**
-   * The children nodes.
-   */
-  children: propTypes.node,
-  /**
-   * The class name.
-   */
-  className: propTypes.string,
-  /**
-   * The size.
-   */
-  size: propTypes.string,
-  /**
-   * Whether it is vertical, or not.
-   */
-  vertical: propTypes.bool
-};
-
-var _excluded$7 = ["className"];
-
-/**
- * Button toolbars allow you to group a series of button or input groups on a single line.
- */
-var ButtonToolbar = function ButtonToolbar(props) {
-  var className = props.className,
-    attrs = _objectWithoutProperties(props, _excluded$7);
-  var classes = classNames(className, "bs-btn-toolbar");
-  return /*#__PURE__*/React.createElement("div", _extends({
-    className: classes
-  }, attrs));
-};
-ButtonToolbar.propTypes = {
-  /**
-   * The class name.
-   */
-  className: propTypes.string,
-  /**
-   * The children nodes.
-   */
-  children: propTypes.oneOfType([propTypes.arrayOf(propTypes.node), propTypes.node])
-};
-
-var _excluded$8 = ["className", "innerRef", "tag", "theme", "outline", "small"];
-
-/**
- * Cards provide a flexible content container that you can use to display a variety of content using contextual background colors, headers and footers.
- */
-var Card = function Card(props) {
-  var className = props.className,
-    innerRef = props.innerRef,
-    _props$tag = props.tag,
-    Tag = _props$tag === void 0 ? "div" : _props$tag,
-    theme = props.theme,
-    outline = props.outline,
-    small = props.small,
-    attrs = _objectWithoutProperties(props, _excluded$8);
-  var classes = classNames(className, "bs-card", small && "bs-card-small", theme && "".concat(outline ? "border" : "bg", "-").concat(theme));
-  return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
-    className: classes,
-    ref: innerRef
-  }));
-};
-Card.propTypes = {
-  /**
-   * The class name.
-   */
-  className: propTypes.string,
-  /**
-   * The theme color.
-   */
-  theme: propTypes.string,
-  /**
-   * Whether it is outline, or not.
-   */
-  outline: propTypes.bool,
-  /**
-   * The component tag.
-   */
-  tag: propTypes.oneOfType([propTypes.func, propTypes.string]),
-  /**
-   * Whether the card is small, or not.
-   */
-  small: propTypes.bool,
-  /**
-   * The inner ref.
-   */
-  innerRef: propTypes.oneOfType([propTypes.string, propTypes.object, propTypes.func])
-};
-
-var _excluded$9 = ["className", "tag", "children"];
-var CardBody = function CardBody(props) {
-  var className = props.className,
-    _props$tag = props.tag,
-    Tag = _props$tag === void 0 ? "div" : _props$tag,
-    children = props.children,
-    attrs = _objectWithoutProperties(props, _excluded$9);
-  var classes = classNames(className, "bs-card-body");
-  return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
-    className: classes
-  }), children);
-};
-CardBody.propTypes = {
-  /**
-   * The class name.
-   */
-  className: propTypes.string,
-  /**
-   * The children nodes.
-   */
-  children: propTypes.oneOfType([propTypes.arrayOf(propTypes.node), propTypes.node]),
-  /**
-   * The component tag.
-   */
-  tag: propTypes.oneOfType([propTypes.func, propTypes.string])
-};
-
-var _excluded$a = ["className", "tag"];
-var CardColumns = function CardColumns(props) {
-  var className = props.className,
-    _props$tag = props.tag,
-    Tag = _props$tag === void 0 ? "div" : _props$tag,
-    attrs = _objectWithoutProperties(props, _excluded$a);
-  var classes = classNames(className, "bs-card-columns");
-  return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
-    className: classes
-  }));
-};
-CardColumns.propTypes = {
-  /**
-   * The class name.
-   */
-  className: propTypes.string,
-  /**
-   * The component tag type.
-   */
-  tag: propTypes.oneOfType([propTypes.func, propTypes.string])
-};
-
-var _excluded$b = ["className", "tag"];
-var CardFooter = function CardFooter(props) {
-  var className = props.className,
-    _props$tag = props.tag,
-    Tag = _props$tag === void 0 ? "div" : _props$tag,
-    attrs = _objectWithoutProperties(props, _excluded$b);
-  var classes = classNames(className, "bs-card-footer");
-  return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
-    className: classes
-  }));
-};
-CardFooter.propTypes = {
-  /**
-   * The component tag type.
-   */
-  tag: propTypes.oneOfType([propTypes.func, propTypes.string]),
-  /**
-   * The class name.
-   */
-  className: propTypes.string
-};
-
-var _excluded$c = ["className", "tag"];
-var CardGroup = function CardGroup(props) {
-  var className = props.className,
-    _props$tag = props.tag,
-    Tag = _props$tag === void 0 ? "div" : _props$tag,
-    attrs = _objectWithoutProperties(props, _excluded$c);
-  var classes = classNames(className, "bs-card-group");
-  return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
-    className: classes
-  }));
-};
-CardGroup.propTypes = {
-  /**
-   * The class name.
-   */
-  className: propTypes.string,
-  /**
-   * The component tag type.
-   */
-  tag: propTypes.oneOfType([propTypes.func, propTypes.string])
-};
-
-var _excluded$d = ["className", "tag"];
-var CardDeck = function CardDeck(props) {
-  var className = props.className,
-    _props$tag = props.tag,
-    Tag = _props$tag === void 0 ? "div" : _props$tag,
-    attrs = _objectWithoutProperties(props, _excluded$d);
-  var classes = classNames(className, "bs-card-deck");
-  return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
-    className: classes
-  }));
-};
-CardDeck.propTypes = {
-  /**
-   * The component tag type.
-   */
-  tag: propTypes.oneOfType([propTypes.func, propTypes.string]),
-  /**
-   * The class name.
-   */
-  className: propTypes.string
-};
-
-var _excluded$e = ["className", "tag"];
-var CardHeader = function CardHeader(props) {
-  var className = props.className,
-    _props$tag = props.tag,
-    Tag = _props$tag === void 0 ? "div" : _props$tag,
-    attrs = _objectWithoutProperties(props, _excluded$e);
-  var classes = classNames(className, "bs-card-header");
-  return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
-    className: classes
-  }));
-};
-CardHeader.propTypes = {
-  /**
-   * The class name.
-   */
-  className: propTypes.string,
-  /**
-   * The component tag type.
-   */
-  tag: propTypes.oneOfType([propTypes.func, propTypes.string])
-};
-
-var _excluded$f = ["className", "top", "bottom", "tag"];
-var CardImg = function CardImg(props) {
-  var className = props.className,
-    top = props.top,
-    bottom = props.bottom,
-    _props$tag = props.tag,
-    Tag = _props$tag === void 0 ? "img" : _props$tag,
-    attrs = _objectWithoutProperties(props, _excluded$f);
-  var cardImgClass = "";
-  if (top) {
-    cardImgClass = "bs-card-img-top";
-  }
-  if (bottom) {
-    cardImgClass = "bs-card-img-bottom";
-  }
-  cardImgClass = classNames(className, cardImgClass);
-  return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
-    className: cardImgClass
-  }));
-};
-CardImg.propTypes = {
-  /**
-   * Whether the image is positioned at the top of the card, or not.
-   */
-  top: propTypes.bool,
-  /**
-   * Whether the image is positioned at the bottom of the card, or not.
-   */
-  bottom: propTypes.bool,
-  /**
-   * The class name.
-   */
-  className: propTypes.string,
-  /**
-   * The component's tag type.
-   */
-  tag: propTypes.oneOfType([propTypes.func, propTypes.string])
-};
-
-var _excluded$g = ["className", "tag"];
-var CardImgOverlay = function CardImgOverlay(props) {
-  var className = props.className,
-    _props$tag = props.tag,
-    Tag = _props$tag === void 0 ? "div" : _props$tag,
-    attrs = _objectWithoutProperties(props, _excluded$g);
-  var classes = classNames(className, "bs-card-img-overlay");
-  return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
-    className: classes
-  }));
-};
-CardImgOverlay.propTypes = {
-  /**
-   * The class name.
-   */
-  className: propTypes.string,
-  /**
-   * The component's tag type.
-   */
-  tag: propTypes.oneOfType([propTypes.func, propTypes.string])
-};
-
-var _excluded$h = ["className", "tag", "innerRef"];
-var CardLink = function CardLink(props) {
-  var className = props.className,
-    _props$tag = props.tag,
-    Tag = _props$tag === void 0 ? "a" : _props$tag,
-    innerRef = props.innerRef,
-    attrs = _objectWithoutProperties(props, _excluded$h);
-  var classes = classNames(className, "bs-card-link");
-  return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
-    ref: innerRef,
-    className: classes
-  }));
-};
-CardLink.propTypes = {
-  /**
-   * The class name.
-   */
-  className: propTypes.string,
-  /**
-   * The component's tag type.
-   */
-  tag: propTypes.oneOfType([propTypes.func, propTypes.string]),
-  /**
-   * The inner ref.
-   */
-  innerRef: propTypes.oneOfType([propTypes.object, propTypes.func, propTypes.string])
-};
-
-var _excluded$i = ["className", "tag"];
-var CardSubtitle = function CardSubtitle(props) {
-  var className = props.className,
-    _props$tag = props.tag,
-    Tag = _props$tag === void 0 ? "h6" : _props$tag,
-    attrs = _objectWithoutProperties(props, _excluded$i);
-  var classes = classNames(className, "bs-card-subtitle", "bs-text-muted");
-  return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
-    className: classes
-  }));
-};
-CardSubtitle.propTypes = {
-  /**
-   * The class name.
-   */
-  className: propTypes.string,
-  /**
-   * The component's tag type.
-   */
-  tag: propTypes.oneOfType([propTypes.func, propTypes.string])
-};
-
-var _excluded$j = ["className", "tag"];
-var CardText = function CardText(props) {
-  var className = props.className,
-    _props$tag = props.tag,
-    Tag = _props$tag === void 0 ? "p" : _props$tag,
-    attrs = _objectWithoutProperties(props, _excluded$j);
-  var classes = classNames(className, "bs-card-text");
-  return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
-    className: classes
-  }));
-};
-CardText.propTypes = {
-  /**
-   * The class name.
-   */
-  className: propTypes.string,
-  /**
-   * The tag type.
-   */
-  tag: propTypes.oneOfType([propTypes.func, propTypes.string])
-};
-
-var _excluded$k = ["className", "tag"];
-var CardTitle = function CardTitle(props) {
-  var className = props.className,
-    _props$tag = props.tag,
-    Tag = _props$tag === void 0 ? "h5" : _props$tag,
-    attributes = _objectWithoutProperties(props, _excluded$k);
-  var classes = classNames(className, "bs-card-title");
-  return /*#__PURE__*/React.createElement(Tag, _extends({}, attributes, {
-    className: classes
-  }));
-};
-CardTitle.propTypes = {
-  /**
-   * The class name.
-   */
-  className: propTypes.string,
-  /**
-   * The component's tag type.
-   */
-  tag: propTypes.oneOfType([propTypes.func, propTypes.string])
-};
+var INPUT_TYPES = ["text", "password", "email", "number", "tel", "url", "search", "range", "color", "date", "time", "datetime", "datetime-local", "month", "week", "file"];
+var INPUT_GROUP_ADDON_TYPES = ["prepend", "append"];
 
 var reflow = function reflow(node) {
   void node.offsetHeight;
@@ -2745,7 +2628,7 @@ var CustomPropTypes = {
   })])
 };
 
-var _excluded$l = ["tag", "open", "className", "navbar", "children", "innerRef"];
+var _excluded$k = ["tag", "open", "className", "navbar", "children", "innerRef"];
 
 /**
  * The `Collapse` component allows you to easily toggle the visibility of your content.
@@ -2771,7 +2654,7 @@ var Collapse = /*#__PURE__*/function (_React$Component) {
         navbar = _this$props.navbar,
         children = _this$props.children,
         innerRef = _this$props.innerRef,
-        attrs = _objectWithoutProperties(_this$props, _excluded$l);
+        attrs = _objectWithoutProperties(_this$props, _excluded$k);
       var height = this.state.height;
       var transitionProps = pick(attrs, TRANSITION_KEYS);
       var childProps = omit(attrs, TRANSITION_KEYS);
@@ -2873,7 +2756,7 @@ Collapse.defaultProps = _objectSpread2(_objectSpread2({}, Transition$1.defaultPr
   timeout: TIMEOUT.COLLAPSE
 });
 
-var _excluded$m = ["className", "fluid", "tag"];
+var _excluded$l = ["className", "fluid", "tag"];
 
 /**
  * Shards React provides support for all native Bootstrap 4 layout elements including **containers**, **rows**, **columns** and **form rows** so you can use its full power while building your project's responsive layout powered by flexbox.
@@ -2883,7 +2766,7 @@ var Container = function Container(props) {
     fluid = props.fluid,
     _props$tag = props.tag,
     Tag = _props$tag === void 0 ? "div" : _props$tag,
-    attrs = _objectWithoutProperties(props, _excluded$m);
+    attrs = _objectWithoutProperties(props, _excluded$l);
   var classes = classNames(className, fluid ? "bs-container-fluid" : "bs-container");
   return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
     className: classes
@@ -2904,14 +2787,14 @@ Container.propTypes = {
   tag: propTypes.oneOfType([propTypes.func, propTypes.string])
 };
 
-var _excluded$n = ["noGutters", "form", "className", "tag"];
+var _excluded$m = ["noGutters", "form", "className", "tag"];
 var Row = function Row(props) {
   var noGutters = props.noGutters,
     form = props.form,
     className = props.className,
     _props$tag = props.tag,
     Tag = _props$tag === void 0 ? 'div' : _props$tag,
-    attrs = _objectWithoutProperties(props, _excluded$n);
+    attrs = _objectWithoutProperties(props, _excluded$m);
   var classes = classNames(className, noGutters ? 'bs-no-gutters' : null, form ? 'bs-form-row' : 'bs-row');
   return /*#__PURE__*/React.createElement(Tag, _extends({}, attrs, {
     className: classes
@@ -2936,7 +2819,7 @@ Row.propTypes = {
   tag: propTypes.oneOfType([propTypes.func, propTypes.string])
 };
 
-var _excluded$o = ["className", "breakpoints", "tag"];
+var _excluded$n = ["className", "breakpoints", "tag"];
 var makeColumnClass = function makeColumnClass(isXs, breakpoint, colSize) {
   if (colSize === true || colSize === "") {
     return isXs ? "bs-col" : "bs-col-".concat(breakpoint);
@@ -2951,7 +2834,7 @@ var Col = function Col(props) {
     breakpoints = _props$breakpoints === void 0 ? BREAKPOINTS : _props$breakpoints,
     _props$tag = props.tag,
     Tag = _props$tag === void 0 ? "div" : _props$tag,
-    attrs = _objectWithoutProperties(props, _excluded$o);
+    attrs = _objectWithoutProperties(props, _excluded$n);
   var columnClasses = [];
   breakpoints.forEach(function (breakpoint, idx) {
     var columnProp = props[breakpoint];
@@ -3043,7 +2926,7 @@ styleInject(css);
 var css$1 = "/**\n * Datepicker Styles\n */\n\n.react-datepicker {\n  border: none;\n}\n\n.react-datepicker-popper,\n.react-datepicker {\n  z-index: 1000;\n}\n\n.react-datepicker__month-container {\n  border: none;\n  box-shadow: 0 0.5rem 4rem rgba(0, 0, 0, 0.11), 0 10px 20px rgba(0, 0, 0, 0.05),\n    0 2px 3px rgba(0, 0, 0, 0.06);\n}\n\n.react-datepicker__header {\n  border: none;\n  background: #fff;\n  padding-top: 20px;\n}\n\n.react-datepicker__day-name,\n.react-datepicker__day,\n.react-datepicker__time-name,\n.react-datepicker__current-month {\n  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,\n    Helvetica Neue, Arial, sans-serif;\n  color: #5a6169;\n}\n\n.react-datepicker__day--disabled {\n  color: #ddd;\n}\n\n.react-datepicker__day--disabled:hover {\n  background: transparent !important;\n}\n\n.react-datepicker__day {\n  transition: all 0.25s cubic-bezier(0.27, 0.01, 0.38, 1.06);\n}\n\n.react-datepicker__day:hover {\n  background-color: #eceeef;\n}\n\n.react-datepicker__current-month {\n  font-weight: 600;\n}\n\n.react-datepicker__day,\n.react-datepicker__day:hover,\n.react-datepicker__day--keyboard-selected {\n  border-radius: 50%;\n}\n\n.react-datepicker__day--highlighted {\n  background: #e6f2ff;\n}\n\n.react-datepicker__day--keyboard-selected,\n.react-datepicker__day--selected {\n  color: #fff;\n  background: #007bff;\n}\n\n.react-datepicker__day--keyboard-selected:hover,\n.react-datepicker__day--selected:hover {\n  background: #006fe6;\n}\n\n.react-datepicker__header,\n.react-datepicker__month-container {\n  border-bottom-left-radius: 0.375rem;\n  border-bottom-right-radius: 0.375rem;\n}\n\n.react-datepicker__header {\n  border-top-left-radius: 0.375rem;\n  border-top-right-radius: 0.375rem;\n}\n\n.react-datepicker {\n  border-radius: 0.375rem;\n}\n\n.react-datepicker__navigation {\n  top: 25px;\n}\n\n.react-datepicker__triangle:before {\n  border-bottom-color: #e3e3e3 !important;\n}\n\n.react-datepicker__month {\n  padding: 10px 15px;\n}\n\n/* Datepicker & Input Groups */\n\n.input-group > .react-datepicker-wrapper .form-control {\n  position: relative;\n}\n\n.input-group > .react-datepicker-wrapper:not(:first-child) .form-control {\n  border-top-left-radius: 0;\n  border-bottom-left-radius: 0;\n}\n\n.input-group > .react-datepicker-wrapper:not(:last-child) .form-control {\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n}\n\n.input-group > .react-datepicker-wrapper ~ .react-datepicker-wrapper input {\n  margin-left: -1px;\n}\n\n.input-group\n  > .react-datepicker-wrapper\n  ~ .react-datepicker-wrapper\n  ~ .input-group-append {\n  margin-left: -2px;\n}\n\n.input-group > .react-datepicker-wrapper .form-control:focus {\n  z-index: 3;\n}\n";
 styleInject(css$1);
 
-var _excluded$p = ["className", "size"];
+var _excluded$o = ["className", "size"];
 
 /**
  * The `DatePicker` component is a wrapper for the [react-datepicker](https://github.com/Hacker0x01/react-datepicker) component.
@@ -3053,7 +2936,7 @@ var _excluded$p = ["className", "size"];
 var DatePicker = function DatePicker(props) {
   var className = props.className,
     size = props.size,
-    attrs = _objectWithoutProperties(props, _excluded$p);
+    attrs = _objectWithoutProperties(props, _excluded$o);
   var classes = classNames(className, "bs-form-control", size && "bs-form-control-".concat(size));
   if (!attrs.dropdownMode) {
     attrs.dropdownMode = "select";
@@ -3073,7 +2956,7 @@ var DropdownContext = /*#__PURE__*/React.createContext({
   nav: false
 });
 
-var _excluded$q = ["className", "children", "dropup", "open", "group", "size", "nav", "setActiveFromChild", "active", "addonType", "direction"];
+var _excluded$p = ["className", "children", "dropup", "open", "group", "size", "nav", "setActiveFromChild", "active", "addonType", "direction"];
 
 /**
  * You can use dropdowns to display accessible contextual overlays for displaying lists of links and more.
@@ -3167,7 +3050,7 @@ var Dropdown = /*#__PURE__*/function (_React$Component) {
         active = props.active,
         addonType = props.addonType,
         directionProp = props.direction,
-        attrs = _objectWithoutProperties(props, _excluded$q);
+        attrs = _objectWithoutProperties(props, _excluded$p);
       var direction = directionProp === "down" && dropup ? "up" : directionProp;
       attrs.tag = attrs.tag || (nav ? "li" : "div");
       var subItemIsActive = false;
@@ -3233,7 +3116,7 @@ Dropdown.defaultProps = {
   nav: false
 };
 
-var _excluded$r = ["className", "theme", "caret", "split", "nav", "tag"];
+var _excluded$q = ["className", "theme", "caret", "split", "nav", "tag"];
 var DropdownToggle = /*#__PURE__*/function (_React$Component) {
   function DropdownToggle(props) {
     var _this;
@@ -3269,7 +3152,7 @@ var DropdownToggle = /*#__PURE__*/function (_React$Component) {
         split = _this$props.split,
         nav = _this$props.nav,
         tag = _this$props.tag,
-        attrs = _objectWithoutProperties(_this$props, _excluded$r);
+        attrs = _objectWithoutProperties(_this$props, _excluded$q);
       var ariaLabel = attrs["aria-label"] || "Toggle Dropdown";
       var classes = classNames(className, (caret || split) && "bs-dropdown-toggle", split && "bs-dropdown-toggle-split", nav && "bs-nav-link");
       var children = attrs.children || /*#__PURE__*/React.createElement("span", {
@@ -3352,7 +3235,7 @@ DropdownToggle.defaultProps = {
 };
 DropdownToggle.contextType = DropdownContext;
 
-var _excluded$s = ["className", "children", "right", "tag", "flip", "small", "modifiers", "persist"];
+var _excluded$r = ["className", "children", "right", "tag", "flip", "small", "modifiers", "persist"];
 var DropdownMenu = /*#__PURE__*/function (_React$Component) {
   function DropdownMenu() {
     _classCallCheck(this, DropdownMenu);
@@ -3372,7 +3255,7 @@ var DropdownMenu = /*#__PURE__*/function (_React$Component) {
         small = _this$props.small,
         modifiers = _this$props.modifiers,
         persist = _this$props.persist,
-        attrs = _objectWithoutProperties(_this$props, _excluded$s);
+        attrs = _objectWithoutProperties(_this$props, _excluded$r);
       var classes = classNames(className, "bs-dropdown-menu", small && "bs-dropdown-menu-small", right && "bs-dropdown-menu-right", this.context.open && "bs-show");
       if (persist || this.context.open && !this.context.inNavbar) {
         var pos1 = DROPDOWN_POSITION_MAP[this.context.direction.toUpperCase()] || "bottom";
@@ -3446,7 +3329,7 @@ DropdownMenu.defaultProps = {
 };
 DropdownMenu.contextType = DropdownContext;
 
-var _excluded$t = ["className", "divider", "tag", "header", "active"];
+var _excluded$s = ["className", "divider", "tag", "header", "active"];
 var DropdownItem = /*#__PURE__*/function (_React$Component) {
   function DropdownItem(props) {
     var _this;
@@ -3488,7 +3371,7 @@ var DropdownItem = /*#__PURE__*/function (_React$Component) {
         Tag = _omit.tag,
         header = _omit.header,
         active = _omit.active,
-        attrs = _objectWithoutProperties(_omit, _excluded$t);
+        attrs = _objectWithoutProperties(_omit, _excluded$s);
       var tabIndex = this.getTabIndex();
       var classes = classNames(className, attrs.disabled && "disabled", !divider && !header && "bs-dropdown-item", header && "bs-dropdown-header", divider && "bs-dropdown-divider", active && "bs-active");
       if (Tag === "button") {
@@ -3553,6 +3436,59 @@ DropdownItem.defaultProps = {
   toggle: true
 };
 DropdownItem.contextType = DropdownContext;
+
+var _excluded$t = ["tag", "baseClass", "baseClassActive", "className", "children", "innerRef", "timeout", "appear", "enter", "exit", "in"];
+
+/**
+ * The `Fade` component allows you to easily fade in and out content and is powered by [react-transition-group](https://github.com/reactjs/react-transition-group).
+ */
+var Fade = function Fade(props) {
+  var _props$tag = props.tag,
+    Tag = _props$tag === void 0 ? "div" : _props$tag,
+    _props$baseClass = props.baseClass,
+    baseClass = _props$baseClass === void 0 ? "bs-fade" : _props$baseClass,
+    _props$baseClassActiv = props.baseClassActive,
+    baseClassActive = _props$baseClassActiv === void 0 ? "bs-show" : _props$baseClassActiv,
+    className = props.className,
+    children = props.children,
+    innerRef = props.innerRef,
+    _props$timeout = props.timeout,
+    timeout = _props$timeout === void 0 ? TIMEOUT.FADE : _props$timeout,
+    _props$appear = props.appear,
+    appear = _props$appear === void 0 ? true : _props$appear,
+    _props$enter = props.enter,
+    enter = _props$enter === void 0 ? true : _props$enter,
+    _props$exit = props.exit,
+    exit = _props$exit === void 0 ? true : _props$exit,
+    _props$in = props["in"],
+    inProp = _props$in === void 0 ? true : _props$in,
+    attrs = _objectWithoutProperties(props, _excluded$t);
+  var transitionProps = pick(attrs, TRANSITION_KEYS);
+  var childProps = omit(attrs, TRANSITION_KEYS);
+  return /*#__PURE__*/React.createElement(Transition$1, _extends({}, transitionProps, {
+    timeout: timeout,
+    appear: appear,
+    enter: enter,
+    exit: exit,
+    "in": inProp
+  }), function (status) {
+    var isActive = status === "entered";
+    var classes = classNames(className, baseClass, isActive && baseClassActive);
+    return /*#__PURE__*/React.createElement(Tag, _extends({
+      className: classes
+    }, childProps, {
+      ref: innerRef
+    }), children);
+  });
+};
+Fade.propTypes = _objectSpread2(_objectSpread2({}, Transition$1.propTypes), {}, {
+  tag: propTypes.oneOfType([propTypes.string, propTypes.func]),
+  baseClass: propTypes.string,
+  baseClassActive: propTypes.string,
+  className: propTypes.string,
+  innerRef: propTypes.oneOfType([propTypes.object, propTypes.string, propTypes.func]),
+  children: propTypes.oneOfType([propTypes.arrayOf(propTypes.node), propTypes.node])
+});
 
 var _excluded$u = ["className", "tag", "inline", "innerRef"];
 
